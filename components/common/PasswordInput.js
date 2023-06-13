@@ -7,12 +7,13 @@ function PasswordInput({
   value,
   setUserPassword,
   setShowPassword,
-  showPassword,
+  showPassword = false,
 }) {
   function passwordHandler(event) {
     setUserPassword(event.target.value)
   }
-  const type = showPassword ? "password" : "text"
+  console.log("show Password", showPassword)
+  const type = showPassword ? "text" : "password"
 
   function showPasswordHandler() {
     setShowPassword((prev) => !prev)
