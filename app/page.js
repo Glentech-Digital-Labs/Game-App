@@ -1,4 +1,4 @@
-import { Login, Registration } from "@components"
+import { Login, OtpInput, Registration } from "@components"
 import React from "react"
 
 function Home() {
@@ -6,6 +6,7 @@ function Home() {
     <div>
       {/* <Login /> */}
       <Registration />
+      {/* <OtpInput /> */}
     </div>
   )
 }
