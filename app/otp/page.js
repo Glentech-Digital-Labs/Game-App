@@ -29,7 +29,7 @@ function Otp() {
         )}
       </div>
       <div className="tw-min-w-full tw-flex tw-justify-center">
-        <YellowButton label={"submit"} />
+        <YellowButton label={"submit"} style={"tw-w-[90%]"} />
       </div>
     </div>
   )

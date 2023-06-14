@@ -10,11 +10,19 @@
   --header-background: rgba(83, 83, 83, 0.47);
   height: "100vh";
   color: white;
+  --yellow-button-background: linear-gradient(
+      159.46deg,
+      #c4965b -45.75%,
+      #efbe2c -45.75%,
+      #b78a51 17.68%,
+      #88612a 100.75%
+    ),
+    linear-gradient(180deg, #24242f 0%, #15131d 100%), #17191c;
 }
 
 .header {
   background-color: var(--header-background);
-  height: 3rem;
+  height: 4rem;
   width: 100%;
   min-width: 100%;
   top: 0;
@@ -32,7 +40,7 @@
 body {
   background-image: url("/images/background-icons.png");
   background-repeat: repeat;
-  width: 100%;
+  /* width: 100%; */
   height: 100vh;
   min-height: 100%;
 }
@@ -48,14 +56,7 @@ input {
 }
 
 .yellowButton {
-  background: linear-gradient(
-      159.46deg,
-      #c4965b -45.75%,
-      #efbe2c -45.75%,
-      #b78a51 17.68%,
-      #88612a 100.75%
-    ),
-    linear-gradient(180deg, #24242f 0%, #15131d 100%), #17191c;
+  background: var(--yellow-button-background);
   border-radius: 5px;
   height: 3rem;
 }
@@ -84,3 +85,44 @@ input {
   line-height: 1;
 }
 /* Otp */
+
+/* Remove scroll bar */
+.all_sports_icon {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+}
+.all_sports_icon::-webkit-scrollbar {
+  display: none;
+}
+/* Remove scroll bar */
+
+/* Card */
+.match_card {
+  background: hsla(0, 8%, 72%, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(155, 158, 206, 0.37);
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(4.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+/* Card */
+
+/* Betting Box */
+.betting-box {
+  background-color: rgba(18, 19, 20, 0.6);
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(4.5px);
+}
+/* Betting Box */
+
+.bottom_layout {
+  background-color: linear-gradient(
+    328.49deg,
+    #19181e -30.84%,
+    #1d1c22 10.28%,
+    #23232a 59.43%,
+    #3c3c44 98.31%
+  );
+  border-top: 1px solid #494954;
+  backdrop-filter: blur(40.5px);
+}
