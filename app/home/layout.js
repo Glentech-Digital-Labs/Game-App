@@ -3,14 +3,10 @@ import Image from "next/image"
 
 import Logo from "../../public/images/Sportradar-log.svg"
 
-import { BiWallet, BiUser, BiMenu } from "react-icons/bi"
-import { Rounded, YellowButton } from "@components/common"
+import { BiWallet, BiUser } from "react-icons/bi"
+import { BottomMenu, Rounded, YellowButton } from "@components/common"
 import { BiCricketBall, BiFootball, BiTennisBall } from "react-icons/bi"
 import { FaVolleyballBall } from "react-icons/fa"
-import { AiFillPlaySquare } from "react-icons/ai"
-import { BsPlayBtn } from "react-icons/bs"
-import { GoHome } from "react-icons/go"
-import { RiSettingsLine } from "react-icons/ri"
 
 export const metadata = {
   title: "OTP ",
@@ -79,29 +75,7 @@ function HomeLayout({ children }) {
     <section>
       <HeaderLayout />
       {children}
-      <div className="bottom_nav tw-flex tw-h-20  tw-justify-around tw-sticky tw-bottom-0 tw-z-10  tw-text-gray-300 bottom_layout">
-        <div className="tw-flex tw-flex-col tw-justify-center">
-          <GoHome fontSize={24} className="tw-mx-auto" />
-          <p>Home</p>
-        </div>
-        <div className="tw-flex tw-flex-col tw-justify-center">
-          <AiFillPlaySquare fontSize={24} className="tw-mx-auto" />
-          <p>In Play</p>
-        </div>
-
-        <div className="tw-flex tw-flex-col tw-justify-center">
-          <BsPlayBtn fontSize={24} className="tw-mx-auto" />
-          <p>Open Bet</p>
-        </div>
-        <div className="tw-flex tw-flex-col tw-justify-center">
-          <BiMenu fontSize={24} className="tw-mx-auto" />
-          <p>Menu</p>
-        </div>
-        <div className="tw-flex tw-flex-col tw-justify-center">
-          <RiSettingsLine fontSize={24} className="tw-mx-auto" />
-          <p>Setting</p>
-        </div>
-      </div>
+      <BottomMenu />
     </section>
   )
 }

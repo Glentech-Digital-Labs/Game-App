@@ -1,0 +1,34 @@
+.accordion {
+  margin-bottom: 1rem;
+}
+
+.accordion__button {
+  width: 100%;
+  padding: 0.5rem;
+  font-weight: bold;
+  /* background-color: #eee; */
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s;
+}
+
+.accordion__button:hover {
+  /* background-color: #ddd; */
+}
+
+.accordion__button.open {
+  /* background-color: #ccc; */
+}
+
+.accordion__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s;
+}
+
+.accordion__content.open {
+  max-height: 1000px; /* Adjust this value as needed */
+  transition: max-height 0.3s;
+}
