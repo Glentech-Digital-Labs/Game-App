@@ -8,6 +8,9 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {},
+      colors: {
+        betPinkColor: "#B87A85",
+      },
     },
   },
   plugins: [],

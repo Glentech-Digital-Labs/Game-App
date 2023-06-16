@@ -7,11 +7,13 @@ import {
   AiOutlinePlus,
 } from "react-icons/ai"
 import { BsFillTrophyFill } from "react-icons/bs"
-import { BettingInput, Rounded } from "@components/common"
+import { BettingInput, CashOutModal, Rounded } from "@components/common"
+import { Modal } from "@components/modal/Modal"
+import { useModal } from "@hooks"
 
 const Accordion = ({ title, content, shouldOpen }) => {
   const [isOpen, setIsOpen] = useState(shouldOpen || false)
-  const [isChildOpen, setIsChildOpen] = useState(false)
+  const { isModalOpen, toggle } = useModal()
 
   const [activeIndex, setActiveIndex] = useState(null)
 
@@ -30,35 +32,62 @@ const Accordion = ({ title, content, shouldOpen }) => {
   return (
     <div className="accordion">
       <div
-        className={`tw-bg-[#36363D] tw-flex tw-justify-between tw-h-14 tw-mt-4 tw-px-4 accordion-title accordion__button ${
-          isOpen ? "open" : ""
-        }`}
-        onClick={toggleAccordion}
+        className={`tw-bg-[#36363D] tw-flex tw-justify-between tw-h-14 tw-mt-4 tw-px-4 accordion-title `}
       >
         <div className="tw-flex">
           <BsFillTrophyFill fontSize={32} className="tw-self-center" />
           <h2 className="tw-ml-2 tw-self-center">{title}</h2>
         </div>
+
+        {activeIndex !== null && isOpen && (
+          <button
+            className="tw-bg-green-400 tw-px-2 tw-py-1 tw-rounded-md tw-items-center tw-justify-center tw-flex tw-h-8 tw-self-center tw-mr-2"
+            onClick={toggle}
+          >
+            Cashout:500
+          </button>
+        )}
+
         <div className="tw-flex">
-          <AiOutlineExclamation
-            style={{ transform: "rotate(180deg)" }}
-            fontSize={25}
-            className="tw-self-center tw-bg-slate-300 tw-rounded-full"
-          />
+          <div className="tw-self-center tw-bg-slate-300 tw-rounded-full tw-p-1">
+            <AiOutlineExclamation
+              style={{ transform: "rotate(180deg)" }}
+              fontSize={25}
+            />
+          </div>
           <button className="tw-bg-slate-200 tw-px-4 tw-rounded-lg tw-h-8  tw-text-black tw-self-center tw-mx-3">
             Rules
           </button>
-          {isOpen ? (
-            <AiOutlineMinus fontSize={32} className="tw-self-center" />
-          ) : (
-            <AiOutlinePlus fontSize={32} className="tw-self-center" />
-          )}
+          <div className="tw-flex tw-justify-center tw-items-center">
+            {isOpen ? (
+              <AiOutlineMinus
+                fontSize={32}
+                className={`tw-self-center accordion__button ${
+                  isOpen ? "open" : ""
+                }`}
+                onClick={toggleAccordion}
+              />
+            ) : (
+              <AiOutlinePlus
+                fontSize={32}
+                className={`tw-self-center accordion__button ${
+                  isOpen ? "open" : ""
+                }`}
+                onClick={toggleAccordion}
+              />
+            )}
+          </div>
         </div>
       </div>
-
+      <Modal
+        isModalOpen={isModalOpen}
+        toggle={toggle}
+        className={"tw-h-[30%] tw-ml-[-2]"}
+        style={{ height: "45%", marginTop: "5rem" }}
+      >
+        <CashOutModal />
+      </Modal>
       <div className={`accordion__content ${isOpen ? "open" : ""}`}>
-        {/* If title is fancy bet */}
-        {/* Make a type of circular  */}
         {title === "Fancy Bet" && (
           <div className="tw-flex tw-overflow-x-auto">
             <Rounded label={"All"} backgroundColor="gray" />
@@ -74,12 +103,11 @@ const Accordion = ({ title, content, shouldOpen }) => {
           <h2 className="tw-mr-4">{type2}</h2>
         </div>
         {Questions?.map((item, index) => (
-          <div>
+          <div key={index}>
             <div
               className={`tw-bg-transparent tw-flex tw-justify-between tw-border-b-2 tw-border-b-slate-800 b tw-h-20 tw-font-semibold tw-text-2xl  tw-items-center tw-px-2 ${
                 activeIndex === index ? "active" : ""
               } `}
-              key={index}
               onClick={() => toggleChildAccordion(index)}
             >
               <h1>{item[0]}</h1>

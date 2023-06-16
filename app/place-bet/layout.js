@@ -1,11 +1,13 @@
+"use client"
 import React from "react"
+import "./index.css"
 import { AiOutlineLeft } from "react-icons/ai"
 import { CiReceipt } from "react-icons/ci"
 
-import "./index.css"
-import { BottomMenu } from "@components"
+import { BottomMenu, Modal, OpenBets } from "@components"
+import { useModal } from "@hooks"
 
-function Headers() {
+function Headers({ toggle }) {
   return (
     <div className="tw-flex tw-justify-between tw-px-2 header ">
       <div className="tw-flex tw-self-center">
@@ -15,7 +17,7 @@ function Headers() {
           <h2>Gujarat vs Mumbai</h2>
         </div>
       </div>
-      <div className="tw-flex tw-justify-center">
+      <div className="tw-flex tw-justify-center" onClick={toggle}>
         <CiReceipt fontSize={"32"} className="tw-my-auto" />
         <p className="tw-self-center tw-whitespace-nowrap">Open Bets</p>
       </div>
@@ -30,9 +32,13 @@ function Headers() {
 }
 
 function Layout({ children }) {
+  const { isModalOpen, toggle } = useModal()
   return (
     <div className="tw-relative">
-      <Headers />
+      <Headers toggle={toggle} />
+      <Modal isModalOpen={isModalOpen} toggle={toggle}>
+        <OpenBets />
+      </Modal>
       {children}
 
       <BottomMenu />

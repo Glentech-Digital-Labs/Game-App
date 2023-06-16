@@ -8,6 +8,9 @@ export {
   AmountCard,
   NumberCard,
   BettingInput,
+  OpenBets,
+  CashOutModal,
 } from "./common"
 export { OtpInput } from "./otp/OtpComponent"
 export { Accordion } from "./accordion/Accordion"
+export { Modal } from "./modal/Modal"
