@@ -1,7 +1,15 @@
 "use client"
 import { OtpInput } from "@components"
-import { YellowButton } from "@components/common"
+import {
+  AmountCard,
+  BlackButton,
+  NumberCard,
+  YellowButton,
+} from "@components/common"
 import React, { useState } from "react"
+import { AiOutlineArrowRight } from "react-icons/ai"
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai"
+import { IoMdBackspace } from "react-icons/io"
 
 function Otp() {
   const [otp, setOtp] = useState("")

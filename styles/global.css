@@ -59,11 +59,13 @@ input {
   background: var(--yellow-button-background);
   border-radius: 5px;
   height: 3rem;
+  border-color: var(--yellow-button-background);
 }
 .BlackButton {
   background-color: rgba(73, 73, 84, 1);
   border-radius: 5px;
   height: 3rem;
+  border-color: rgba(73, 73, 84, 1);
 }
 
 /* Otp */

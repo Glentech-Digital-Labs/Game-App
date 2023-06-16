@@ -7,10 +7,17 @@ import {
   AiOutlinePlus,
 } from "react-icons/ai"
 import { BsFillTrophyFill } from "react-icons/bs"
-import { Rounded } from "@components/common"
+import { BettingInput, Rounded } from "@components/common"
 
 const Accordion = ({ title, content, shouldOpen }) => {
   const [isOpen, setIsOpen] = useState(shouldOpen || false)
+  const [isChildOpen, setIsChildOpen] = useState(false)
+
+  const [activeIndex, setActiveIndex] = useState(null)
+
+  const toggleChildAccordion = (index) => {
+    setActiveIndex(activeIndex === index ? null : index)
+  }
 
   const toggleAccordion = () => {
     setIsOpen(!isOpen)
@@ -67,19 +74,30 @@ const Accordion = ({ title, content, shouldOpen }) => {
           <h2 className="tw-mr-4">{type2}</h2>
         </div>
         {Questions?.map((item, index) => (
-          <div
-            className="tw-bg-transparent tw-flex tw-justify-between tw-border-b-2 tw-border-b-slate-800 b tw-h-20 tw-font-semibold tw-text-2xl  tw-items-center tw-px-2"
-            key={index}
-          >
-            <h1>{item[0]}</h1>
-            <div className="tw-flex tw-justify-end ">
-              <button className=" tw-border-b-4 tw-border-[#5975B8]  tw-w-20 tw-h-16 tw-self-end tw-text-center betting-box tw-rounded-lg back-button  ">
-                {item[1][0][0]}
-              </button>
-              <button className="tw-border-b-4 tw-border-[#B87A85]  tw-w-20  tw-h-16 tw-self-end tw-ml-4 tw-text-center betting-box tw-rounded-lg">
-                {item[1][1][0]}
-              </button>
+          <div>
+            <div
+              className={`tw-bg-transparent tw-flex tw-justify-between tw-border-b-2 tw-border-b-slate-800 b tw-h-20 tw-font-semibold tw-text-2xl  tw-items-center tw-px-2 ${
+                activeIndex === index ? "active" : ""
+              } `}
+              key={index}
+              onClick={() => toggleChildAccordion(index)}
+            >
+              <h1>{item[0]}</h1>
+              <div className="tw-flex tw-justify-end ">
+                <button className=" tw-border-b-4 tw-border-[#5975B8]  tw-w-20 tw-h-16 tw-self-end tw-text-center betting-box tw-rounded-lg back-button  ">
+                  {item[1][0][0]}
+                </button>
+                <button className="tw-border-b-4 tw-border-[#B87A85]  tw-w-20  tw-h-16 tw-self-end tw-ml-4 tw-text-center betting-box tw-rounded-lg">
+                  {item[1][1][0]}
+                </button>
+              </div>
             </div>
+
+            {activeIndex === index && (
+              <div className="faq-answer">
+                <BettingInput />
+              </div>
+            )}
           </div>
         ))}
       </div>
