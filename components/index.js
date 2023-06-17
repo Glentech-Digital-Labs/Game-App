@@ -10,6 +10,7 @@ export {
   BettingInput,
   OpenBets,
   CashOutModal,
+  IconCards,
 } from "./common"
 export { OtpInput } from "./otp/OtpComponent"
 export { Accordion } from "./accordion/Accordion"
