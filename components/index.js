@@ -14,3 +14,4 @@ export {
 export { OtpInput } from "./otp/OtpComponent"
 export { Accordion } from "./accordion/Accordion"
 export { Modal } from "./modal/Modal"
+export { ProfileEdit } from "./profile/ProfileEdit"
