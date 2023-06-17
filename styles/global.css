@@ -101,7 +101,7 @@ input {
 /* Card */
 .match_card {
   background: hsla(0, 8%, 72%, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(155, 158, 206, 0.37);
+  box-shadow: 0 8px 32px 0 rgba(18, 18, 18, 0.37);
   backdrop-filter: blur(1.5px);
   -webkit-backdrop-filter: blur(4.5px);
   border-radius: 10px;
