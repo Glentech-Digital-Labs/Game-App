@@ -27,8 +27,8 @@ function CashOutModal() {
           ,rejected or partially accepted
         </div>
         <div className="tw-flex tw-w-full tw-mt-4">
-          <BlackButton label={"cancel"} style={"tw-w-[48%]"} />
-          <YellowButton label={"conform"} style={"tw-w-[48%] tw-ml-4"} />
+          <BlackButton label={"cancel"} className={"tw-w-[48%]"} />
+          <YellowButton label={"conform"} className={"tw-w-[48%] tw-ml-4"} />
         </div>
       </div>
     </>

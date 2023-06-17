@@ -81,8 +81,8 @@ function AccountDetails() {
         UTR Transition Number
       </div>
       <div className="tw-flex tw-fixed tw-bottom-4 tw-w-full">
-        <YellowButton label={"Submit"} style={"tw-w-[48%]"} />
-        <BlackButton label={"Cancel"} style={"tw-w-[48%] tw-ml-4"} />
+        <YellowButton label={"Submit"} className={"tw-w-[48%]"} />
+        <BlackButton label={"Cancel"} className={"tw-w-[48%] tw-ml-4"} />
       </div>
     </>
   )

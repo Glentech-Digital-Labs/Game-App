@@ -145,7 +145,7 @@ function BettingInput() {
       <BackLayButtons />
       <div className="tw-flex tw-mt-4">
         <BlackButton label={"Cancel"} style={"tw-w-[48%] tw-mr-2"} />
-        <YellowButton label={"Place Bet"} style={"tw-w-[48%]"} />
+        <YellowButton label={"Place Bet"} className={"tw-w-[48%]"} />
       </div>
       <AmountComponent />
       <NumberComponent />

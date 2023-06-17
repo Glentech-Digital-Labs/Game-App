@@ -34,8 +34,8 @@ function HeaderLayout() {
 
           <YellowButton
             label={"+ Add"}
-            style="tw-px-2 tw-mx-2 tw-self-center"
-            inlineStyle={{ height: "2rem", width: "4rem" }}
+            className="tw-px-2 tw-mx-2 tw-self-center"
+            style={{ height: "2rem", width: "4rem" }}
           />
         </div>
       </div>

@@ -87,7 +87,7 @@ function ProfileEdit() {
         />
         {/* <InlineEditableElement type={"Password"} initialValue={"1234567"} /> */}
       </div>
-      <YellowButton label={"Update"} style={"tw-mx-4"} />
+      <YellowButton label={"Update"} className={"tw-mx-4"} />
     </div>
   )
 }

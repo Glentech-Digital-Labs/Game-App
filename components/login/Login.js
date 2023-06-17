@@ -57,10 +57,10 @@ function Login() {
           </p>
         </div>
 
-        <YellowButton label={"Login"} style="tw-w-[90%]" type="submit" />
+        <YellowButton label={"Login"} className="tw-w-[90%]" type="submit" />
 
         <p className="tw-mt-4 tw-mb-2 tw-ml-[30%]">New to Gigblitz ?</p>
-        <BlackButton label={"Join Now"} style="tw-w-[90%]" />
+        <BlackButton label={"Join Now"} className="tw-w-[90%]" />
       </form>
       <Image
         src={BetFairIcon}

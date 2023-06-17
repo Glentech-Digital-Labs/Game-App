@@ -1,11 +1,8 @@
 import React from "react"
 
-function YellowButton({ style, label, inlineStyle }) {
+function YellowButton({ className, label, style }) {
   return (
-    <button
-      className={`yellowButton tw-text-white ${style}`}
-      style={inlineStyle}
-    >
+    <button className={`yellowButton tw-text-white ${className}`} style={style}>
       {label}
     </button>
   )

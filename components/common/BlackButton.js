@@ -1,8 +1,10 @@
 import React from "react"
 
-function BlackButton({ style, label }) {
+function BlackButton({ className, label }) {
   return (
-    <button className={`BlackButton tw-text-white ${style}`}>{label}</button>
+    <button className={`BlackButton tw-text-white ${className}`}>
+      {label}
+    </button>
   )
 }
 
