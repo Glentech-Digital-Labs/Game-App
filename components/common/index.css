@@ -1,0 +1,258 @@
+.golden_card {
+  background: linear-gradient(0deg, #c1a875, #c1a875),
+    linear-gradient(339.03deg, rgba(255, 255, 255, 0) 52.79%, #ffffff 95.95%),
+    linear-gradient(
+      76.82deg,
+      #576265 11.6%,
+      #9ea1a1 25.31%,
+      #848b8a 48.06%,
+      #576265 55.72%,
+      #576265 77.23%,
+      #757a7b 85.34%,
+      #576265 91.31%
+    ),
+    linear-gradient(
+      76.82deg,
+      #576265 11.6%,
+      #9ea1a1 25.31%,
+      #848b8a 48.06%,
+      #576265 55.72%,
+      #576265 77.23%,
+      #757a7b 85.34%,
+      #576265 91.31%
+    ),
+    linear-gradient(
+      290.3deg,
+      #a1a1a1 16.54%,
+      #f0f0f0 30.7%,
+      #e4e4e4 55.82%,
+      #d5d5d5 85.91%,
+      #dfdfdf 94.21%
+    ),
+    #323232;
+  background-blend-mode: color, overlay, normal, normal, normal, normal;
+  border-radius: 29.0404px 29.0404px 0px 0px;
+}
+
+.platinum_card {
+  background: linear-gradient(0deg, #ffffff, #ffffff),
+    linear-gradient(0deg, #cdc9c2, #cdc9c2),
+    linear-gradient(339.03deg, rgba(255, 255, 255, 0) 52.79%, #ffffff 95.95%),
+    linear-gradient(
+      76.82deg,
+      #576265 11.6%,
+      #9ea1a1 25.31%,
+      #848b8a 48.06%,
+      #576265 55.72%,
+      #576265 77.23%,
+      #757a7b 85.34%,
+      #576265 91.31%
+    ),
+    linear-gradient(0deg, #c1a875, #c1a875),
+    linear-gradient(339.03deg, rgba(255, 255, 255, 0) 52.79%, #ffffff 95.95%),
+    linear-gradient(
+      76.82deg,
+      #576265 11.6%,
+      #9ea1a1 25.31%,
+      #848b8a 48.06%,
+      #576265 55.72%,
+      #576265 77.23%,
+      #757a7b 85.34%,
+      #576265 91.31%
+    ),
+    linear-gradient(
+      76.82deg,
+      #576265 11.6%,
+      #9ea1a1 25.31%,
+      #848b8a 48.06%,
+      #576265 55.72%,
+      #576265 77.23%,
+      #757a7b 85.34%,
+      #576265 91.31%
+    ),
+    linear-gradient(
+      290.3deg,
+      #a1a1a1 16.54%,
+      #f0f0f0 30.7%,
+      #e4e4e4 55.82%,
+      #d5d5d5 85.91%,
+      #dfdfdf 94.21%
+    ),
+    #323232;
+  background-blend-mode: color, color, overlay, normal, color, overlay, normal,
+    normal, normal, normal;
+  border-radius: 29.0404px 29.0404px 0px 0px;
+}
+
+.diamond_card {
+  background: linear-gradient(0deg, #4542af, #4542af),
+    linear-gradient(339.03deg, rgba(255, 255, 255, 0) 52.79%, #ffffff 95.95%),
+    linear-gradient(
+      76.82deg,
+      #576265 11.6%,
+      #9ea1a1 25.31%,
+      #848b8a 48.06%,
+      #576265 55.72%,
+      #576265 77.23%,
+      #757a7b 85.34%,
+      #576265 91.31%
+    ),
+    linear-gradient(0deg, #ffffff, #ffffff),
+    linear-gradient(0deg, #cdc9c2, #cdc9c2),
+    linear-gradient(339.03deg, rgba(255, 255, 255, 0) 52.79%, #ffffff 95.95%),
+    linear-gradient(
+      76.82deg,
+      #576265 11.6%,
+      #9ea1a1 25.31%,
+      #848b8a 48.06%,
+      #576265 55.72%,
+      #576265 77.23%,
+      #757a7b 85.34%,
+      #576265 91.31%
+    ),
+    linear-gradient(0deg, #c1a875, #c1a875),
+    linear-gradient(339.03deg, rgba(255, 255, 255, 0) 52.79%, #ffffff 95.95%),
+    linear-gradient(
+      76.82deg,
+      #576265 11.6%,
+      #9ea1a1 25.31%,
+      #848b8a 48.06%,
+      #576265 55.72%,
+      #576265 77.23%,
+      #757a7b 85.34%,
+      #576265 91.31%
+    ),
+    linear-gradient(
+      76.82deg,
+      #576265 11.6%,
+      #9ea1a1 25.31%,
+      #848b8a 48.06%,
+      #576265 55.72%,
+      #576265 77.23%,
+      #757a7b 85.34%,
+      #576265 91.31%
+    ),
+    linear-gradient(
+      290.3deg,
+      #a1a1a1 16.54%,
+      #f0f0f0 30.7%,
+      #e4e4e4 55.82%,
+      #d5d5d5 85.91%,
+      #dfdfdf 94.21%
+    ),
+    #323232;
+  background-blend-mode: color, overlay, normal, color, color, overlay, normal,
+    color, overlay, normal, normal, normal, normal;
+  border-radius: 29.0404px 29.0404px 0px 0px;
+}
+
+.emerald_card {
+  background: linear-gradient(0deg, #75c062, #75c062),
+    linear-gradient(339.03deg, rgba(255, 255, 255, 0) 52.79%, #ffffff 95.95%),
+    linear-gradient(
+      76.82deg,
+      #576265 11.6%,
+      #9ea1a1 25.31%,
+      #848b8a 48.06%,
+      #576265 55.72%,
+      #576265 77.23%,
+      #757a7b 85.34%,
+      #576265 91.31%
+    ),
+    linear-gradient(0deg, #ffffff, #ffffff),
+    linear-gradient(0deg, #cdc9c2, #cdc9c2),
+    linear-gradient(339.03deg, rgba(255, 255, 255, 0) 52.79%, #ffffff 95.95%),
+    linear-gradient(
+      76.82deg,
+      #576265 11.6%,
+      #9ea1a1 25.31%,
+      #848b8a 48.06%,
+      #576265 55.72%,
+      #576265 77.23%,
+      #757a7b 85.34%,
+      #576265 91.31%
+    ),
+    linear-gradient(0deg, #c1a875, #c1a875),
+    linear-gradient(339.03deg, rgba(255, 255, 255, 0) 52.79%, #ffffff 95.95%),
+    linear-gradient(
+      76.82deg,
+      #576265 11.6%,
+      #9ea1a1 25.31%,
+      #848b8a 48.06%,
+      #576265 55.72%,
+      #576265 77.23%,
+      #757a7b 85.34%,
+      #576265 91.31%
+    ),
+    linear-gradient(
+      76.82deg,
+      #576265 11.6%,
+      #9ea1a1 25.31%,
+      #848b8a 48.06%,
+      #576265 55.72%,
+      #576265 77.23%,
+      #757a7b 85.34%,
+      #576265 91.31%
+    ),
+    linear-gradient(
+      290.3deg,
+      #a1a1a1 16.54%,
+      #f0f0f0 30.7%,
+      #e4e4e4 55.82%,
+      #d5d5d5 85.91%,
+      #dfdfdf 94.21%
+    ),
+    #323232;
+  background-blend-mode: color, overlay, normal, color, color, overlay, normal,
+    color, overlay, normal, normal, normal, normal;
+  border-radius: 29.0404px 29.0404px 0px 0px;
+}
+.silver_card {
+  background: linear-gradient(0deg, #cdc9c2, #cdc9c2),
+    linear-gradient(339.03deg, rgba(255, 255, 255, 0) 52.79%, #ffffff 95.95%),
+    linear-gradient(
+      76.82deg,
+      #576265 11.6%,
+      #9ea1a1 25.31%,
+      #848b8a 48.06%,
+      #576265 55.72%,
+      #576265 77.23%,
+      #757a7b 85.34%,
+      #576265 91.31%
+    ),
+    linear-gradient(0deg, #c1a875, #c1a875),
+    linear-gradient(339.03deg, rgba(255, 255, 255, 0) 52.79%, #ffffff 95.95%),
+    linear-gradient(
+      76.82deg,
+      #576265 11.6%,
+      #9ea1a1 25.31%,
+      #848b8a 48.06%,
+      #576265 55.72%,
+      #576265 77.23%,
+      #757a7b 85.34%,
+      #576265 91.31%
+    ),
+    linear-gradient(
+      76.82deg,
+      #576265 11.6%,
+      #9ea1a1 25.31%,
+      #848b8a 48.06%,
+      #576265 55.72%,
+      #576265 77.23%,
+      #757a7b 85.34%,
+      #576265 91.31%
+    ),
+    linear-gradient(
+      290.3deg,
+      #a1a1a1 16.54%,
+      #f0f0f0 30.7%,
+      #e4e4e4 55.82%,
+      #d5d5d5 85.91%,
+      #dfdfdf 94.21%
+    ),
+    #323232;
+  background-blend-mode: color, overlay, normal, color, overlay, normal, normal,
+    normal, normal;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 29.0404px 29.0404px 0px 0px;
+}
