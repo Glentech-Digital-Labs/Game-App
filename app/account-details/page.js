@@ -10,8 +10,8 @@ import "./index.css"
 
 function AccountDetails() {
   const [copiedValue, setCopiedValue] = useState("")
-  function copyToClipBoard(text) {
-    navigator.clipboard.writeText(text)
+  async function copyToClipBoard(text) {
+    await navigator.clipboard.writeText(text)
     setCopiedValue(text)
   }
 
