@@ -25,7 +25,7 @@ function Input({
         type={type}
         pattern={pattern}
         value={value}
-        className={` ${className} tw-border-white tw-py-2 tw-mt-2 tw-w-[90%] tw-min-w-[90%]`}
+        className={`${className} tw-border-gray-500 tw-py-2 tw-mt-2 tw-w-[90%] tw-min-w-[90%]`}
         onChange={userChangeHandler}
         style={style}
       />

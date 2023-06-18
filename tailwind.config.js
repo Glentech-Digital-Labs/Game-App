@@ -10,6 +10,9 @@ module.exports = {
       backgroundImage: {},
       colors: {
         betPinkColor: "#B87A85",
+        goldenColor: "#EFB873",
+        rejectPink: "#FF647E",
+        successGreen: "#03CD5D",
       },
     },
   },
