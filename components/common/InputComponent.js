@@ -18,14 +18,14 @@ function Input({
 
   return (
     <div className="tw-my-3 ">
-      <label className="">{label}</label>
+      <label className="tw-font-medium">{label}</label>
       <br />
       <input
         placeholder={placeholder}
         type={type}
         pattern={pattern}
         value={value}
-        className={`${className} tw-border-gray-500 tw-py-2 tw-mt-2 tw-w-[90%] tw-min-w-[90%]`}
+        className={`${className} tw-border-green-500  tw-py-2 tw-mt-2 tw-w-[90%] tw-min-w-[90%]`}
         onChange={userChangeHandler}
         style={style}
       />

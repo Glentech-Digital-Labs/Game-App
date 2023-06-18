@@ -4,15 +4,24 @@ import "./index.css"
 
 function TransactionCard({ status, amount }) {
   const currencySymbol = CurrencyData["USD"]["symbol"]
+  const statusColor = status == "Approved" ? "#2EFF2E" : "#EF5B2C"
+  const amountColor = status == "Approved" ? "#EFB873" : "#EF5B2C"
   return (
     <div className="match_card tw-rounded-xl tw-mt-4 ">
       <div className=" card_background tw-px-4 tw-flex tw-items-center  tw-rounded-t-lg tw-justify-between tw-h-12">
-        <span className="tw-text-goldenColor tw-font-semibold tw-text-xl">
-          {currencySymbol}1000
+        <span
+          className=" tw-font-semibold tw-text-xl"
+          style={{ color: amountColor }}
+        >
+          {currencySymbol}
+          {amount}
         </span>
         <div className="tw-rounded-xl tw-border-2 tw-border-gray-600 tw-flex  tw-items-center tw-px-2">
-          <span className="tw-w-4 tw-h-4 tw-rounded-full tw-animate-pulse tw-ml-2 tw-bg-green-600 tw-mx-2 "></span>
-          <p>Approved</p>
+          <span
+            className={`tw-w-4 tw-h-4 tw-rounded-full tw-animate-pulse tw-ml-2  tw-mx-2 `}
+            style={{ backgroundColor: statusColor }}
+          ></span>
+          <p style={{ color: statusColor }}>Approved</p>
         </div>
       </div>
       <div className="tw-grid tw-grid-cols-2 card_background tw-rounded-b-lg tw-px-2 tw-h-40  ">
