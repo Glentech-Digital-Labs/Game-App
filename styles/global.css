@@ -58,10 +58,8 @@ body {
 input {
   background-color: #212128;
   padding-left: 4%;
-  border-style: outset;
+  /* border-style: outset; */
   border-radius: 10px;
-  color: white !important;
-  border-color: aqua !important;
 }
 
 .yellowButton {
@@ -145,6 +143,8 @@ input {
 input[type="date"]::-webkit-calendar-picker-indicator {
   font-size: 34px;
   line-height: 1;
+  padding-left: 4px;
+  padding-right: 4px;
   vertical-align: middle;
-  color: white !important;
+  filter: invert(1);
 }

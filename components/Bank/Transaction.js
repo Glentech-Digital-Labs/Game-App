@@ -1,5 +1,5 @@
 "use client"
-import React from "react"
+import React, { useState } from "react"
 // import { FaSackDollar } from "react-icons/fa"
 import { BiWallet } from "react-icons/bi"
 import { Input } from "@components/common/InputComponent"
@@ -44,38 +44,58 @@ function Header() {
 }
 
 function Transaction() {
+  const [isOpen, setIsOpen] = useState(true)
+
+  const toggleHeight = () => {
+    setIsOpen(!isOpen)
+  }
   return (
     <>
-      <div className="tw-bg-[#201F29]">
+      <div className="tw-bg-[#201F29] tw-font-extralight">
         <Header />
-        <div className=" tw-flex tw-flex-col tw-items-center tw-py-6 tw-relative tw-mb-16">
-          <div className="tw-grid tw-grid-cols-2  tw-px-2">
-            <div className="tw-col-span-1 tw-grid tw-grid-rows-2">
+        <div
+          className={` tw-flex tw-flex-col tw-items-center tw-py-6  tw-mb-16  `}
+        >
+          <div
+            className={`tw-grid tw-grid-cols-2 container tw-px-2 ${
+              isOpen ? "open" : "closed"
+            } `}
+          >
+            <div className="tw-col-span-1 tw-grid tw-grid-rows-2 ">
               {/* Need to change the color of border and Calender which is looking black */}
               <Input
                 type={"date"}
                 label={"From"}
-                className={"tw-border-white "}
+                className={"tw-border-2  tw-border-gray-600 "}
               />
               <Input
                 type={"text"}
                 value={"Deposit"}
                 label={"Transition Type"}
                 setValue={() => {}}
+                className={"tw-border-2  tw-border-gray-600 "}
               />
             </div>
-            <div className="tw-col-span-1 tw-grid tw-grid-rows-2">
-              <Input type={"date"} label={"To"} className={"tw-border-white"} />
+            <div className="tw-col-span-1 tw-grid tw-grid-rows-2 ">
+              <Input
+                type={"date"}
+                label={"To"}
+                className={"tw-border-2  tw-border-gray-600 "}
+              />
               <Input
                 type={"text"}
                 value={"Deposit"}
                 label={"Status"}
                 setValue={() => {}}
+                className={"tw-border-2  tw-border-gray-600"}
               />
             </div>
           </div>
           <YellowButton label={"Apply"} className={"tw-w-1/2 "} />
-          <div className="tw-bg-[#201F29] tw-w-20 tw-h-10 tw-px-4  tw-bottom-[-2rem] tw-absolute tw-flex tw-justify-center tw-items-center tw-rounded-lg">
+          <div
+            onClick={toggleHeight}
+            className="tw-bg-[#201F29] tw-relative tw-w-20 tw-h-8  tw-px-4  tw-bottom-[-3rem]  tw-flex tw-justify-center tw-items-center tw-rounded-lg"
+          >
             Hide
           </div>
         </div>

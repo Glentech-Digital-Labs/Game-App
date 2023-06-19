@@ -11,3 +11,17 @@
 
   /* border-radius: 8px 8px 0px 0px; */
 }
+
+.container {
+  transition: height 0.8s ease;
+}
+
+.open {
+  height: fit-content;
+}
+
+.closed {
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+}
