@@ -12,11 +12,9 @@
 
 .modal-box {
   display: block;
-  /* background: rgba(73, 73, 84, 1); */
   background-color: #252530;
   width: 90%;
   height: 50%;
-  /* padding: 1rem; */
 
   border-radius: 1rem;
 }

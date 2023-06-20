@@ -34,7 +34,7 @@
 }
 
 /* Hello Guys */
-.faq-answer {
+.answer {
   max-height: fit-content;
   overflow: hidden;
   transition: max-height 0.6s ease;

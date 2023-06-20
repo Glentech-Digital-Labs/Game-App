@@ -1,7 +1,7 @@
 import React, { Suspense } from "react"
 import Image from "next/image"
 
-import Logo from "../../public/images/Sportradar-log.svg"
+import Logo from "/public/images/Sportradar-log.svg"
 
 import { BiWallet, BiUser } from "react-icons/bi"
 import { YellowButton } from "@components/common"

@@ -68,23 +68,21 @@ function BackLayButtons() {
   const betAddHandler = (type) => {
     if (type === "backPoint") {
       setBackPoint((prev) => prev + 1)
-    } else {
-      setLayPoint((prev) => prev + 1)
+      return
     }
+    setLayPoint((prev) => prev + 1)
+    return
   }
 
   const betMinusHandler = (type) => {
     if (type === "backPoint") {
-      if (Math.floor(backPoint) <= 0) {
+      if (Math.floor(backPoint) || Math.floor(layPoint) <= 0) {
         return
       }
       setBackPoint((prev) => prev - 1)
-    } else {
-      if (Math.floor(layPoint) <= 0) {
-        return
-      }
-      setLayPoint((prev) => prev - 1)
+      return
     }
+    setLayPoint((prev) => prev - 1)
   }
   return (
     <>

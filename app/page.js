@@ -1,5 +1,5 @@
 import { Login, OtpInput, Registration } from "@components"
-import React from "react"
+import React, { Profiler } from "react"
 
 function Home() {
   return (
