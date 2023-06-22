@@ -36,15 +36,15 @@ function PasswordInput({
         />
 
         {type === "text" ? (
-          <AiFillEyeInvisible
-            fontSize={32}
-            className="tw-absolute tw-right-10 "
-            onClick={showPasswordHandler}
-          />
-        ) : (
           <AiFillEye
             fontSize={32}
             className="tw-absolute tw-right-10 tw-my-2 "
+            onClick={showPasswordHandler}
+          />
+        ) : (
+          <AiFillEyeInvisible
+            fontSize={32}
+            className="tw-absolute tw-right-10 "
             onClick={showPasswordHandler}
           />
         )}
