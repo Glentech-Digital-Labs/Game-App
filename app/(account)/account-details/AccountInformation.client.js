@@ -19,13 +19,13 @@ function AccountInformation() {
   }, [copiedValue])
 
   return (
-    <div className="match_card tw-grid tw-grid-cols-7 tw-px-2 tw-my-4 tw-py-6">
+    <div className="match_card tw-grid tw-grid-cols-7 tw-px-2 tw-my-4 tw-py-6 tw-mx-2">
       <div className="tw-col-span-3 tw-text-gray-400">
         <p>Account Holder Name </p>
         <p className="tw-my-6">Account Number </p>
         <p>IFSC Code </p>
       </div>
-      <div className="tw-col-span-4 ">
+      <div className="tw-col-span-4  ">
         <div className="tw-flex tw-items-center tw-relative ">
           <p>: Gadha electronics </p>
           <MdOutlineContentCopy

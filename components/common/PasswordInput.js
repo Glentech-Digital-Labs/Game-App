@@ -1,8 +1,11 @@
 "use client"
 import React, { useState } from "react"
 
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai"
+
 function PasswordInput({
   placeholder,
+  className,
   label,
   value,
   setUserPassword,
@@ -12,7 +15,6 @@ function PasswordInput({
   function passwordHandler(event) {
     setUserPassword(event.target.value)
   }
-  console.log("show Password", showPassword)
   const type = showPassword ? "text" : "password"
 
   function showPasswordHandler() {
@@ -23,14 +25,30 @@ function PasswordInput({
     <div className="tw-my-3 ">
       <label className="">{label}</label>
       <br />
-      <input
-        placeholder={placeholder}
-        type={type}
-        pattern="^(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$"
-        value={value}
-        className="tw-border-white tw-py-2 tw-mt-2 tw-w-[90%]"
-        onChange={passwordHandler}
-      />
+      <div className={`tw-flex  tw-relative ${className}  tw-items-center`}>
+        <input
+          placeholder={placeholder}
+          type={type}
+          pattern="^(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$"
+          value={value}
+          className={` tw-border-white tw-py-2 tw-min-h-full tw-mt-2 tw-w-[90%]`}
+          onChange={passwordHandler}
+        />
+
+        {type === "text" ? (
+          <AiFillEyeInvisible
+            fontSize={32}
+            className="tw-absolute tw-right-10 "
+            onClick={showPasswordHandler}
+          />
+        ) : (
+          <AiFillEye
+            fontSize={32}
+            className="tw-absolute tw-right-10 tw-my-2 "
+            onClick={showPasswordHandler}
+          />
+        )}
+      </div>
       {/* Here have to put the Eye icon to make the password hide and show */}
     </div>
   )

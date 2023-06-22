@@ -8,7 +8,6 @@ import {
 import React, { useState } from "react"
 import Image from "next/image"
 
-// image import
 import BetFairIcon from "../../public/images/batefair.svg"
 
 function Login() {
@@ -18,8 +17,6 @@ function Login() {
 
   function submitHandler(event) {
     event.preventDefault()
-    console.log("UserName", userName)
-    console.log("UserName", userPassword)
   }
 
   return (
@@ -32,6 +29,7 @@ function Login() {
           pattern={"[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}
           value={userName}
           setValue={setUserName}
+          className={"tw-h-12"}
         />
         <PasswordInput
           label={"Password"}
@@ -40,18 +38,27 @@ function Login() {
           setUserPassword={setUserPassword}
           showPassword={showPassword}
           setShowPassword={setShowPassword}
+          className={"tw-h-12"}
         />
 
         <div className="tw-flex tw-justify-between tw-w-[90%] tw-mb-4 tw-font-thin ">
-          <div className="tw-flex tw-justify-between">
-            <input type="checkbox" />
-            <p className="tw-whitespace-nowrap tw-ml-2">Remember me</p>
+          <div className="tw-flex tw-justify-between tw-items-center">
+            <input type="checkbox" id="mycheckbox" />
+            <label
+              for="mycheckbox"
+              className="custom-checkbox tw-w-4 tw-h-4"
+            ></label>
+            <p className="tw-whitespace-nowrap tw-ml-2 ">Remember me</p>
           </div>
-          <p>Forget Password</p>
+          <p className="tw-text-goldenColor">Forget Password</p>
         </div>
         <div className="tw-flex tw-w-[90%] tw-mb-4  ">
-          <input type="checkbox" className="tw-h-6 tw-w-6 " />
-          <p className="tw-ml-2 tw-font-thin">
+          <input type="checkbox" id="secondCheckbox" />
+          <label
+            for="secondCheckbox"
+            className="custom-checkbox tw-w-10 tw-h-4 tw-mr-2"
+          ></label>
+          <p className="tw-font-thin">
             We Promote and encourage safe and responsible gambling.Please
             conform that you are above the age of 18
           </p>

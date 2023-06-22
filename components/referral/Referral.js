@@ -45,7 +45,7 @@ function ReferralComponent() {
             </button>
           </div>
           <div className="tw-flex tw-border-2 tw-rounded-xl tw-border-gray-700 tw-justify-between tw-items-center tw-my-4">
-            <div className="tw-border-r-2 tw-px-4">Referral Code</div>
+            <div className="tw-border-r-2 tw-px-4">Referral Link</div>
             <p className="tw-font-semibold tw-text-lg">GHDFCS</p>
             <button className="tw-bg-white tw-text-black tw-p-2 tw-rounded-xl tw-mx-2 tw-my-2">
               Copy

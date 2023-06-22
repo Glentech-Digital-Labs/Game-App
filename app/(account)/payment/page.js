@@ -16,7 +16,7 @@ function Payment() {
         <Image src={Bank_Image} height={84} />
         <Image src={UPI_IMAGE} height={84} className="tw-ml-4" />
       </div>
-      <div className="match_card tw-flex  tw-flex-col tw-justify-center tw-items-center tw-py-2">
+      <div className="match_card tw-flex  tw-flex-col tw-justify-center tw-items-center tw-py-2 tw-mx-2">
         <Image alt="Payment QR" height={180} src={QR_Image} />
         <p className="tw-flex tw-my-2 tw-items-center">
           johan@upi <MdOutlineContentCopy fontSize={24} className="tw-ml-2 " />

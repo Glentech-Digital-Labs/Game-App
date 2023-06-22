@@ -3,12 +3,12 @@ import React from "react"
 function MatchCard({ back, lay, firstTeam, secondTeam, time }) {
   return (
     <div className="match_card tw-h-28 tw-w-full tw-flex tw-flex-col  tw-my-2">
-      <div className="tw-flex tw-justify-end ">
+      <div className="tw-flex tw-justify-end tw-mt-2">
         <span className=" tw-h-4 tw-w-4 tw-rounded-full tw-bg-green-400 tw-self-center tw-animate-pulse "></span>
-        <p className="tw-self-center tw-mx-3">{time}</p>
+        <p className="tw-self-center tw-mx-3 ">{time}</p>
       </div>
       <div className="tw-flex tw-justify-between tw-mx-2 ">
-        <div className="tw-flex tw-flex-col ">
+        <div className="tw-flex tw-flex-col tw-text-lg tw-font-[500]">
           <h2 className="tw-my-2 tw-font-semibold tw-text-xl">{firstTeam}</h2>
           <h2 className="tw-font-semibold tw-text-xl">{secondTeam} </h2>
         </div>
