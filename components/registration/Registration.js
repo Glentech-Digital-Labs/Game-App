@@ -81,11 +81,11 @@ function Registration() {
         <Referral />
 
         <div className="tw-flex tw-w-[90%] tw-mb-4  ">
-          <input type="checkbox" id="mycheckbox" />
+          {/* <input type="checkbox" id="third-checkbox" />
           <label
-            for="mycheckbox"
+            for="third-checkbox"
             className="custom-checkbox tw-w-16 tw-h-6 tw-self-start"
-          ></label>
+          ></label> */}
           <p className="tw-ml-2 tw-font-thin">
             We Promote and encourage safe and responsible gambling.Please
             conform that you are above the age of 18

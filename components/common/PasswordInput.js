@@ -22,7 +22,7 @@ function PasswordInput({
   }
 
   return (
-    <div className="tw-my-3 ">
+    <div className="tw-mt-6 tw-mb-3 ">
       <label className="">{label}</label>
       <br />
       <div className={`tw-flex  tw-relative ${className}  tw-items-center`}>
@@ -31,7 +31,7 @@ function PasswordInput({
           type={type}
           pattern="^(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$"
           value={value}
-          className={` tw-border-white tw-py-2 tw-min-h-full tw-mt-2 tw-w-[90%]`}
+          className={` tw-py-2 tw-min-h-full tw-mt-2 tw-w-[90%]`}
           onChange={passwordHandler}
         />
 

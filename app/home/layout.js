@@ -12,7 +12,7 @@ export const metadata = {
   title: "OTP ",
   description: "Making Gaming App",
 }
-
+const grayColor = "#414150"
 function HeaderLayout() {
   return (
     <>
@@ -53,17 +53,17 @@ function HeaderLayout() {
         <Rounded
           Icon={BiFootball}
           label={"Football"}
-          backgroundColor={"gray"}
+          backgroundColor={grayColor}
         />
         <Rounded
           Icon={BiTennisBall}
           label={"Tennis"}
-          backgroundColor={"gray"}
+          backgroundColor={grayColor}
         />
         <Rounded
           Icon={FaVolleyballBall}
           label={"Volleyball"}
-          backgroundColor={"gray"}
+          backgroundColor={grayColor}
         />
       </div>
     </>

@@ -1,12 +1,23 @@
 import React from "react"
-import { icons } from "react-icons"
-import { BiCricketBall } from "react-icons/bi"
 
 function Rounded({ label, Icon, backgroundColor }) {
+  const firstGradient = `159.46deg,
+      #c4965b -45.75%,
+      #efbe2c -45.75%,
+      #b78a51 17.68%,
+      #88612a 100.75%`
+
+  let customStyle
+  if (!!backgroundColor) {
+    customStyle = { backgroundColor: backgroundColor }
+  } else {
+    customStyle = { backgroundImage: ` linear-gradient(${firstGradient})` }
+  }
+
   return (
     <div
-      className="tw-rounded-3xl tw-flex tw-justify-center tw-min-w-fit  tw-h-10 tw-mb-2 tw-px-4 tw-mx-2 tw-bg-yellow-400  tw-text-white"
-      style={{ backgroundColor: backgroundColor }}
+      className="tw-rounded-3xl tw-flex tw-justify-center tw-min-w-fit  tw-h-12 tw-mb-2 tw-px-4 tw-mx-2  tw-text-white"
+      style={customStyle}
     >
       {Icon && <Icon fontSize={30} className="tw-my-auto" />}
       <p className="tw-self-center">{label}</p>

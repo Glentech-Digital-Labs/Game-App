@@ -1,6 +1,7 @@
 "use client"
 import {
   BlackButton,
+  Checkbox,
   PasswordInput,
   TextInput,
   YellowButton,
@@ -23,7 +24,7 @@ function Login() {
     <div>
       <form className=" tw-ml-[10%]" onSubmit={submitHandler}>
         <TextInput
-          label={"UserName"}
+          label={"Username"}
           placeholder={"Please put UserName"}
           type={"email"}
           pattern={"[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}
@@ -38,27 +39,19 @@ function Login() {
           setUserPassword={setUserPassword}
           showPassword={showPassword}
           setShowPassword={setShowPassword}
-          className={"tw-h-12"}
+          className={"tw-h-12 "}
         />
 
         <div className="tw-flex tw-justify-between tw-w-[90%] tw-mb-4 tw-font-thin ">
           <div className="tw-flex tw-justify-between tw-items-center">
-            <input type="checkbox" id="mycheckbox" />
-            <label
-              for="mycheckbox"
-              className="custom-checkbox tw-w-4 tw-h-4"
-            ></label>
+            <Checkbox />
             <p className="tw-whitespace-nowrap tw-ml-2 ">Remember me</p>
           </div>
           <p className="tw-text-goldenColor">Forget Password</p>
         </div>
         <div className="tw-flex tw-w-[90%] tw-mb-4  ">
-          <input type="checkbox" id="secondCheckbox" />
-          <label
-            for="secondCheckbox"
-            className="custom-checkbox tw-w-10 tw-h-4 tw-mr-2"
-          ></label>
-          <p className="tw-font-thin">
+          <Checkbox />
+          <p className="tw-font-thin tw-ml-4">
             We Promote and encourage safe and responsible gambling.Please
             conform that you are above the age of 18
           </p>

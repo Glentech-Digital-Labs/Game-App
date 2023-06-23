@@ -12,10 +12,13 @@ export {
   CashOutModal,
   IconCards,
   MemberCard,
+  Circle,
+  YellowButton,
+  Checkbox,
 } from "./common"
 export { OtpInput } from "./otp/OtpComponent"
 export { Accordion } from "./accordion/Accordion"
 export { Modal } from "./modal/Modal"
 export { ProfileEdit } from "./profile/ProfileEdit"
-export { BankDetails, AmountWithdraw, Transaction } from "./Bank"
+export { BankDetails, AmountWithdraw, Transaction } from "./bank"
 export { Referral } from "./referral/Referral"

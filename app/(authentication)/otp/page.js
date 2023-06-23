@@ -1,6 +1,6 @@
 "use client"
 import { OtpInput } from "@components"
-import { YellowButton } from "@components/common"
+import { Circle, YellowButton } from "@components"
 import React, { useState } from "react"
 
 function Otp() {
@@ -28,9 +28,10 @@ function Otp() {
           <p className="tw-text-red-500">Resend</p>
         )}
       </div>
-      <div className="tw-min-w-full tw-flex tw-justify-center">
+      <div className="tw-min-w-full tw-flex tw-justify-center tw-mb-6">
         <YellowButton label={"submit"} className={"tw-w-[90%]"} />
       </div>
+      <Circle />
     </div>
   )
 }
