@@ -18,13 +18,13 @@ function TeamBet({ className, teamName, odds, stake, profit }) {
 function OpenBets() {
   return (
     <>
-      <div className="tw-grid tw-grid-cols-5 tw-bg-[#36364A] tw-justify-center tw-items-center tw-gap-2 tw-min-w-full tw-rounded-lg tw-px-2 tw-h-14">
+      <div className="tw-grid tw-grid-cols-5 tw-bg-[#36364A] tw-justify-center tw-items-center tw-gap-2 tw-min-w-full tw-rounded-lg tw-px-4 tw-h-14 tw-relative ">
         <div className="tw-col-span-2">Bet For</div>
         <div className="tw-col-span-1">Odds</div>
         <div className="tw-col-span-1">Stack</div>
         <div className="tw-col-span-1">Profit</div>
       </div>
-      <div className="tw-overflow-y-auto tw-h-[85%]">
+      <div className="tw-overflow-y-auto tw-h-[85%] tw-px-4">
         <TeamBet
           className={"purple-bet-color "}
           teamName={"Chennai super"}
@@ -48,7 +48,7 @@ function OpenBets() {
         />
         <TeamBet
           className={`tw-bg-betPinkColor`}
-          teamName={"Rajasthan Royals"}
+          teamName={"Rajasthan "}
           odds={"2.32"}
           stake={"100.00"}
           profit={"2500.00"}

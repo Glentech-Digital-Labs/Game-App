@@ -161,8 +161,8 @@ const Accordion = ({ title, content, shouldOpen }) => {
       <Modal
         isModalOpen={isModalOpen}
         toggle={toggle}
-        className={"tw-h-[30%] tw-ml-[-2]"}
-        style={{ height: "45%", marginTop: "5rem" }}
+        className={"tw-h-[30%] tw-ml-[-2] "}
+        style={{ height: "38%", marginTop: "2rem" }}
       >
         <CashOutModal />
       </Modal>

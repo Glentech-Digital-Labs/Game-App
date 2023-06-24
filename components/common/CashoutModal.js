@@ -1,28 +1,27 @@
 import React from "react"
 import { BlackButton } from "./BlackButton"
 import { YellowButton } from "./YellowButton"
-//
 
 function CashOutModal() {
   return (
     <>
-      <div className="tw-flex tw-bg-[#36364A] tw-items-center tw-gap-2 tw-min-w-full tw-rounded-lg tw-px-2 tw-h-14">
+      <div className="tw-flex tw-bg-[#36364A] tw-items-center tw-gap-2 tw-min-w-full tw-rounded-t-lg tw-px-2 tw-h-14">
         Cash Out
       </div>
-      <div className="tw-mx-2 tw-my-4">
+      <div className="tw-mx-3 tw-my-4">
         <div className="tw-flex tw-justify-between">
           <h2>Liability</h2>
           <h2>&#8377; 100</h2>
         </div>
         <div className="tw-flex tw-justify-between tw-my-4">
           <h2>Cashout</h2>
-          <h2 className="tw-text-green-300">&#8377; 400</h2>
+          <h2 className="tw-text-[#03CD5D]">&#8377; 400</h2>
         </div>
         <div className="tw-flex tw-justify-between ">
           <h2>Balance</h2>
           <h2 className="">&#8377; 500</h2>
         </div>
-        <div className="tw-flex tw-my-4">
+        <div className="tw-flex tw-my-4 tw-text-14px">
           If the odds change during submission,the amount may be increased
           ,rejected or partially accepted
         </div>
