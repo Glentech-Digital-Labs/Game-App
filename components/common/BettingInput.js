@@ -16,7 +16,7 @@ function AmountComponent() {
     <>
       <div className="tw-flex tw-my-4 tw-overflow-x-auto tw-w-full">
         <div
-          className="yellowButton tw-rounded-lg tw-w-24 tw-px-4 tw-flex  tw-items-center tw-justify-center tw-border-2 "
+          className="yellowButton tw-rounded-lg tw-w-16 tw-h-8 tw-px-3  tw-flex  tw-items-center tw-justify-center tw-border-2 "
           style={{ borderStyle: "outset", borderColor: "yellow" }}
         >
           &#8377;100
@@ -35,8 +35,8 @@ function AmountComponent() {
 function NumberComponent() {
   return (
     <>
-      <div className=" tw-my-4 tw-grid tw-grid-cols-10">
-        <div className="tw-col-span-8 tw-grid tw-grid-cols-4 tw-gap-3  ">
+      <div className=" tw-mb-4 tw-grid tw-grid-cols-10 ">
+        <div className="tw-col-span-8 tw-grid tw-grid-cols-6 tw-gap-2  ">
           <NumberCard number={1} />
           <NumberCard number={2} />
           <NumberCard number={3} />
@@ -51,7 +51,7 @@ function NumberComponent() {
           <NumberCard number={"."} />
         </div>
         <div
-          className="BlackButton tw-rounded-lg tw-px-2 tw-flex tw-justify-center tw-items-center tw-border-2  tw-min-h-full tw-col-span-2 tw-ml-2 "
+          className="BlackButton tw-rounded-lg tw-px-2 tw-flex tw-justify-center tw-items-center tw-border-2  tw-min-h-full tw-col-span-2 tw-mx-2 "
           style={{ borderStyle: "outset", borderColor: "gray" }}
         >
           <IoMdBackspace fontSize={32} />
@@ -86,42 +86,34 @@ function BackLayButtons() {
   }
   return (
     <>
-      <div className="tw-flex ">
-        <div
-          className="tw-flex tw-bg-slate-700 tw-w-[48%] tw-justify-between tw-items-center tw-border-2 tw-rounded-lg tw-border-slate-500 "
-          style={{ borderBlockStyle: "outset" }}
-        >
+      <div className="tw-flex tw-justify-between tw-mx-2 ">
+        <div className="backLay_main_button   ">
           <div
-            className="tw-bg-slate-500 tw-p-4 tw-rounded-lg tw-border-r-2 "
+            className="backLay_side_button"
             style={{ borderStyle: "outset" }}
             onClick={() => betAddHandler("backPoint")}
           >
-            <AiOutlinePlus />
+            +
           </div>
           {backPoint.toFixed(2)}
           <div
-            className="tw-bg-slate-500 tw-p-4 tw-rounded-lg  tw-border-l-2   "
+            className="backLay_side_button"
             style={{ borderStyle: "outset" }}
             onClick={() => betMinusHandler("backPoint")}
           >
-            <AiOutlineMinus />
+            -
           </div>
         </div>
-        <div
-          className="tw-flex tw-bg-slate-700 tw-w-[48%] tw-justify-between tw-ml-2 tw-items-center tw-border-2 tw-rounded-lg tw-border-slate-500"
-          style={{ borderBlockStyle: "outset" }}
-        >
+        <div className="backLay_main_button ">
           <div
-            className="tw-bg-slate-500 tw-p-4 tw-rounded-lg tw-border-r-2 "
-            style={{ borderStyle: "outset" }}
+            className="backLay_side_button "
             onClick={() => betAddHandler("layPoint")}
           >
             <AiOutlinePlus />
           </div>
           {layPoint.toFixed(2)}
           <div
-            className="tw-bg-slate-500 tw-p-4 tw-rounded-lg  tw-border-l-2   "
-            style={{ borderStyle: "outset" }}
+            className="backLay_side_button "
             onClick={() => betMinusHandler("layPoint")}
           >
             <AiOutlineMinus />
@@ -135,14 +127,22 @@ function BackLayButtons() {
 function BettingInput() {
   return (
     <div className="tw-bg-[#2B2B31]   tw-pl-2 ">
-      <div className="tw-flex tw-text-lg tw-h-12  tw-items-center">
-        Match odds <AiOutlineArrowRight fontSize={24} className="tw-mx-2" />{" "}
-        Back <AiOutlineArrowRight fontSize={24} className="tw-mx-2" /> Gujarat
-        Titans
+      <div className="tw-flex tw-text-lg tw-h-8  tw-items-center tw-font-sf-font tw-text-12px tw-font-medium">
+        <span className="tw-font-sf-font tw-text-12px tw-font-medium">
+          Match odds
+        </span>
+        <AiOutlineArrowRight fontSize={16} className="tw-mx-2" />{" "}
+        <span className="tw-font-sf-font tw-text-12px tw-font-medium">
+          Back
+        </span>{" "}
+        <AiOutlineArrowRight fontSize={16} className="tw-mx-2" />
+        <span className="tw-font-sf-font tw-text-12px tw-font-medium">
+          Gujarat Titans
+        </span>
       </div>
       <BackLayButtons />
-      <div className="tw-flex tw-mt-4">
-        <BlackButton label={"Cancel"} style={"tw-w-[48%] tw-mr-2"} />
+      <div className="tw-flex tw-mt-4 ">
+        <BlackButton label={"Cancel"} className={"tw-w-[48%] tw-mr-2"} />
         <YellowButton label={"Place Bet"} className={"tw-w-[48%]"} />
       </div>
       <AmountComponent />

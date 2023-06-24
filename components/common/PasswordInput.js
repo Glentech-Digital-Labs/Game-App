@@ -22,8 +22,8 @@ function PasswordInput({
   }
 
   return (
-    <div className="tw-mt-6 tw-mb-3 ">
-      <label className="">{label}</label>
+    <div className="tw-my-3  ">
+      <label className="tw-font-medium tw-text-[14px]">{label}</label>
       <br />
       <div className={`tw-flex  tw-relative ${className}  tw-items-center`}>
         <input

@@ -16,11 +16,11 @@ function Rounded({ label, Icon, backgroundColor }) {
 
   return (
     <div
-      className="tw-rounded-3xl tw-flex tw-justify-center tw-min-w-fit  tw-h-12 tw-mb-2 tw-px-4 tw-mx-2  tw-text-white"
+      className="tw-rounded-3xl tw-flex tw-justify-center tw-min-w-fit tw-px-4 tw-h-8 tw-my-4  tw-mx-2  tw-text-white"
       style={customStyle}
     >
       {Icon && <Icon fontSize={30} className="tw-my-auto" />}
-      <p className="tw-self-center">{label}</p>
+      <p className="tw-self-center tw-font-semibold tw-text-10px ">{label}</p>
     </div>
   )
 }

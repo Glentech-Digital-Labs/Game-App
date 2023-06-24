@@ -23,9 +23,9 @@ function SecondModal({
   const Questions = Object.entries(content?.["Questions"] || [])
   return (
     <>
-      <div className={`accordion__content ${isOpen ? "open" : ""}`}>
+      <div className={`accordion__content ${isOpen ? "open" : ""} `}>
         {title === "Fancy Bet" && (
-          <div className="tw-flex tw-overflow-x-auto">
+          <div className="tw-flex tw-overflow-auto ">
             <Rounded label={"All"} backgroundColor="gray" />
             <Rounded label={"Wicket"} backgroundColor="gray" />
             <Rounded label={"Player"} backgroundColor="gray" />
@@ -34,25 +34,47 @@ function SecondModal({
           </div>
         )}
 
-        <div className="tw-bg-transparent tw-flex tw-justify-end tw-border-b-2 tw-border-b-slate-800 b tw-h-10 tw-font-semibold tw-text-2xl  tw-items-center">
-          <h2 className="tw-mr-8">{type1}</h2>
-          <h2 className="tw-mr-4">{type2}</h2>
+        <div className="tw-bg-transparent tw-flex tw-justify-end tw-border-b-2 tw-border-b-slate-800 b tw-h-6 tw-font-semibold tw-text-2xl  tw-items-center">
+          <h2 className="tw-mr-8 tw-font-inter-font tw-text-12px tw-font-semibold">
+            {type1}
+          </h2>
+          <h2 className="tw-mr-4 tw-font-inter-font tw-text-12px tw-font-semibold">
+            {type2}
+          </h2>
         </div>
         {Questions?.map((item, index) => (
           <div key={index}>
             <div
-              className={`tw-bg-transparent tw-flex tw-justify-between tw-border-b-2 tw-border-b-slate-800 b tw-h-20 tw-font-semibold tw-text-2xl  tw-items-center tw-px-2 ${
+              className={`tw-bg-transparent tw-flex tw-justify-between tw-border-b-2 tw-border-b-slate-800 b tw-h-16 tw-font-semibold tw-text-2xl  tw-items-center tw-px-2 ${
                 activeIndex === index ? "active" : ""
               } `}
               onClick={() => toggleChildAccordion(index)}
             >
-              <h1>{item[0]}</h1>
-              <div className="tw-flex tw-justify-end ">
-                <button className=" tw-border-b-4 tw-border-[#5975B8]  tw-w-20 tw-h-16 tw-self-end tw-text-center betting-box tw-rounded-lg back-button  ">
-                  {item[1][0][0]}
+              <h1 className="tw-text-14px tw-font-medium tw-font-sf-font">
+                {item[0]}
+              </h1>
+              <div className="tw-flex tw-justify-end tw-font-inter-font">
+                <button
+                  className=" tw-border-b-4 tw-border-[#5975B8]  tw-w-14 tw-h-12 tw-self-end tw-text-center betting-box tw-rounded-lg back-button"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(1deg, rgba(0, 74, 246, 0.15) 0%, rgba(128, 164, 248, 0.00) 100%), linear-gradient(141deg, #454441 0%, #1C1C1C 100%)",
+                  }}
+                >
+                  <span className="tw-text-12px tw-font-extrabold">
+                    {item[1][0][0]}
+                  </span>
                 </button>
-                <button className="tw-border-b-4 tw-border-[#B87A85]  tw-w-20  tw-h-16 tw-self-end tw-ml-4 tw-text-center betting-box tw-rounded-lg">
-                  {item[1][1][0]}
+                <button
+                  className="tw-border-b-4 tw-border-[#B87A85]  tw-w-14  tw-h-12 tw-self-end tw-ml-4 tw-text-center betting-box tw-rounded-lg"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(1deg, rgba(255, 173, 188, 0.15) 0%, rgba(255, 173, 188, 0.00) 100%), linear-gradient(141deg, #454441 0%, #1C1C1C 100%)",
+                  }}
+                >
+                  <span className="tw-text-12px tw-font-extrabold">
+                    {item[1][1][0]}
+                  </span>
                 </button>
               </div>
             </div>
@@ -89,33 +111,36 @@ const Accordion = ({ title, content, shouldOpen }) => {
         className={`tw-bg-[#36363D] tw-flex tw-justify-between tw-h-14 tw-mt-4 tw-px-4 accordion-title `}
       >
         <div className="tw-flex">
-          <BsFillTrophyFill fontSize={32} className="tw-self-center" />
-          <h2 className="tw-ml-2 tw-self-center">{title}</h2>
+          <BsFillTrophyFill fontSize={12} className="tw-self-center" />
+          <h2 className="tw-ml-2 tw-self-center tw-font-medium tw-text-12px">
+            {title}
+          </h2>
         </div>
 
-        {activeIndex !== null && isOpen && (
-          <button
-            className="tw-bg-green-400 tw-px-2 tw-py-1 tw-rounded-md tw-items-center tw-justify-center tw-flex tw-h-8 tw-self-center tw-mr-2"
-            onClick={toggle}
-          >
-            Cashout:500
-          </button>
-        )}
-
         <div className="tw-flex">
-          <div className="tw-self-center tw-bg-slate-300 tw-rounded-full tw-p-1">
+          {activeIndex !== null && isOpen && (
+            <button
+              className="tw-bg-[#03CD5D] tw-font-medium tw-text-12px tw-px-2 tw-py-1 tw-rounded-md tw-items-center tw-justify-center tw-flex tw-h-7 tw-w-24 tw-self-center tw-mr-2"
+              onClick={toggle}
+            >
+              Cashout:500
+            </button>
+          )}
+          <div className="tw-self-center tw-rounded-full tw-bg-[#ffffff33] tw-p-1">
             <AiOutlineExclamation
-              style={{ transform: "rotate(180deg)" }}
-              fontSize={25}
+              style={{
+                transform: "rotate(180deg)",
+              }}
+              fontSize={18}
             />
           </div>
-          <button className="tw-bg-slate-200 tw-px-4 tw-rounded-lg tw-h-8  tw-text-black tw-self-center tw-mx-3">
+          <button className="tw-bg-slate-200  tw-w-9 tw-rounded-lg tw-h-5  tw-text-black tw-self-center tw-mx-2 tw-font-medium tw-text-10px">
             Rules
           </button>
           <div className="tw-flex tw-justify-center tw-items-center">
             {isOpen ? (
               <AiOutlineMinus
-                fontSize={32}
+                fontSize={17}
                 className={`tw-self-center accordion__button ${
                   isOpen ? "open" : ""
                 }`}
@@ -123,9 +148,9 @@ const Accordion = ({ title, content, shouldOpen }) => {
               />
             ) : (
               <AiOutlinePlus
-                fontSize={32}
+                fontSize={17}
                 className={`tw-self-center accordion__button ${
-                  isOpen ? "open" : ""
+                  isOpen ? "" : "open"
                 }`}
                 onClick={toggleAccordion}
               />

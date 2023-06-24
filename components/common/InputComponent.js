@@ -18,7 +18,7 @@ function Input({
 
   return (
     <div className="tw-my-3 ">
-      <label className="tw-font-medium">{label}</label>
+      <label className="tw-font-medium tw-text-[14px]">{label}</label>
       <br />
       <input
         placeholder={placeholder}

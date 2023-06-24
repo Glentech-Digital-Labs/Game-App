@@ -13,7 +13,19 @@
 :root {
   --main-background-color: #000;
   background-color: var(--main-background-color);
-  --header-background: rgba(83, 83, 83, 0.47);
+  --header-background: linear-gradient(
+      164deg,
+      #333340 0%,
+      #1d1c27 44.17%,
+      #15131d 100%
+    ),
+    linear-gradient(
+      253deg,
+      #19181e 0%,
+      #1d1c22 31.83%,
+      #23232a 47.09%,
+      #3c3c44 92.84%
+    );
   height: "100vh";
   color: white;
   --yellow-button-background: linear-gradient(
@@ -26,6 +38,12 @@
     linear-gradient(180deg, #24242f 0%, #15131d 100%), #17191c;
 
   --purple-bet-success-background: rgba(89, 117, 184, 0.43);
+
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+:root::-webkit-scrollbar {
+  display: none;
 }
 .remove-scroll-bar {
   scrollbar-width: none;
@@ -37,7 +55,9 @@
 }
 
 .header {
-  background-color: var(--header-background);
+  background-image: var(--header-background);
+  border-bottom: 1px solid rgba(83, 83, 83, 0.47);
+  box-shadow: 0px 4px 76px 0px rgba(0, 0, 0, 0.03);
   height: 4rem;
   width: 100%;
   min-width: 100%;
@@ -121,12 +141,15 @@ input {
 
 /* Card */
 .match_card {
-  background: hsla(0, 8%, 72%, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(18, 18, 18, 0.37);
+  border-radius: 8px;
+  background: linear-gradient(
+    303deg,
+    rgba(25, 24, 30, 0.482) 0%,
+    rgba(29, 28, 34, 0.725) 31.54%,
+    rgba(199, 198, 228, 0.087) 73.22%,
+    rgba(223, 223, 223, 0.119) 100%
+  );
   backdrop-filter: blur(1.5px);
-  -webkit-backdrop-filter: blur(4.5px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 /* Card */
 
@@ -147,7 +170,7 @@ input {
     #3c3c44 98.31%
   );
   border-top: 1px solid #494954;
-  backdrop-filter: blur(4.5px);
+  backdrop-filter: blur(40.5px);
 }
 
 .purple-bet-color {

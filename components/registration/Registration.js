@@ -1,5 +1,10 @@
 "use client"
-import { PasswordInput, TextInput, YellowButton } from "@components/common"
+import {
+  Checkbox,
+  PasswordInput,
+  TextInput,
+  YellowButton,
+} from "@components/common"
 import React, { useState } from "react"
 import Image from "next/image"
 
@@ -16,7 +21,9 @@ function Referral() {
         className="tw-pl-4 tw-border-2 tw-h-14 tw-w-[90%] tw-self-center tw-text-white tw-outline-none tw-border-gray-700  "
         placeholder={"Hello Ram"}
       />
-      <p className="tw-self-center tw-mt-3 ">Ravi shankar</p>
+      <p className="tw-self-center tw-mt-3 tw-text-[14px] tw-font-bold">
+        Ravi shankar
+      </p>
     </div>
   )
 }
@@ -43,7 +50,7 @@ function Registration() {
           className={"tw-h-14"}
         />
         <TextInput
-          label={"Mobile"}
+          label={"Mobile number"}
           type={"tel"}
           pattern={"/^d{10}$/"}
           placeholder={"Mobile number with code"}
@@ -80,12 +87,9 @@ function Registration() {
 
         <Referral />
 
-        <div className="tw-flex tw-w-[90%] tw-mb-4  ">
-          {/* <input type="checkbox" id="third-checkbox" />
-          <label
-            for="third-checkbox"
-            className="custom-checkbox tw-w-16 tw-h-6 tw-self-start"
-          ></label> */}
+        <div className="tw-flex tw-w-[90%] tw-mb-4  tw-justify-items-start ">
+          {/* Please check the check box it is starting from above the start point */}
+          <Checkbox />
           <p className="tw-ml-2 tw-font-thin">
             We Promote and encourage safe and responsible gambling.Please
             conform that you are above the age of 18
@@ -94,7 +98,7 @@ function Registration() {
         <YellowButton
           label={"Join Now"}
           type="submit"
-          className={"tw-w-[90%]"}
+          className={"tw-w-[90%] "}
         />
       </form>
       {/* <Image
