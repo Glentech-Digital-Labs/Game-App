@@ -1,4 +1,4 @@
-import { BiWallet } from "react-icons/bi"
+import { BiWallet } from "/utils/Icons"
 import { Input } from "@components/common/InputComponent"
 
 function Header() {

@@ -3,10 +3,10 @@ import React from "react"
 import QR_Image from "/public/images/QR_code.png"
 import { AmountCard } from "@components"
 import CurrencyData from "/utils/currency.json"
-import { AiFillPlusCircle } from "react-icons/ai"
+import { AiFillPlusCircle } from "/utils/Icons"
 import Bank_Image from "/public/images/Bank_Image.svg"
 import UPI_IMAGE from "/public/images/UPI_Image.svg"
-import { MdOutlineContentCopy } from "react-icons/md"
+import { MdOutlineContentCopy } from "/utils/Icons"
 import { BlackButton, YellowButton } from "@components/common"
 
 function Payment() {

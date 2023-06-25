@@ -1,13 +1,13 @@
 import { IconCards } from "@components"
 import React from "react"
-import { AiFillGift, AiFillStar } from "react-icons/ai"
-import { BsFillPlayBtnFill } from "react-icons/bs"
-import { FaHeadset } from "react-icons/fa"
+import { AiFillGift, AiFillStar } from "/utils/Icons"
+import { BsFillPlayBtnFill } from "/utils/Icons"
+import { FaHeadset } from "/utils/Icons"
 
-import { IoMdFootball, IoTennisballSharp } from "react-icons/io"
-import { GiBasketballBall } from "react-icons/gi"
+import { IoMdFootball, IoTennisballSharp } from "/utils/Icons"
+import { GiBasketballBall } from "/utils/Icons"
 
-import { BiTennisBall, BiCricketBall } from "react-icons/bi"
+import { BiTennisBall, BiCricketBall } from "/utils/Icons"
 
 function NavigateMenu() {
   return (

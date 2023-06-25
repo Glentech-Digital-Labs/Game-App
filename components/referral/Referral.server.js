@@ -7,9 +7,9 @@ import VerticalCoin from "../../public/images/VerticalConit.png"
 import CoinThree from "../../public/images/Coin3.png"
 import Cash from "../../public/images/Cash-icons.png"
 import Instagram from "../../public/images/Instagram.svg"
-import { BsFacebook, BsTelegram } from "react-icons/bs"
-import { AiFillTwitterCircle } from "react-icons/ai"
-import { IoLogoWhatsapp } from "react-icons/io"
+import { BsFacebook, BsTelegram } from "/utils/Icons"
+import { AiFillTwitterCircle } from "/utils/Icons"
+import { IoLogoWhatsapp } from "/utils/Icons"
 import Image from "next/image"
 
 function ReferredPeople() {

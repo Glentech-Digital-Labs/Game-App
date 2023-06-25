@@ -1,5 +1,5 @@
 import React from "react"
-import { AiOutlineCrown } from "react-icons/ai"
+import { AiOutlineCrown } from "/utils/Icons"
 import "./index.css"
 
 function MemberCard({ label, className }) {

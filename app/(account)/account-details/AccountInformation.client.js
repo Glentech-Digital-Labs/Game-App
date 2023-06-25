@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from "react"
-import { MdOutlineContentCopy } from "react-icons/md"
+import { MdOutlineContentCopy } from "/utils/Icons"
 
 function AccountInformation() {
   const [copiedValue, setCopiedValue] = useState("")

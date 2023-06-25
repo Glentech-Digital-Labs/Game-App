@@ -1,8 +1,8 @@
 "use client"
 import React from "react"
 import "./index.css"
-import { AiOutlineLeft } from "react-icons/ai"
-import { CiReceipt } from "react-icons/ci"
+import { AiOutlineLeft } from "/utils/Icons"
+import { CiReceipt } from "/utils/Icons"
 
 import { BottomMenu, Modal, OpenBets } from "@components"
 import { useModal } from "@hooks"

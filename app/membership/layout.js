@@ -1,4 +1,4 @@
-import { AiOutlineLeft } from "react-icons/ai"
+import { AiOutlineLeft } from "/utils/Icons"
 export const metadata = {
   title: "OTP ",
   description: "Making Gaming App",

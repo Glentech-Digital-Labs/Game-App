@@ -1,17 +1,26 @@
 import React from "react"
 import Image from "next/image"
 import Kohali from "/public/images/Kohali.jpeg"
-import { AiOutlineUser, AiFillLock } from "react-icons/ai"
-import { MdEmail } from "react-icons/md"
-import { BsFillTelephoneFill } from "react-icons/bs"
+
 import { YellowButton } from "@components/common"
 import { ContentEditableInput } from "../common"
+import {
+  AiOutlineUser,
+  MdEmail,
+  BsFillTelephoneFill,
+  AiFillLock,
+} from "/utils/Icons"
 
-function ProfileEdit() {
+async function ProfileEdit() {
   return (
     <div className="tw-flex tw-flex-col">
       <div className="tw-w-36 tw-h-36 tw-rounded-full tw-mt-6 tw-relative tw-mx-auto">
-        <Image src={Kohali} fill={true} className="tw-rounded-full   " />
+        <Image
+          src={Kohali}
+          fill={true}
+          className="tw-rounded-full "
+          alt="Image of Profile"
+        />
       </div>
 
       <div className=" tw-mx-3">

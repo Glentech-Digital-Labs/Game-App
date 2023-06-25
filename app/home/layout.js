@@ -3,10 +3,10 @@ import Image from "next/image"
 
 import Logo from "../../public/images/Sportradar-log.svg"
 
-import { BiWallet, BiUser } from "react-icons/bi"
+import { BiWallet, BiUser } from "/utils/Icons"
 import { BottomMenu, Rounded, YellowButton } from "@components/common"
-import { BiCricketBall, BiFootball, BiTennisBall } from "react-icons/bi"
-import { FaVolleyballBall } from "react-icons/fa"
+import { BiCricketBall, BiFootball, BiTennisBall } from "/utils/Icons"
+import { FaVolleyballBall } from "/utils/Icons"
 
 export const metadata = {
   title: "OTP ",

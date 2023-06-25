@@ -7,9 +7,9 @@ import {
   YellowButton,
 } from "@components/common"
 
-import { AiOutlineArrowRight } from "react-icons/ai"
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai"
-import { IoMdBackspace } from "react-icons/io"
+import { AiOutlineArrowRight } from "/utils/Icons"
+import { AiOutlineMinus, AiOutlinePlus } from "/utils/Icons"
+import { IoMdBackspace } from "/utils/Icons"
 
 function AmountComponent() {
   return (

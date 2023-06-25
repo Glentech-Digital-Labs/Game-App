@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from "react"
 
-import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai"
+import { AiFillEyeInvisible, AiFillEye } from "/utils/Icons"
 
 function PasswordInput({
   placeholder,
@@ -49,7 +49,6 @@ function PasswordInput({
           />
         )}
       </div>
-      {/* Here have to put the Eye icon to make the password hide and show */}
     </div>
   )
 }

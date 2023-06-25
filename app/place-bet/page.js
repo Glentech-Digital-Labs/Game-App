@@ -1,6 +1,5 @@
 "use client"
 import React, { useEffect } from "react"
-import { BiSolidTennisBall } from "react-icons/bi"
 
 import { Accordion } from "@components"
 let content1 = {

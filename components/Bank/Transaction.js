@@ -1,7 +1,6 @@
 "use client"
 import React, { useState } from "react"
-// import { FaSackDollar } from "react-icons/fa"
-import { BiWallet } from "react-icons/bi"
+
 import { Input } from "@components/common/InputComponent"
 import { YellowButton } from "@components/common"
 import { TransactionCard } from "./TransactionCard"

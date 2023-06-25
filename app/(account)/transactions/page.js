@@ -1,4 +1,3 @@
-// "use server"
 import { Transaction } from "@components"
 import React from "react"
 

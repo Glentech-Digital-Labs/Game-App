@@ -8,12 +8,12 @@ function ContentEditableInput({ initialValue, className, Icon, label, type }) {
     setValue(event.target.value)
   }
   return (
-    <div className="tw-w-full tw-flex tw-bg-[#282B38] tw-my-4 tw-py-2  tw-rounded-lg ">
+    <div className="tw-w-full tw-flex tw-bg-[#212128] tw-my-4 tw-py-2  tw-rounded-lg tw-border-2 tw-border-[#282B38] tw-h-16">
       <div
-        className="tw-bg-slate-500 tw-border-2 tw-rounded-full tw-flex tw-justify-center tw-items-center tw-w-14 tw-h-14 tw-border-[#282B38] tw-mx-4"
+        className="tw-bg-[#3B3B42] tw-border-2 tw-rounded-full tw-flex tw-justify-center tw-items-center tw-w-10 tw-h-10 tw-border-[#3B3B42] tw-mx-4"
         style={{ borderStyle: "outset" }}
       >
-        <Icon fontSize={32} />
+        <Icon fontSize={24} />
       </div>
       <div className="tw-flex tw-flex-col">
         <p>{label}</p>
@@ -21,6 +21,7 @@ function ContentEditableInput({ initialValue, className, Icon, label, type }) {
           <input
             type="password"
             value={value}
+            className="tw-border-none "
             onChange={handelChangeInput}
             autoFocus
             style={{
@@ -35,7 +36,7 @@ function ContentEditableInput({ initialValue, className, Icon, label, type }) {
             onInput={handelChangeInput}
             type={type}
             suppressContentEditableWarning={true}
-            className={`${className} tw-font-semibold tw-text-lg`}
+            className={`${className} tw-font-semibold tw-text-lg tw-outline-none`}
             value
           >
             {value}

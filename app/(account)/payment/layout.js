@@ -3,7 +3,7 @@ import Image from "next/image"
 
 import Logo from "/public/images/Sportradar-log.svg"
 
-import { BiWallet, BiUser } from "react-icons/bi"
+import { BiWallet, BiUser } from "/utils/Icons"
 import { YellowButton } from "@components/common"
 
 export const metadata = {

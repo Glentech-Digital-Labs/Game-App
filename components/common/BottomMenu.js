@@ -1,9 +1,9 @@
 import React from "react"
-import { BsPlayBtn } from "react-icons/bs"
-import { GoHome } from "react-icons/go"
-import { RiSettingsLine } from "react-icons/ri"
-import { AiFillPlaySquare } from "react-icons/ai"
-import { BiMenu } from "react-icons/bi"
+import { BsPlayBtn } from "/utils/Icons"
+import { GoHome } from "/utils/Icons"
+import { RiSettingsLine } from "/utils/Icons"
+import { AiFillPlaySquare } from "/utils/Icons"
+import { BiMenu } from "/utils/Icons"
 function BottomMenu() {
   return (
     <div className=" tw-flex tw-h-20  tw-justify-around tw-fixed tw-min-w-full  tw-bottom-0 tw-z-10  tw-text-gray-300 bottom_layout">

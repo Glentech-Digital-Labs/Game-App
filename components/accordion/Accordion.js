@@ -5,8 +5,8 @@ import {
   AiOutlineExclamation,
   AiOutlineMinus,
   AiOutlinePlus,
-} from "react-icons/ai"
-import { BsFillTrophyFill } from "react-icons/bs"
+} from "/utils/Icons"
+import { BsFillTrophyFill } from "/utils/Icons"
 import { BettingInput, CashOutModal, Rounded } from "@components/common"
 import { Modal } from "@components/modal/Modal"
 import { useModal } from "@hooks"
