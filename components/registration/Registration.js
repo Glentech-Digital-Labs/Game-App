@@ -12,16 +12,34 @@ import FetchData from "@utils/Fetcher"
 import { useDispatch, useSelector } from "react-redux"
 import { setError, resetError } from "../../redux/feature/error/errorSlice"
 import { useToast } from "@hooks"
-import { redirect } from "next/navigation"
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
 
-function Referral({ setValue }) {
+// When get Time try to implement  useMemo
+
+function Referral({ setValue, refererCodeValue }) {
+  const [referredName, setReferredName] = useState()
   function inputHandler(e) {
     setValue((prev) => ({
       ...prev,
       refererCode: e.target.value,
     }))
   }
+  async function getReferredPersonName() {
+    const response = await FetchData(
+      `punter/get-user-from-referral-code/${refererCodeValue}`
+    )
+    if (response.success) {
+      const name = response.data?.fullName
+      setReferredName(name)
+    } else {
+      setReferredName("")
+    }
+  }
+
+  if (refererCodeValue.length === 6) {
+    getReferredPersonName()
+  }
+
   return (
     <div className=" match_card tw-w-[90%] tw-h-36 tw-mb-4 tw-flex tw-flex-col tw-mt-6 ">
       <p className="tw-font-medium tw-text-base tw-mb-2 tw-ml-4 tw-mt-2  ">
@@ -29,11 +47,12 @@ function Referral({ setValue }) {
       </p>
       <input
         className="tw-pl-4 tw-border-2 tw-h-14 tw-w-[90%] tw-self-center tw-text-white tw-outline-none tw-border-gray-700  "
-        placeholder={"ABCD12"}
+        placeholder={"Max length 6"}
         onInput={inputHandler}
+        maxLength={6}
       />
       <p className="tw-self-center tw-mt-3 tw-text-[14px] tw-font-bold">
-        Ravi shankar
+        {referredName}
       </p>
     </div>
   )
@@ -48,6 +67,8 @@ function Registration() {
   const dispatch = useDispatch()
   const errorData = useSelector((state) => state.errorContext)
   const { isToastOpen, tostToggle } = useToast()
+  const [isChecked, setIsChecked] = useState(false)
+  const router = useRouter()
 
   const [registerUserData, setRegisterUserData] = useState({
     userName: "",
@@ -60,6 +81,9 @@ function Registration() {
 
   const submitHandler = async (event) => {
     event.preventDefault()
+    if (!isChecked) {
+      return
+    }
     setLoading(true)
     const responseData = await FetchData("punter/sign-up", {
       method: "POST",
@@ -81,7 +105,7 @@ function Registration() {
       setLoading(false)
       dispatch(resetError())
       if (responseData.success) {
-        // redirect("/otp")
+        router.replace("/otp")
       }
     }
 
@@ -152,11 +176,13 @@ function Registration() {
           showPassword={showConformPassword}
         />
 
-        <Referral setValue={setRegisterUserData} />
+        <Referral
+          setValue={setRegisterUserData}
+          refererCodeValue={registerUserData.refererCode}
+        />
 
         <div className="tw-flex tw-w-[90%] tw-mb-4  tw-justify-items-start ">
-          {/* Please check the check box it is starting from above the start point */}
-          <Checkbox />
+          <Checkbox setIsChecked={setIsChecked} isChecked={isChecked} />
           <p className="tw-ml-2 tw-font-thin">
             We Promote and encourage safe and responsible gambling.Please
             conform that you are above the age of 18
