@@ -29,7 +29,7 @@ function PasswordInput({
         <input
           placeholder={placeholder}
           type={type}
-          pattern="^(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$"
+          // pattern="^(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$"
           value={value}
           className={` tw-py-2 tw-min-h-full tw-mt-2 tw-w-[90%]`}
           onChange={passwordHandler}

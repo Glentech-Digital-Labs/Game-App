@@ -9,10 +9,17 @@ function Input({
   setValue,
   className,
   style,
+  field,
 }) {
   function userChangeHandler(event) {
-    event.preventDefault()
-    setValue(() => event.target.value)
+    if (field) {
+      setValue((prev) => ({
+        ...prev,
+        [field]: event.target.value,
+      }))
+    } else {
+      setValue(() => event.target.value)
+    }
   }
 
   return (
@@ -23,6 +30,7 @@ function Input({
         placeholder={placeholder}
         type={type}
         pattern={pattern}
+        required={true}
         value={value}
         className={`${className} tw-py-2 tw-mt-2 tw-w-[90%] tw-min-w-[90%]`}
         onChange={userChangeHandler}

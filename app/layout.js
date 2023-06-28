@@ -22,7 +22,7 @@ const inter = Inter({
 })
 
 export function reportWebVitals(metric) {
-  console.log(metric)
+  metric
 }
 
 function RootLayout({ children, session }) {

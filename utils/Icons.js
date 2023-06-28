@@ -1,34 +1,50 @@
 "use client"
-export { AiOutlineUser, AiFillLock } from "react-icons/ai"
-export { MdEmail } from "react-icons/md"
-export { BsFillTelephoneFill } from "react-icons/bs"
-export { MdOutlineContentCopy } from "react-icons/md"
-export { BiWallet, BiUser } from "react-icons/bi"
-export { AiOutlineLeft } from "react-icons/ai"
-export { BiCricketBall, BiFootball, BiTennisBall } from "react-icons/bi"
-export { FaVolleyballBall } from "react-icons/fa"
-export { AiFillGift, AiFillStar } from "react-icons/ai"
-export { BsFillPlayBtnFill } from "react-icons/bs"
-export { FaHeadset } from "react-icons/fa"
-
-export { IoMdFootball } from "react-icons/io"
-export { GiBasketballBall } from "react-icons/gi"
-export { CiReceipt } from "react-icons/ci"
-export { BsPencil } from "react-icons/bs"
 export {
+  AiOutlineUser,
+  AiFillLock,
+  AiOutlineLeft,
+  AiFillGift,
+  AiFillStar,
   AiOutlineExclamation,
   AiOutlineMinus,
   AiOutlinePlus,
+  AiOutlineArrowRight,
+  AiFillPlaySquare,
+  AiOutlineCrown,
+  AiFillEyeInvisible,
+  AiFillEye,
+  AiFillTwitterCircle,
 } from "react-icons/ai"
-export { BsFillTrophyFill } from "react-icons/bs"
-export { AiOutlineArrowRight } from "react-icons/ai"
+export { MdEmail, MdCancel, MdOutlineContentCopy } from "react-icons/md"
+export {
+  BsFillTelephoneFill,
+  BsFillPlayBtnFill,
+  BsPencil,
+  BsFillTrophyFill,
+  BsPlayBtn,
+  BsFacebook,
+  BsTelegram,
+} from "react-icons/bs"
+
+export {
+  BiWallet,
+  BiUser,
+  BiCricketBall,
+  BiFootball,
+  BiTennisBall,
+  BiMenu,
+} from "react-icons/bi"
+
+export { FaVolleyballBall } from "react-icons/fa"
+
+export { FaHeadset } from "react-icons/fa"
+export { IoMdFootball } from "react-icons/io"
+export { GiBasketballBall } from "react-icons/gi"
+export { CiReceipt } from "react-icons/ci"
+
 export { IoMdBackspace } from "react-icons/io"
-export { BsPlayBtn } from "react-icons/bs"
+
 export { GoHome } from "react-icons/go"
 export { RiSettingsLine } from "react-icons/ri"
-export { AiFillPlaySquare, AiOutlineCrown } from "react-icons/ai"
-export { BiMenu } from "react-icons/bi"
-export { AiFillEyeInvisible, AiFillEye } from "react-icons/ai"
-export { BsFacebook, BsTelegram } from "react-icons/bs"
-export { AiFillTwitterCircle } from "react-icons/ai"
+
 export { IoLogoWhatsapp } from "react-icons/io"

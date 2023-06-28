@@ -16,11 +16,10 @@ function ReferralComponent() {
     startTime,
     commitTime
   ) {
-    console.log("phase", phase)
-    console.log("actualDuration", actualDuration)
-    console.log("baseDuration", baseDuration)
-    console.log("startTime", startTime)
-    console.log("commitTime", commitTime)
+    ;("phase", phase)("actualDuration", actualDuration)(
+      "baseDuration",
+      baseDuration
+    )("startTime", startTime)("commitTime", commitTime)
   }
 
   return (

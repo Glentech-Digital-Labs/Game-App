@@ -1,7 +1,5 @@
 "use client"
 import React, { useState } from "react"
-
-import { Input } from "@components/common/InputComponent"
 import { YellowButton } from "@components/common"
 import { TransactionCard } from "./TransactionCard"
 import { Header, InputComponent } from "./Transactions.server"
