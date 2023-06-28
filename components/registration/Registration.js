@@ -11,6 +11,7 @@ import React, { useState } from "react"
 import FetchData from "@utils/Fetcher"
 import { useDispatch, useSelector } from "react-redux"
 import { setError, resetError } from "../../redux/feature/error/errorSlice"
+import { resetUser, setUser } from "../../redux/feature/user/userSlice"
 import { useToast } from "@hooks"
 import { useRouter } from "next/navigation"
 
@@ -66,6 +67,7 @@ function Registration() {
   const [loading, setLoading] = useState(false)
   const dispatch = useDispatch()
   const errorData = useSelector((state) => state.errorContext)
+  const userData = useSelector((state) => state.userContext)
   const { isToastOpen, tostToggle } = useToast()
   const [isChecked, setIsChecked] = useState(false)
   const router = useRouter()
@@ -103,9 +105,10 @@ function Registration() {
       setLoading(false), dispatch(setError(data)), tostToggle()
     } else {
       setLoading(false)
+      dispatch(setUser({ ...registerUserData, password }))
       dispatch(resetError())
       if (responseData.success) {
-        router.replace("/otp")
+        router.replace(`/otp/${registerUserData.phoneNumber}`)
       }
     }
 
