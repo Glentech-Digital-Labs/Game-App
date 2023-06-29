@@ -2,7 +2,7 @@
 import { OtpInput } from "@components"
 import { Circle, YellowButton } from "@components"
 import React, { useState, useEffect, useRef } from "react"
-import { useParams, useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { useDispatch, useSelector } from "react-redux"
 import FetchData from "@utils/Fetcher"
 import { resetUser, setUser } from "/redux/feature/user/userSlice"
