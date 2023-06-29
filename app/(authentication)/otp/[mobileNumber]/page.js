@@ -37,7 +37,6 @@ function Otp() {
       dispatch(resetUser())
       router.replace("/home")
     }
-    console.log("Otp wale ka response", response)
   }
 
   useEffect(() => {
@@ -57,7 +56,6 @@ function Otp() {
     <div className="tw-flex tw-flex-col ">
       <p className="tw-text-xl tw-font-semibold tw-mt-6 tw-self-center">
         <span>{`OTP send to ${userData.phoneNumber}`}</span>
-        9166186443`
       </p>
       <p className="tw-text-lg tw-font-semibold tw-mt-6 tw-self-center">
         Enter the OTP you Received

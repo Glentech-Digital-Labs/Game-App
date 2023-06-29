@@ -28,8 +28,8 @@ function HomePage() {
     }
   }, [selectedSportsId.sportsId])
 
-  function routeHandler() {
-    router.push("/place-bet")
+  function routeHandler(id) {
+    router.push(`/place-bet/${id}`)
   }
 
   return (
@@ -47,7 +47,7 @@ function HomePage() {
           </div>
 
           {singleSport.events?.map((match) => (
-            <div onClick={routeHandler} key={match.id}>
+            <div onClick={() => routeHandler(match.id)} key={match.id}>
               <MatchCard
                 back={"2.1"}
                 lay={"2.4"}
