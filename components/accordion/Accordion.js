@@ -98,9 +98,6 @@ const AccordionItem = ({ item }) => {
     setSelectedId(item.id)
   }
 
-  console.log("event Id", item.eventId)
-  console.log("Market Id", item.id)
-
   return (
     <>
       <div className="accordion-item">
@@ -195,7 +192,6 @@ const AccordionItem = ({ item }) => {
 
 // You can put this for server side render
 const Accordion = ({ data }) => {
-  console.log("Data is here", data)
   return (
     <div className="accordion">
       {data.map((item) => (

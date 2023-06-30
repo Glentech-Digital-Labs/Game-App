@@ -16,7 +16,7 @@ function ContentEditableInput({ initialValue, className, Icon, label, type }) {
         <Icon fontSize={24} />
       </div>
       <div className="tw-flex tw-flex-col">
-        <p>{label}</p>
+        <p className="tw-text-14px tw-font-medium">{label}</p>
         {type === "password" ? (
           <input
             type="password"
@@ -36,7 +36,7 @@ function ContentEditableInput({ initialValue, className, Icon, label, type }) {
             onInput={handelChangeInput}
             type={type}
             suppressContentEditableWarning={true}
-            className={`${className} tw-font-semibold tw-text-lg tw-outline-none`}
+            className={`${className} tw-font-semibold  tw-outline-none tw-text-[18px]`}
             value
           >
             {value}

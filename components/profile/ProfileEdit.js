@@ -1,4 +1,5 @@
-import React from "react"
+"use client"
+import React, { useState, useEffect, useMemo } from "react"
 import Image from "next/image"
 import Kohali from "/public/images/Kohali.jpeg"
 
@@ -10,8 +11,23 @@ import {
   BsFillTelephoneFill,
   AiFillLock,
 } from "/utils/Icons"
+import FetchData from "@utils/Fetcher"
 
 async function ProfileEdit() {
+  const [userData, setUserData] = useState([])
+  async function getUserData() {
+    const response = await FetchData("user/profile")
+    if (response.success) {
+      setUserData(response.data)
+    }
+  }
+  useEffect(() => {
+    getUserData()
+    return () => {
+      getUserData()
+    }
+  }, [])
+
   return (
     <div className="tw-flex tw-flex-col">
       <div className="tw-w-36 tw-h-36 tw-rounded-full tw-mt-6 tw-relative tw-mx-auto">
@@ -26,19 +42,25 @@ async function ProfileEdit() {
       <div className=" tw-mx-3">
         <ContentEditableInput
           Icon={AiOutlineUser}
-          initialValue={"Rohit"}
+          initialValue={userData?.userName}
+          label={"Username"}
+          type={"text"}
+        />
+        <ContentEditableInput
+          Icon={AiOutlineUser}
+          initialValue={userData?.fullName}
           label={"First Name"}
           type={"text"}
         />
         <ContentEditableInput
           Icon={MdEmail}
-          initialValue={"rohitkumar9133@gmail.com"}
+          initialValue={userData?.email}
           label={"Email"}
           type={"email"}
         />
         <ContentEditableInput
           Icon={BsFillTelephoneFill}
-          initialValue={"9166186443"}
+          initialValue={userData?.phoneNumber}
           label={"Phone"}
           type={"text"}
         />

@@ -1,11 +1,13 @@
 "use client"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import "./index.css"
 import { AiOutlineLeft } from "/utils/Icons"
 import { CiReceipt } from "/utils/Icons"
 
 import { BottomMenu, Modal, OpenBets } from "@components"
 import { useModal } from "@hooks"
+import { useParams } from "next/navigation"
+import FetchData from "@utils/Fetcher"
 
 function Headers({ toggle }) {
   return (
@@ -41,11 +43,27 @@ function Headers({ toggle }) {
 
 function Layout({ children }) {
   const { isModalOpen, toggle } = useModal()
+  const params = useParams()
+  const [betData, setBetData] = useState([])
+  async function getBetData() {
+    const response = await FetchData(`betting/event/${params.id}/bets`)
+    if (response.success) {
+      setBetData(response.data)
+    }
+  }
+  useEffect(() => {
+    getBetData()
+
+    return () => {
+      getBetData()
+    }
+  }, [params.id])
+
   return (
     <div className="tw-relative">
       <Headers toggle={toggle} />
       <Modal isModalOpen={isModalOpen} toggle={toggle}>
-        <OpenBets />
+        <OpenBets betData={betData} />
       </Modal>
       {children}
 

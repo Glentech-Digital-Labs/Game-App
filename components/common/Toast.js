@@ -4,12 +4,11 @@ import { MdCancel } from "react-icons/md"
 function Toast({ children, isToastOpen, tostToggle, className, style }) {
   return (
     <>
-      {/* {isToastOpen && <div className={`toast_wrapper `}>{children}</div>} */}
-
       <div
-        className={`toast_wrapper tw-rounded-full ${
+        className={`toast_wrapper tw-rounded-full c ${
           isToastOpen ? "open" : "close"
-        } `}
+        } ${className}`}
+        style={style}
       >
         <MdCancel
           onClick={tostToggle}

@@ -1,16 +1,16 @@
 import Data from "./config"
-// import { useSelector, useDispatch } from "react-redux"
-// import { resetError, setError } from "../redux/feature/error/errorSlice"
 
 const BASE_URL = Data.BASE_URL
 
 async function FetchData(path, options) {
   const modifiedOptions = {
     method: options?.method ? options.method : "GET",
+    credentials: "include",
     ...options,
     headers: {
       ...options?.headers,
-      //   Authorization: "Bearer YourAccessToken",
+      "Access-Control-Allow-Credentials": true,
+      // Cookie: context.req.headers.cookie,
       "Content-Type": "application/json; charset=UTF-8",
     },
     ...(options?.method ? { body: JSON.stringify(options?.body) } : ""),
