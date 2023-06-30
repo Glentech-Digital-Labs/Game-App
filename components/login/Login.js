@@ -16,6 +16,9 @@ import FetchData from "@utils/Fetcher"
 import { useToast } from "@hooks"
 import { useRouter } from "next/navigation"
 import { useDispatch, useSelector } from "react-redux"
+import { setError, resetError } from "../../redux/feature/error/errorSlice"
+// import { setCookie } from "cookies-next"
+// import { cookies } from "next/headers"
 
 // TODO
 // Make remember  me checkbox  IS NOT WORKING ,SALA PATA NAHI KYU
@@ -54,6 +57,7 @@ function Login() {
     }
     if (response.success) {
       setIsLoading(false)
+      // setCookie("cookieKey", value, { req, res, maxAge: 60 * 6 * 24 })
       dispatch(resetError())
       router.replace("/home")
     }

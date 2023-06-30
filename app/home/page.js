@@ -34,8 +34,8 @@ function HomePage() {
 
   return (
     <>
-      {singleSportsData.map((singleSport) => (
-        <div className="tw-mx-2">
+      {singleSportsData.map((singleSport, index) => (
+        <div className="tw-mx-2 tw-cursor-pointer" key={index}>
           <div
             className="tw-h-12 tw-min-w-full  tw-pl-2 tw-my-auto tw-flex tw-items-center"
             style={{

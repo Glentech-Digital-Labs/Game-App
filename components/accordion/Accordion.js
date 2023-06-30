@@ -7,14 +7,20 @@ import {
   AiOutlinePlus,
 } from "/utils/Icons"
 import { BsFillTrophyFill } from "/utils/Icons"
-import { BettingInput, CashOutModal, Rounded } from "@components/common"
+import {
+  BettingInput,
+  CashOutModal,
+  Loading,
+  Rounded,
+} from "@components/common"
 import { Modal } from "@components/modal/Modal"
 import { useModal } from "@hooks"
 
-const AccordionChildItem = ({ item, marketType }) => {
+const AccordionChildItem = ({ item, marketType, marketId, eventId }) => {
   const [expanded, setExpanded] = useState(false)
   const [selectedId, setSelectedId] = useState(0)
   const [typeOfBet, setTypeOfBet] = useState("")
+  const [loading, setLoading] = useState(false)
 
   const toggleItem = (betType) => {
     setExpanded(!expanded)
@@ -23,6 +29,7 @@ const AccordionChildItem = ({ item, marketType }) => {
   }
   return (
     <>
+      {loading && <Loading />}
       <div className="accordion-item">
         <div className={`accordion-item-header ${expanded ? "expanded" : ""}`}>
           <div
@@ -69,6 +76,10 @@ const AccordionChildItem = ({ item, marketType }) => {
               team={item?.title}
               backPrice={item.backPrices[1]["price"]}
               layPrice={item.layPrices[1]["price"]}
+              marketId={marketId}
+              eventId={eventId}
+              selectionId={item.id}
+              setLoading={setLoading}
             />
           </div>
         )}
@@ -86,6 +97,9 @@ const AccordionItem = ({ item }) => {
     setExpanded(!expanded)
     setSelectedId(item.id)
   }
+
+  console.log("event Id", item.eventId)
+  console.log("Market Id", item.id)
 
   return (
     <>
@@ -160,6 +174,8 @@ const AccordionItem = ({ item }) => {
                 key={childItem.id}
                 item={childItem}
                 marketType={item.marketType}
+                marketId={item.eventId}
+                eventId={item.id}
               />
             ))}
           </div>
@@ -177,7 +193,9 @@ const AccordionItem = ({ item }) => {
   )
 }
 
+// You can put this for server side render
 const Accordion = ({ data }) => {
+  console.log("Data is here", data)
   return (
     <div className="accordion">
       {data.map((item) => (

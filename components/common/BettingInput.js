@@ -10,6 +10,7 @@ import {
 import { AiOutlineArrowRight } from "/utils/Icons"
 import { AiOutlineMinus, AiOutlinePlus } from "/utils/Icons"
 import { IoMdBackspace } from "/utils/Icons"
+import FetchData from "@utils/Fetcher"
 
 // Change of color on click is left has to do
 function AmountComponent({ setAmount }) {
@@ -94,9 +95,15 @@ function NumberComponent({ setAmount }) {
   )
 }
 
-function BackLayButtons({ backPrice, layPrice, typeOfBet, amount, setAmount }) {
-  const [betPoint, setBetPoint] = useState(0)
-
+function BackLayButtons({
+  backPrice,
+  layPrice,
+  typeOfBet,
+  amount,
+  setAmount,
+  setBetPoint,
+  betPoint,
+}) {
   useEffect(() => {
     if (typeOfBet == "Back") {
       setBetPoint(backPrice)
@@ -153,11 +160,7 @@ function BackLayButtons({ backPrice, layPrice, typeOfBet, amount, setAmount }) {
             <AiOutlinePlus />
           </div>
           {amount.toFixed(2)}
-          <div
-            className="backLay_side_button "
-            // onClick={() => betMinusHandler("layPoint")}
-            onClick={() => amountHandler()}
-          >
+          <div className="backLay_side_button " onClick={() => amountHandler()}>
             <AiOutlineMinus />
           </div>
         </div>
@@ -166,9 +169,42 @@ function BackLayButtons({ backPrice, layPrice, typeOfBet, amount, setAmount }) {
   )
 }
 
-function BettingInput({ marketType, typeOfBet, team, backPrice, layPrice }) {
+function BettingInput({
+  marketType,
+  typeOfBet,
+  team,
+  backPrice,
+  layPrice,
+  marketId,
+  eventId,
+  selectionId,
+  setLoading,
+}) {
   const [amount, setAmount] = useState(0)
   const numberAmount = parseInt(amount)
+  const [betPoint, setBetPoint] = useState(0)
+
+  async function placeBetHandler() {
+    setLoading(true)
+    const response = await FetchData(
+      `betting/event/${marketId}/market/${eventId}/place-bet`,
+      {
+        method: "POST",
+        body: {
+          betType: typeOfBet.toUpperCase(),
+          odds: betPoint,
+          selectionId: selectionId,
+          stake: +amount,
+        },
+      }
+    )
+    if (response.success) {
+      setLoading(false)
+    } else {
+      setLoading(true)
+    }
+    console.log("Betting response", response)
+  }
 
   return (
     <div className="tw-bg-[#2B2B31]   tw-pl-2 ">
@@ -191,10 +227,16 @@ function BettingInput({ marketType, typeOfBet, team, backPrice, layPrice }) {
         typeOfBet={typeOfBet}
         amount={numberAmount}
         setAmount={setAmount}
+        betPoint={betPoint}
+        setBetPoint={setBetPoint}
       />
       <div className="tw-flex tw-mt-4 ">
         <BlackButton label={"Cancel"} className={"tw-w-[48%] tw-mr-2"} />
-        <YellowButton label={"Place Bet"} className={"tw-w-[48%]"} />
+        <YellowButton
+          label={"Place Bet"}
+          className={"tw-w-[48%]"}
+          onClick={placeBetHandler}
+        />
       </div>
       <AmountComponent setAmount={setAmount} />
       <NumberComponent setAmount={setAmount} />
