@@ -32,6 +32,7 @@ function Bet() {
         width={"100%"}
         height={200}
         loading="eager"
+        title="myFrame"
         sandbox="allow-scripts  allow-same-origin"
       ></iframe>
 

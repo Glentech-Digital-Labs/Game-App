@@ -180,6 +180,7 @@ function BettingInput({
           odds: betPoint,
           selectionId: selectionId,
           amount: +amount,
+          index: 0,
         },
       }
     )
@@ -198,15 +199,16 @@ function BettingInput({
     shortMarketTitle = marketTitle
   }
   function calculateProfitLiability() {
-    if (amount <= 0) {
+    let amountInNumber = parseInt(amount)
+    if (amountInNumber <= 0) {
       return
     }
     if (typeOfBet == "Back") {
-      setProfit(amount * (betPoint - 1))
-      setLiability(amount)
+      setProfit(amountInNumber * (betPoint - 1))
+      setLiability(amountInNumber)
     } else {
-      setProfit(amount)
-      setLiability(amount * (betPoint - 1))
+      setProfit(amountInNumber)
+      setLiability(amountInNumber * (betPoint - 1))
     }
   }
 
@@ -236,11 +238,11 @@ function BettingInput({
         </div>
         <div className="tw-flex tw-mt-2">
           <p className="tw-bg-emerald-500 tw-px-2  tw-rounded-full">
-            {profit.toFixed(1)}
+            {+profit?.toFixed(1)}
           </p>
           <p className="tw-bg-red-400 tw-px-2  tw-rounded-full tw-items-center tw-justify-center tw-mx-2">
             {" "}
-            {liability.toFixed(1)}
+            {+liability?.toFixed(1)}
           </p>
         </div>
       </div>

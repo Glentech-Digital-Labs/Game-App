@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
   sportsId: 1,
   newBet: true,
+  placedBetData: [],
 }
 
 export const sportsSlice = createSlice({
@@ -10,7 +11,8 @@ export const sportsSlice = createSlice({
   initialState,
   reducers: {
     setSportId: (state, action) => {
-      return { ...state, ...action.payload }
+      console.log("From data slice", action.payload)
+      return { ...state, sportsId: action.payload }
     },
     resetSportsId: (state) => {
       return { initialState }
@@ -19,10 +21,14 @@ export const sportsSlice = createSlice({
       let newBet = !state.newBet
       return { ...state, newBet }
     },
+    setPlacedBetData: (state, action) => {
+      return { ...state, placedBetData: [...action.payload] }
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setSportId, resetSportsId, setNewBet } = sportsSlice.actions
+export const { setSportId, resetSportsId, setNewBet, setPlacedBetData } =
+  sportsSlice.actions
 
 export default sportsSlice.reducer

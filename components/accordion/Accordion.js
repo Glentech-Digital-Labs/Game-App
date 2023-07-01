@@ -15,11 +15,20 @@ import {
 } from "@components/common"
 import { Modal } from "@components/modal/Modal"
 import { useModal } from "@hooks"
+import { useSelector } from "react-redux"
 
-const AccordionChildItem = ({ item, marketTitle, marketId, eventId }) => {
+// console.log("Placed Bet", placedBetData)
+
+const AccordionChildItem = ({
+  item,
+  marketTitle,
+  marketId,
+  eventId,
+  typeOfBet,
+  setTypeOfBet,
+}) => {
   const [expanded, setExpanded] = useState(false)
   const [selectedId, setSelectedId] = useState(0)
-  const [typeOfBet, setTypeOfBet] = useState("")
   const [loading, setLoading] = useState(false)
 
   const toggleItem = (betType) => {
@@ -89,10 +98,39 @@ const AccordionChildItem = ({ item, marketTitle, marketId, eventId }) => {
   )
 }
 
+// function calculateWinningOutcomesPAndL(teamId) {
+//   if (typeof teamId === null || typeof teamId === undefined) return
+
+//   return placedBetData.reduce((prev, bet) => {
+//     const { odds, stake } = bet
+//     if (bet.selectionId === teamId) {
+//       bet.betType === betTypes.BACK
+//         ? (prev += stake * (odds - 1))
+//         : (prev -= stake * (odds - 1))
+//     } else {
+//       bet.betType === betTypes.BACK ? (prev -= stake) : (prev += stake)
+//     }
+//     return prev
+//   }, 0)
+// }
+
 const AccordionItem = ({ item }) => {
   const [expanded, setExpanded] = useState(false)
   const [selectedId, setSelectedId] = useState(0)
+  const [typeOfBet, setTypeOfBet] = useState("")
   const { isModalOpen, toggle } = useModal()
+  const placedBetData = useSelector(
+    (state) => state.sportsContext.placedBetData
+  )
+  function calculateWinningOutcome() {
+    placedBetData.map((singleBet, index) => {
+      if (item.id !== selectionId) {
+        return
+      }
+      console.log("Selected bet", singleBet)
+    })
+  }
+  console.log("Placed Bet", placedBetData)
 
   const toggleItem = (id) => {
     setExpanded(!expanded)
@@ -167,15 +205,21 @@ const AccordionItem = ({ item }) => {
                 Lay
               </h2>
             </div>
-            {item.marketSelections.map((childItem) => (
-              <AccordionChildItem
-                key={childItem.id}
-                item={childItem}
-                marketTitle={item.marketTitle}
-                marketId={item.eventId}
-                eventId={item.id}
-              />
-            ))}
+            {item.marketSelections.map((childItem) => {
+              console.log("Child Item", childItem)
+
+              return (
+                <AccordionChildItem
+                  key={childItem.id}
+                  item={childItem}
+                  marketTitle={item.marketTitle}
+                  marketId={item.eventId}
+                  eventId={item.id}
+                  setTypeOfBet={setTypeOfBet}
+                  typeOfBet={typeOfBet}
+                />
+              )
+            })}
           </div>
         )}
       </div>

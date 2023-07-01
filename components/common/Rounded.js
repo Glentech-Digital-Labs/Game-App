@@ -23,12 +23,12 @@ function Rounded({ label, Icon, backgroundColor, sportsId }) {
   }
 
   function clickHandler(id) {
-    dispatch(setSportId({ sportsId }))
+    dispatch(setSportId(id))
   }
 
   return (
     <div
-      className="tw-rounded-3xl tw-flex tw-justify-center tw-min-w-fit tw-px-3 tw-w-24 tw-h-12 tw-my-2  tw-mx-2  tw-text-white  tw-border-2 tw-border-solid tw-border-[#201F2A]"
+      className="tw-rounded-3xl tw-cursor-pointer tw-flex tw-justify-center tw-min-w-fit tw-px-3 tw-w-24 tw-h-12 tw-my-2  tw-mx-2  tw-text-white  tw-border-2 tw-border-solid tw-border-[#201F2A]"
       style={customStyle}
       id={sportsId}
       ref={divRef}

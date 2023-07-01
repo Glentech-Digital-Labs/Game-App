@@ -42,17 +42,22 @@ function HomePage() {
             <span>{singleSport?.competitionTitle}</span>
           </div>
 
-          {singleSport.events?.map((match) => (
-            <Link href={`/place-bet/${match.id}`} key={match.id}>
-              <MatchCard
-                back={"2.1"}
-                lay={"2.4"}
-                firstTeam={match.teamA}
-                secondTeam={match.teamB}
-                time={getRelativeTime(match.openDate)}
-              />
-            </Link>
-          ))}
+          {singleSport.events?.map((match) => {
+            return (
+              <Link
+                href={`/place-bet/${match["competition.title"]}/${match.teamA}-${match.teamB}/${match.id}`}
+                key={match.id}
+              >
+                <MatchCard
+                  back={"2.1"}
+                  lay={"2.4"}
+                  firstTeam={match.teamA}
+                  secondTeam={match.teamB}
+                  time={getRelativeTime(match.openDate)}
+                />
+              </Link>
+            )
+          })}
         </div>
       ))}
     </>

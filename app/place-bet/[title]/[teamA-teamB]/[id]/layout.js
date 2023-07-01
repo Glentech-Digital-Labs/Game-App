@@ -1,26 +1,30 @@
 "use client"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import "./index.css"
 import { AiOutlineLeft } from "/utils/Icons"
 import { CiReceipt } from "/utils/Icons"
 
 import { BottomMenu, Modal, OpenBets } from "@components"
 import { useModal } from "@hooks"
-import { useParams } from "next/navigation"
 import FetchData from "@utils/Fetcher"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { setPlacedBetData } from "/redux/feature/sports/sportsSlice"
+import { useRouter, useParams } from "next/navigation"
 
-function Headers({ toggle }) {
+function Headers({ toggle, competition, team }) {
+  const router = useRouter()
   return (
     <div className="tw-flex tw-justify-between tw-px-2 header ">
       <div className="tw-flex tw-self-center">
-        <AiOutlineLeft fontSize={20} className="tw-self-center" />
+        <AiOutlineLeft
+          fontSize={20}
+          className="tw-self-center tw-cursor-pointer"
+          onClick={() => router.back()}
+        />
         <div>
-          <p className="tw-font-medium tw-text-[10px]">
-            Indian Premiere League
-          </p>
+          <p className="tw-font-medium tw-text-[10px]">{competition}</p>
           <h2 className="tw-font-semibold tw-text-[14px] ">
-            Gujarat vs Mumbai
+            {`${team[0]} vs ${team[1]}`}
           </h2>
         </div>
       </div>
@@ -42,28 +46,34 @@ function Headers({ toggle }) {
   )
 }
 
+async function getBetData(setBetData, dispatch, paramID) {
+  const response = await FetchData(`betting/event/${paramID}/bets`)
+  if (response.success) {
+    setBetData(response.data)
+    dispatch(setPlacedBetData(response.data))
+  }
+}
 function Layout({ children }) {
   const { isModalOpen, toggle } = useModal()
+  const dispatch = useDispatch()
   const params = useParams()
   const [betData, setBetData] = useState([])
   const isNewBetPlaced = useSelector((state) => state.sportsContext.newBet)
-  async function getBetData() {
-    const response = await FetchData(`betting/event/${params.id}/bets`)
-    if (response.success) {
-      setBetData(response.data)
-    }
-  }
-  useEffect(() => {
-    getBetData()
 
+  useEffect(() => {
+    let paramID = params?.id
+    getBetData(setBetData, dispatch, paramID)
     return () => {
       getBetData()
     }
   }, [params.id, isNewBetPlaced])
 
+  let team = decodeURIComponent(params["teamA-teamB"]).split("-")
+  let competition = decodeURIComponent(params["title"])
+
   return (
     <div className="tw-relative">
-      <Headers toggle={toggle} />
+      <Headers toggle={toggle} competition={competition} team={team} />
       <Modal isModalOpen={isModalOpen} toggle={toggle}>
         <OpenBets betData={betData} />
       </Modal>
