@@ -14,6 +14,8 @@ import {
   AiOutlineArrowRight,
 } from "/utils/Icons"
 import FetchData from "@utils/Fetcher"
+import { setNewBet } from "/redux/feature/sports/sportsSlice"
+import { useDispatch } from "react-redux"
 
 // Change of color on click is left has to do
 let array = [200, 300, 400, 500, 600, 700]
@@ -106,9 +108,9 @@ function BackLayButtons({
 
   const amountHandler = (type) => {
     if (type == "add") {
-      setAmount((prev) => prev + 1)
+      setAmount((prev) => parseFloat(prev) + 1)
     } else {
-      setAmount((prev) => prev - 1)
+      setAmount((prev) => parseFloat(prev) - 1)
     }
   }
 
@@ -163,6 +165,9 @@ function BettingInput({
   const [amount, setAmount] = useState(0)
   const numberAmount = parseInt(amount)
   const [betPoint, setBetPoint] = useState(0)
+  const dispatch = useDispatch()
+  const [profit, setProfit] = useState(0)
+  const [liability, setLiability] = useState(0)
 
   async function placeBetHandler() {
     setLoading(true)
@@ -174,31 +179,70 @@ function BettingInput({
           betType: typeOfBet.toUpperCase(),
           odds: betPoint,
           selectionId: selectionId,
-          stake: +amount,
+          amount: +amount,
         },
       }
     )
     if (response.success) {
+      dispatch(setNewBet())
       setLoading(false)
     } else {
-      setLoading(true)
+      setLoading(false)
     }
   }
 
+  let shortMarketTitle
+  if (marketTitle.length > 15) {
+    shortMarketTitle = marketTitle.split(" ")[0]
+  } else {
+    shortMarketTitle = marketTitle
+  }
+  function calculateProfitLiability() {
+    if (amount <= 0) {
+      return
+    }
+    if (typeOfBet == "Back") {
+      setProfit(amount * (betPoint - 1))
+      setLiability(amount)
+    } else {
+      setProfit(amount)
+      setLiability(amount * (betPoint - 1))
+    }
+  }
+
+  useEffect(() => {
+    calculateProfitLiability()
+
+    return () => {
+      calculateProfitLiability()
+    }
+  }, [amount, betPoint])
+
   return (
     <div className="tw-bg-[#2B2B31]   tw-pl-2 ">
-      <div className="tw-flex tw-text-lg tw-h-8  tw-items-center tw-font-sf-font tw-text-12px tw-font-medium">
-        <span className="tw-font-sf-font tw-text-12px tw-font-medium">
-          {marketTitle}
-        </span>
-        <AiOutlineArrowRight fontSize={16} className="tw-mx-2" />{" "}
-        <span className="tw-font-sf-font tw-text-12px tw-font-medium">
-          {typeOfBet}
-        </span>{" "}
-        <AiOutlineArrowRight fontSize={16} className="tw-mx-2" />
-        <span className="tw-font-sf-font tw-text-12px tw-font-medium">
-          {team}
-        </span>
+      <div className="tw-flex tw-text-lg tw-h-8  tw-items-center tw-font-sf-font tw-text-12px tw-font-medium tw-justify-between tw-mb-3 ">
+        <div className="tw-flex tw-items-center tw-mt-2">
+          <span className="tw-font-sf-font tw-text-12px tw-font-medium">
+            {shortMarketTitle}
+          </span>
+          <AiOutlineArrowRight fontSize={12} className="" />{" "}
+          <span className="tw-font-sf-font tw-text-12px tw-font-medium">
+            {typeOfBet}
+          </span>{" "}
+          <AiOutlineArrowRight fontSize={12} className="" />
+          <span className="tw-font-sf-font tw-text-12px tw-font-medium">
+            {team}
+          </span>
+        </div>
+        <div className="tw-flex tw-mt-2">
+          <p className="tw-bg-emerald-500 tw-px-2  tw-rounded-full">
+            {profit.toFixed(1)}
+          </p>
+          <p className="tw-bg-red-400 tw-px-2  tw-rounded-full tw-items-center tw-justify-center tw-mx-2">
+            {" "}
+            {liability.toFixed(1)}
+          </p>
+        </div>
       </div>
       <BackLayButtons
         backPrice={backPrice}

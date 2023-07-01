@@ -27,6 +27,7 @@ const AccordionChildItem = ({ item, marketTitle, marketId, eventId }) => {
     setSelectedId(item.id)
     setTypeOfBet(betType)
   }
+
   return (
     <>
       {loading && <Loading />}
@@ -50,7 +51,7 @@ const AccordionChildItem = ({ item, marketTitle, marketId, eventId }) => {
                 onClick={() => toggleItem("Back")}
               >
                 <span className="tw-text-12px tw-font-extrabold">
-                  {item.backPrices[1]?.["price"]}
+                  {item.backPrices[0]?.["price"]}
                 </span>
               </button>
               <button
@@ -62,7 +63,7 @@ const AccordionChildItem = ({ item, marketTitle, marketId, eventId }) => {
                 onClick={() => toggleItem("Lay")}
               >
                 <span className="tw-text-12px tw-font-extrabold">
-                  {item.layPrices[1]?.["price"]}
+                  {item.layPrices[0]?.["price"]}
                 </span>
               </button>
             </div>
@@ -74,8 +75,8 @@ const AccordionChildItem = ({ item, marketTitle, marketId, eventId }) => {
               marketTitle={marketTitle}
               typeOfBet={typeOfBet}
               team={item?.title}
-              backPrice={item.backPrices[1]["price"]}
-              layPrice={item.layPrices[1]["price"]}
+              backPrice={item.backPrices[0]?.["price"]}
+              layPrice={item.layPrices[0]?.["price"]}
               marketId={marketId}
               eventId={eventId}
               selectionId={item.id}

@@ -8,6 +8,7 @@ import { BottomMenu, Modal, OpenBets } from "@components"
 import { useModal } from "@hooks"
 import { useParams } from "next/navigation"
 import FetchData from "@utils/Fetcher"
+import { useSelector } from "react-redux"
 
 function Headers({ toggle }) {
   return (
@@ -45,6 +46,7 @@ function Layout({ children }) {
   const { isModalOpen, toggle } = useModal()
   const params = useParams()
   const [betData, setBetData] = useState([])
+  const isNewBetPlaced = useSelector((state) => state.sportsContext.newBet)
   async function getBetData() {
     const response = await FetchData(`betting/event/${params.id}/bets`)
     if (response.success) {
@@ -57,7 +59,7 @@ function Layout({ children }) {
     return () => {
       getBetData()
     }
-  }, [params.id])
+  }, [params.id, isNewBetPlaced])
 
   return (
     <div className="tw-relative">
