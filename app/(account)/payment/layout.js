@@ -44,11 +44,20 @@ function HeaderLayout() {
     </>
   )
 }
+let array = [2000, 3000, 4000, 5000, 6000]
 function BottomLayout() {
   return (
     <>
       <div className="tw-flex tw-overflow-x-auto tw-my-4 remove-scroll-bar">
         <AmountCard className={"yellowButton tw-px-6"} amount={1000} />
+        {/* {array.map((item, index) => (
+          <AmountCard
+            amount={item}
+            className={"BlackButton"}
+            setAmount={setAmount}
+            key={item}
+          />
+        ))} */}
         <AmountCard className={"blackButton tw-px-6"} amount={2000} />
         <AmountCard className={"blackButton tw-px-6"} amount={3000} />
         <AmountCard className={"blackButton tw-px-6"} amount={4000} />

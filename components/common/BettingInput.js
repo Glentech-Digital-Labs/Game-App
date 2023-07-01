@@ -7,12 +7,16 @@ import {
   YellowButton,
 } from "@components/common"
 
-import { AiOutlineArrowRight } from "/utils/Icons"
-import { AiOutlineMinus, AiOutlinePlus } from "/utils/Icons"
-import { IoMdBackspace } from "/utils/Icons"
+import {
+  AiOutlineMinus,
+  AiOutlinePlus,
+  IoMdBackspace,
+  AiOutlineArrowRight,
+} from "/utils/Icons"
 import FetchData from "@utils/Fetcher"
 
 // Change of color on click is left has to do
+let array = [200, 300, 400, 500, 600, 700]
 function AmountComponent({ setAmount }) {
   return (
     <>
@@ -23,41 +27,20 @@ function AmountComponent({ setAmount }) {
         >
           &#8377;100
         </div>
-        <AmountCard
-          amount={"200"}
-          className={"BlackButton"}
-          setAmount={setAmount}
-        />
-        <AmountCard
-          amount={"300"}
-          className={"BlackButton"}
-          setAmount={setAmount}
-        />
-        <AmountCard
-          amount={"400"}
-          className={"BlackButton"}
-          setAmount={setAmount}
-        />
-        <AmountCard
-          amount={"500"}
-          className={"BlackButton"}
-          setAmount={setAmount}
-        />
-        <AmountCard
-          amount={"600"}
-          className={"BlackButton"}
-          setAmount={setAmount}
-        />
-        <AmountCard
-          amount={"700"}
-          className={"BlackButton"}
-          setAmount={setAmount}
-        />
+        {array.map((item, index) => (
+          <AmountCard
+            amount={item}
+            className={"BlackButton"}
+            setAmount={setAmount}
+            key={item}
+          />
+        ))}
       </div>
     </>
   )
 }
 
+const numberList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
 function NumberComponent({ setAmount }) {
   function backHandler() {
     setAmount((prev) => prev.slice(0, -1))
@@ -71,16 +54,13 @@ function NumberComponent({ setAmount }) {
     <>
       <div className=" tw-mb-4 tw-grid tw-grid-cols-10 ">
         <div className="tw-col-span-8 tw-grid tw-grid-cols-6 tw-gap-2  ">
-          <NumberCard number={1} numberHandler={numberHandler} />
-          <NumberCard number={2} numberHandler={numberHandler} />
-          <NumberCard number={3} numberHandler={numberHandler} />
-          <NumberCard number={4} numberHandler={numberHandler} />
-          <NumberCard number={5} numberHandler={numberHandler} />
-          <NumberCard number={6} numberHandler={numberHandler} />
-          <NumberCard number={7} numberHandler={numberHandler} />
-          <NumberCard number={8} numberHandler={numberHandler} />
-          <NumberCard number={9} numberHandler={numberHandler} />
-          <NumberCard number={0} numberHandler={numberHandler} />
+          {numberList.map((item, idx) => (
+            <NumberCard
+              number={item}
+              numberHandler={numberHandler}
+              key={item}
+            />
+          ))}
           <NumberCard number={"00"} numberHandler={numberHandler} />
           <NumberCard number={"."} numberHandler={numberHandler} />
         </div>
@@ -170,7 +150,7 @@ function BackLayButtons({
 }
 
 function BettingInput({
-  marketType,
+  marketTitle,
   typeOfBet,
   team,
   backPrice,
@@ -203,14 +183,13 @@ function BettingInput({
     } else {
       setLoading(true)
     }
-    console.log("Betting response", response)
   }
 
   return (
     <div className="tw-bg-[#2B2B31]   tw-pl-2 ">
       <div className="tw-flex tw-text-lg tw-h-8  tw-items-center tw-font-sf-font tw-text-12px tw-font-medium">
         <span className="tw-font-sf-font tw-text-12px tw-font-medium">
-          {marketType}
+          {marketTitle}
         </span>
         <AiOutlineArrowRight fontSize={16} className="tw-mx-2" />{" "}
         <span className="tw-font-sf-font tw-text-12px tw-font-medium">

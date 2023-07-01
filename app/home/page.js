@@ -1,24 +1,24 @@
 "use client"
 import { MatchCard } from "@components"
 import FetchData from "@utils/Fetcher"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import { getRelativeTime } from "/utils/utils"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 function HomePage() {
   const selectedSportsId = useSelector((state) => state.sportsContext)
   const [singleSportsData, setSingleSportsData] = useState([])
 
   const router = useRouter()
-
   async function fetchSportsData() {
     const response = await FetchData(
       `sports/${selectedSportsId.sportsId}/all/events`
     )
+
     if (response.success) {
       setSingleSportsData(response.data)
     }
-    console.log("Response Data is there", response.data)
   }
 
   useEffect(() => {
@@ -27,10 +27,6 @@ function HomePage() {
       fetchSportsData()
     }
   }, [selectedSportsId.sportsId])
-
-  function routeHandler(id) {
-    router.push(`/place-bet/${id}`)
-  }
 
   return (
     <>
@@ -47,7 +43,7 @@ function HomePage() {
           </div>
 
           {singleSport.events?.map((match) => (
-            <div onClick={() => routeHandler(match.id)} key={match.id}>
+            <Link href={`/place-bet/${match.id}`} key={match.id}>
               <MatchCard
                 back={"2.1"}
                 lay={"2.4"}
@@ -55,7 +51,7 @@ function HomePage() {
                 secondTeam={match.teamB}
                 time={getRelativeTime(match.openDate)}
               />
-            </div>
+            </Link>
           ))}
         </div>
       ))}

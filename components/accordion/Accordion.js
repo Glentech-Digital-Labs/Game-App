@@ -16,7 +16,7 @@ import {
 import { Modal } from "@components/modal/Modal"
 import { useModal } from "@hooks"
 
-const AccordionChildItem = ({ item, marketType, marketId, eventId }) => {
+const AccordionChildItem = ({ item, marketTitle, marketId, eventId }) => {
   const [expanded, setExpanded] = useState(false)
   const [selectedId, setSelectedId] = useState(0)
   const [typeOfBet, setTypeOfBet] = useState("")
@@ -50,7 +50,7 @@ const AccordionChildItem = ({ item, marketType, marketId, eventId }) => {
                 onClick={() => toggleItem("Back")}
               >
                 <span className="tw-text-12px tw-font-extrabold">
-                  {item.backPrices[1]["price"]}
+                  {item.backPrices[1]?.["price"]}
                 </span>
               </button>
               <button
@@ -62,7 +62,7 @@ const AccordionChildItem = ({ item, marketType, marketId, eventId }) => {
                 onClick={() => toggleItem("Lay")}
               >
                 <span className="tw-text-12px tw-font-extrabold">
-                  {item.layPrices[1]["price"]}
+                  {item.layPrices[1]?.["price"]}
                 </span>
               </button>
             </div>
@@ -71,7 +71,7 @@ const AccordionChildItem = ({ item, marketType, marketId, eventId }) => {
         {item.id == selectedId && expanded && (
           <div className="tw-px-2">
             <BettingInput
-              marketType={marketType}
+              marketTitle={marketTitle}
               typeOfBet={typeOfBet}
               team={item?.title}
               backPrice={item.backPrices[1]["price"]}
@@ -111,7 +111,7 @@ const AccordionItem = ({ item }) => {
           >
             <BsFillTrophyFill fontSize={12} className="tw-self-center" />{" "}
             <h2 className="tw-ml-2 tw-self-center tw-font-medium tw-text-12px">
-              {item.marketType}
+              {item.marketTitle}
             </h2>{" "}
           </div>
           <div className="tw-flex">
@@ -170,7 +170,7 @@ const AccordionItem = ({ item }) => {
               <AccordionChildItem
                 key={childItem.id}
                 item={childItem}
-                marketType={item.marketType}
+                marketTitle={item.marketTitle}
                 marketId={item.eventId}
                 eventId={item.id}
               />

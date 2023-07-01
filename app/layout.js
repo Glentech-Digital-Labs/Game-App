@@ -27,7 +27,7 @@ export function reportWebVitals(metric) {
 
 function RootLayout({ children, session }) {
   return (
-    <html className={`${inter.variable} ${sfFont.variable}`}>
+    <html className={`${inter.variable} ${sfFont.variable}`} lang={"en"}>
       <body>
         {/* <SessionProvider session={session}> */}
         <Providers>{children}</Providers>

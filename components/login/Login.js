@@ -61,7 +61,6 @@ function Login() {
       dispatch(resetError())
       router.replace("/home")
     }
-    console.log("response From Login", response)
   }
 
   return (
