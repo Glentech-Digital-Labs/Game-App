@@ -14,6 +14,7 @@ export {
   AiFillEyeInvisible,
   AiFillEye,
   AiFillTwitterCircle,
+  AiFillPlusCircle,
 } from "react-icons/ai"
 export { MdEmail, MdCancel, MdOutlineContentCopy } from "react-icons/md"
 export {

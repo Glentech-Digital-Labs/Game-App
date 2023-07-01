@@ -72,22 +72,6 @@ function HeaderLayout() {
             sportsId={sports.sportsId}
           />
         ))}
-
-        {/* <Rounded
-          Icon={BiFootball}
-          label={"Football"}
-          backgroundColor={grayColor}
-        />
-        <Rounded
-          Icon={BiTennisBall}
-          label={"Tennis"}
-          backgroundColor={grayColor}
-        />
-        <Rounded
-          Icon={FaVolleyballBall}
-          label={"Volleyball"}
-          backgroundColor={grayColor}
-        /> */}
       </div>
     </>
   )

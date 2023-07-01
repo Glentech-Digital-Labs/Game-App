@@ -4,7 +4,11 @@ const nextConfig = {
     serverActions: true,
   },
   images: {
-    domains: [],
+    domains: [
+      "1000logos.net",
+      "encrypted-tbn0.gstatic.com",
+      "media.hovercode.com",
+    ],
   },
 }
 

@@ -1,52 +1,18 @@
-import React, { Suspense } from "react"
-import Image from "next/image"
-
-import Logo from "/public/images/Sportradar-log.svg"
-
-import { BiWallet, BiUser } from "/utils/Icons"
-import { AmountCard, BlackButton, YellowButton } from "@components/common"
-import { AiFillPlusCircle } from "react-icons/ai"
-import CurrencyData from "/utils/currency.json"
-
-export const metadata = {
-  title: "OTP ",
-  description: "Making Gaming App",
-}
-
-function HeaderLayout() {
+function UPIComponent({ selectedDate }) {
   return (
     <>
-      <div className="header tw-flex tw-justify-between">
+      <div className="match_card tw-flex  tw-flex-col tw-justify-center tw-items-center tw-py-2 tw-mx-2">
         <Image
-          src={Logo}
-          width={100}
-          height={100}
-          alt="Logo of sports star"
-          className="tw-relative tw-align-baseline tw-ml-4"
+          alt="Payment QR"
+          height={180}
+          width={180}
+          src={selectedDate?.["qrImageUrl"]?.["value"]}
         />
-        <div className="tw-flex  tw-justify-between">
-          <div className="tw-flex tw-ml-4">
-            <BiWallet className="tw-self-center" fontSize={30} />
-            <span className="tw-self-center">$ 100</span>
-          </div>
-          <div className="tw-flex tw-align-middle tw-mx-4">
-            <BiUser className="tw-self-center" fontSize={30} />
-            <span className="tw-self-center">Rohit</span>
-          </div>
-
-          <YellowButton
-            label={"+ Add"}
-            className="tw-px-2 tw-mx-2 tw-self-center"
-            style={{ height: "2rem", width: "4rem" }}
-          />
-        </div>
+        <p className="tw-flex tw-my-2 tw-items-center">
+          <span>{selectedDate.upiId?.value}</span>{" "}
+          <MdOutlineContentCopy fontSize={24} className="tw-ml-2 " />
+        </p>
       </div>
-    </>
-  )
-}
-function BottomLayout() {
-  return (
-    <>
       <div className="tw-flex tw-overflow-x-auto tw-my-4 remove-scroll-bar">
         <AmountCard className={"yellowButton tw-px-6"} amount={1000} />
         <AmountCard className={"blackButton tw-px-6"} amount={2000} />
@@ -79,14 +45,4 @@ function BottomLayout() {
   )
 }
 
-function HomeLayout({ children }) {
-  return (
-    <section>
-      <HeaderLayout />
-      {children}
-      <BottomLayout />
-    </section>
-  )
-}
-
-export default HomeLayout
+export { UPIComponent }

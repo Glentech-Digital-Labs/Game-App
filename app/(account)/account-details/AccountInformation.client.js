@@ -19,49 +19,51 @@ function AccountInformation() {
   }, [copiedValue])
 
   return (
-    <div className="match_card tw-grid tw-grid-cols-7 tw-px-2 tw-my-4 tw-py-6 tw-mx-2">
-      <div className="tw-col-span-3 tw-text-gray-400">
-        <p>Account Holder Name </p>
-        <p className="tw-my-6">Account Number </p>
-        <p>IFSC Code </p>
-      </div>
-      <div className="tw-col-span-4  ">
-        <div className="tw-flex tw-items-center tw-relative ">
-          <p>: Gadha electronics </p>
-          <MdOutlineContentCopy
-            fontSize={16}
-            className="tw-ml-3"
+    <>
+      <div className="match_card tw-grid tw-grid-cols-7 tw-px-2 tw-my-4 tw-py-6 tw-mx-2">
+        <div className="tw-col-span-3 tw-text-gray-400">
+          <p>Account Holder Name </p>
+          <p className="tw-my-6">Account Number </p>
+          <p>IFSC Code </p>
+        </div>
+        <div className="tw-col-span-4  ">
+          <div className="tw-flex tw-items-center tw-relative ">
+            <p>: Gadha electronics </p>
+            <MdOutlineContentCopy
+              fontSize={16}
+              className="tw-ml-3"
+              onClick={() => {
+                copyToClipBoard("Jai Shree Ram")
+              }}
+            />
+            {!!copiedValue && (
+              <div className="tw-absolute tw-z-10  tw-h-14 tw-w-full  tw-text-white">
+                Copied -{copiedValue}
+              </div>
+            )}
+          </div>
+          <div className="tw-flex tw-items-center tw-my-6">
+            <p>: 5400 4321 8432 5432</p>
+            <MdOutlineContentCopy
+              fontSize={16}
+              className="tw-m-1"
+              onClick={() => {
+                copyToClipBoard("Jai Ram Krishan")
+              }}
+            />
+          </div>
+          <div
+            className="tw-flex tw-items-center"
             onClick={() => {
-              copyToClipBoard("Jai Shree Ram")
+              copyToClipBoard("Har Har Maha dev")
             }}
-          />
-          {!!copiedValue && (
-            <div className="tw-absolute tw-z-10  tw-h-14 tw-w-full  tw-text-white">
-              Copied -{copiedValue}
-            </div>
-          )}
-        </div>
-        <div className="tw-flex tw-items-center tw-my-6">
-          <p>: 5400 4321 8432 5432</p>
-          <MdOutlineContentCopy
-            fontSize={16}
-            className="tw-m-1"
-            onClick={() => {
-              copyToClipBoard("Jai Ram Krishan")
-            }}
-          />
-        </div>
-        <div
-          className="tw-flex tw-items-center"
-          onClick={() => {
-            copyToClipBoard("Har Har Maha dev")
-          }}
-        >
-          <p>: HDFC0004321</p>
-          <MdOutlineContentCopy fontSize={16} className="tw-m-1" />
+          >
+            <p>: HDFC0004321</p>
+            <MdOutlineContentCopy fontSize={16} className="tw-m-1" />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
