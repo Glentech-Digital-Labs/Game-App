@@ -5,10 +5,19 @@ import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { getRelativeTime } from "/utils/utils"
 import Link from "next/link"
+// import { socket } from "/Socket"
 
 function HomePage() {
   const selectedSportsId = useSelector((state) => state.sportsContext)
   const [singleSportsData, setSingleSportsData] = useState([])
+  const socket = useSelector((state) => state.socket.socket)
+  // const [isConnected, setIsConnected] = useState(socket.connected)
+
+  console.log("Socket amar rahi", socket)
+
+  // socket.on("connect", () => {
+  //   console.log("Jai shree ram")
+  // })
 
   useEffect(() => {
     async function fetchSportsData() {

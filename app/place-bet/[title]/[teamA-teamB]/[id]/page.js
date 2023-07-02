@@ -4,6 +4,8 @@ import { useParams } from "next/navigation"
 
 import { Accordion } from "@components"
 import FetchData from "@utils/Fetcher"
+import { socket } from "@Socket"
+import { useSelector } from "react-redux"
 
 async function getData(eventId, setMatchData) {
   const response = await FetchData(`sports/event/${eventId}/markets`)

@@ -154,7 +154,7 @@ input {
   backdrop-filter: blur(2.5px);
 }
 
-/* .match_card {
+.match_card_home {
   border-radius: 8px;
   background: linear-gradient(
     303deg,
@@ -164,7 +164,8 @@ input {
     rgba(223, 223, 223, 0.119) 100%
   );
   backdrop-filter: blur(1.5px);
-} */
+}
+
 /* Card */
 
 /* Betting Box */

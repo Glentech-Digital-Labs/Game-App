@@ -2,7 +2,7 @@ import React from "react"
 
 function MatchCard({ back, lay, firstTeam, secondTeam, time }) {
   return (
-    <div className="match_card tw-h-20 tw-w-full tw-flex tw-flex-col  tw-my-4">
+    <div className="match_card_home tw-h-20 tw-w-full tw-flex tw-flex-col  tw-my-4 tw-border-1">
       <div className="tw-flex tw-justify-end tw-mt-2">
         <span className=" tw-h-2 tw-w-2 tw-rounded-full tw-bg-green-400 tw-self-center tw-animate-pulse "></span>
         <p className="tw-self-center tw-mx-3 tw-font-inter-font tw-font-semibold tw-text-10px ">
