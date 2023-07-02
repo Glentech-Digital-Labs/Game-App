@@ -172,7 +172,7 @@ function BettingInput({
   async function placeBetHandler() {
     setLoading(true)
     const response = await FetchData(
-      `betting/event/${marketId}/market/${eventId}/place-bet`,
+      `betting/event/${eventId}/market/${marketId}/place-bet`,
       {
         method: "POST",
         body: {
@@ -193,7 +193,7 @@ function BettingInput({
   }
 
   let shortMarketTitle
-  if (marketTitle.length > 15) {
+  if (marketTitle?.length > 15) {
     shortMarketTitle = marketTitle.split(" ")[0]
   } else {
     shortMarketTitle = marketTitle

@@ -1,13 +1,19 @@
+"use client"
 import React from "react"
 import { BsPlayBtn } from "/utils/Icons"
 import { GoHome } from "/utils/Icons"
 import { RiSettingsLine } from "/utils/Icons"
 import { AiFillPlaySquare } from "/utils/Icons"
 import { BiMenu } from "/utils/Icons"
+import { useRouter } from "next/navigation"
 function BottomMenu() {
+  const router = useRouter()
   return (
     <div className=" tw-flex tw-h-20  tw-justify-around tw-fixed tw-min-w-full  tw-bottom-0 tw-z-10  tw-text-gray-300 bottom_layout">
-      <div className="tw-flex tw-flex-col tw-justify-center">
+      <div
+        className="tw-flex tw-flex-col tw-justify-center"
+        onClick={() => router.push("/home")}
+      >
         <GoHome fontSize={24} className="tw-mx-auto" color="#5D5D66" />
         <p>Home</p>
       </div>

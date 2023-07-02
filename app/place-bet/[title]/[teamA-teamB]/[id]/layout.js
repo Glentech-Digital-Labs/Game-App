@@ -63,9 +63,6 @@ function Layout({ children }) {
   useEffect(() => {
     let paramID = params?.id
     getBetData(setBetData, dispatch, paramID)
-    return () => {
-      getBetData()
-    }
   }, [params.id, isNewBetPlaced])
 
   let team = decodeURIComponent(params["teamA-teamB"]).split("-")

@@ -1,5 +1,4 @@
-import React, { Suspense } from "react"
-import Image from "next/image"
+import React from "react"
 
 import { HeaderLayout } from "./HeaderLayout"
 import { BottomMenu } from "@components/common"

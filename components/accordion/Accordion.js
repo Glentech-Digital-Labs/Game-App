@@ -7,193 +7,104 @@ import {
   AiOutlinePlus,
 } from "/utils/Icons"
 import { BsFillTrophyFill } from "/utils/Icons"
-import {
-  BettingInput,
-  CashOutModal,
-  Loading,
-  Rounded,
-} from "@components/common"
+import { CashOutModal } from "@components/common"
 import { Modal } from "@components/modal/Modal"
 import { useModal } from "@hooks"
-import { useSelector } from "react-redux"
+import { AccordionChildItem } from "./AccordionChild"
 
-// console.log("Placed Bet", placedBetData)
-
-const AccordionChildItem = ({
+function AccordionTopPart({
+  expanded,
   item,
-  marketTitle,
-  marketId,
-  eventId,
-  typeOfBet,
-  setTypeOfBet,
-}) => {
-  const [expanded, setExpanded] = useState(false)
-  const [selectedId, setSelectedId] = useState(0)
-  const [loading, setLoading] = useState(false)
-
-  const toggleItem = (betType) => {
-    setExpanded(!expanded)
-    setSelectedId(item.id)
-    setTypeOfBet(betType)
-  }
-
+  selectedId,
+  teamBetId,
+  toggleItem,
+  toggle,
+  checkoutAmount,
+}) {
   return (
-    <>
-      {loading && <Loading />}
-      <div className="accordion-item">
-        <div className={`accordion-item-header ${expanded ? "expanded" : ""}`}>
-          <div
-            className={`tw-bg-transparent tw-flex tw-justify-between tw-border-b-2 tw-border-b-slate-800 b tw-h-16 tw-font-semibold tw-text-2xl  tw-items-center tw-px-2  `}
-            // onClick={() => toggleChildAccordion(index)}
-          >
-            <h1 className="tw-text-14px tw-font-medium tw-font-sf-font">
-              {item?.title}
-            </h1>
-
-            <div className="tw-flex tw-justify-end tw-font-inter-font">
-              <button
-                className=" tw-border-b-4 tw-border-[#5975B8]  tw-w-14 tw-h-12 tw-self-end tw-text-center betting-box tw-rounded-lg back-button"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(1deg, rgba(0, 74, 246, 0.15) 0%, rgba(128, 164, 248, 0.00) 100%), linear-gradient(141deg, #454441 0%, #1C1C1C 100%)",
-                }}
-                onClick={() => toggleItem("Back")}
-              >
-                <span className="tw-text-12px tw-font-extrabold">
-                  {item.backPrices[0]?.["price"]}
-                </span>
-              </button>
-              <button
-                className="tw-border-b-4 tw-border-[#B87A85]  tw-w-14  tw-h-12 tw-self-end tw-ml-4 tw-text-center betting-box tw-rounded-lg"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(1deg, rgba(255, 173, 188, 0.15) 0%, rgba(255, 173, 188, 0.00) 100%), linear-gradient(141deg, #454441 0%, #1C1C1C 100%)",
-                }}
-                onClick={() => toggleItem("Lay")}
-              >
-                <span className="tw-text-12px tw-font-extrabold">
-                  {item.layPrices[0]?.["price"]}
-                </span>
-              </button>
-            </div>
-          </div>
-        </div>
-        {item.id == selectedId && expanded && (
-          <div className="tw-px-2">
-            <BettingInput
-              marketTitle={marketTitle}
-              typeOfBet={typeOfBet}
-              team={item?.title}
-              backPrice={item.backPrices[0]?.["price"]}
-              layPrice={item.layPrices[0]?.["price"]}
-              marketId={marketId}
-              eventId={eventId}
-              selectionId={item.id}
-              setLoading={setLoading}
-            />
-          </div>
-        )}
+    <div
+      className={`tw-bg-[#36363D] tw-flex tw-justify-between tw-h-14 tw-mt-4 tw-px-4  `}
+    >
+      <div
+        className={`tw-flex accordion-item-header ${
+          expanded ? "expanded" : ""
+        }`}
+      >
+        <BsFillTrophyFill fontSize={12} className="tw-self-center" />{" "}
+        <h2 className="tw-ml-2 tw-self-center tw-font-medium tw-text-12px">
+          {item.marketTitle}
+        </h2>{" "}
       </div>
-    </>
+      <div className="tw-flex">
+        {item.id == selectedId && !!teamBetId && expanded ? (
+          <button
+            className="tw-bg-[#03CD5D] tw-font-medium tw-text-12px tw-px-2 tw-py-1 tw-rounded-md tw-items-center tw-justify-center tw-flex tw-h-7 tw-w-fit tw-self-center tw-mr-2"
+            onClick={toggle}
+          >
+            <span className="tw-flex">{`Cash out : ${parseFloat(
+              checkoutAmount
+            ).toFixed(0)}`}</span>
+          </button>
+        ) : (
+          ""
+        )}
+
+        <div className="tw-self-center tw-rounded-full tw-bg-[#ffffff33] tw-p-1">
+          <AiOutlineExclamation
+            style={{
+              transform: "rotate(180deg)",
+            }}
+            fontSize={18}
+          />
+        </div>
+
+        <button className="tw-bg-slate-200  tw-w-9 tw-rounded-lg tw-h-5  tw-text-black tw-self-center tw-mx-2 tw-font-medium tw-text-10px">
+          Rules{" "}
+        </button>
+        <div className="tw-flex tw-justify-center tw-items-center">
+          {expanded ? (
+            <AiOutlineMinus
+              fontSize={17}
+              className={`tw-self-center accordion__button `}
+              onClick={() => toggleItem(item.id)}
+            />
+          ) : (
+            <AiOutlinePlus
+              fontSize={17}
+              className={`tw-self-center accordion__button`}
+              onClick={() => toggleItem(item.id)}
+            />
+          )}
+        </div>
+      </div>
+    </div>
   )
 }
-
-// function calculateWinningOutcomesPAndL(teamId) {
-//   if (typeof teamId === null || typeof teamId === undefined) return
-
-//   return placedBetData.reduce((prev, bet) => {
-//     const { odds, stake } = bet
-//     if (bet.selectionId === teamId) {
-//       bet.betType === betTypes.BACK
-//         ? (prev += stake * (odds - 1))
-//         : (prev -= stake * (odds - 1))
-//     } else {
-//       bet.betType === betTypes.BACK ? (prev -= stake) : (prev += stake)
-//     }
-//     return prev
-//   }, 0)
-// }
 
 const AccordionItem = ({ item }) => {
   const [expanded, setExpanded] = useState(false)
   const [selectedId, setSelectedId] = useState(0)
   const [typeOfBet, setTypeOfBet] = useState("")
   const { isModalOpen, toggle } = useModal()
-  const placedBetData = useSelector(
-    (state) => state.sportsContext.placedBetData
-  )
-  function calculateWinningOutcome() {
-    placedBetData.map((singleBet, index) => {
-      if (item.id !== selectionId) {
-        return
-      }
-      console.log("Selected bet", singleBet)
-    })
-  }
-  console.log("Placed Bet", placedBetData)
+  const [teamBetId, setTeamBetId] = useState("")
+  const [checkoutAmount, setCheckoutAmount] = useState(0)
 
   const toggleItem = (id) => {
     setExpanded(!expanded)
-    setSelectedId(item.id)
+    setSelectedId(id)
   }
-
   return (
     <>
       <div className="accordion-item">
-        <div
-          className={`tw-bg-[#36363D] tw-flex tw-justify-between tw-h-14 tw-mt-4 tw-px-4  `}
-        >
-          <div
-            className={`tw-flex accordion-item-header ${
-              expanded ? "expanded" : ""
-            }`}
-          >
-            <BsFillTrophyFill fontSize={12} className="tw-self-center" />{" "}
-            <h2 className="tw-ml-2 tw-self-center tw-font-medium tw-text-12px">
-              {item.marketTitle}
-            </h2>{" "}
-          </div>
-          <div className="tw-flex">
-            {item.id == selectedId && expanded ? (
-              <button
-                className="tw-bg-[#03CD5D] tw-font-medium tw-text-12px tw-px-2 tw-py-1 tw-rounded-md tw-items-center tw-justify-center tw-flex tw-h-7 tw-w-24 tw-self-center tw-mr-2"
-                onClick={toggle}
-              >
-                Cash out:500
-              </button>
-            ) : (
-              ""
-            )}
-
-            <div className="tw-self-center tw-rounded-full tw-bg-[#ffffff33] tw-p-1">
-              <AiOutlineExclamation
-                style={{
-                  transform: "rotate(180deg)",
-                }}
-                fontSize={18}
-              />
-            </div>
-
-            <button className="tw-bg-slate-200  tw-w-9 tw-rounded-lg tw-h-5  tw-text-black tw-self-center tw-mx-2 tw-font-medium tw-text-10px">
-              Rules{" "}
-            </button>
-            <div className="tw-flex tw-justify-center tw-items-center">
-              {expanded ? (
-                <AiOutlineMinus
-                  fontSize={17}
-                  className={`tw-self-center accordion__button `}
-                  onClick={() => toggleItem(item.id)}
-                />
-              ) : (
-                <AiOutlinePlus
-                  fontSize={17}
-                  className={`tw-self-center accordion__button`}
-                  onClick={() => toggleItem(item.id)}
-                />
-              )}
-            </div>
-          </div>
-        </div>
+        <AccordionTopPart
+          item={item}
+          toggleItem={toggleItem}
+          expanded={expanded}
+          teamBetId={teamBetId}
+          selectedId={selectedId}
+          toggle={toggle}
+          checkoutAmount={checkoutAmount}
+        />
 
         {expanded && (
           <div className="accordion-item-content">
@@ -206,17 +117,17 @@ const AccordionItem = ({ item }) => {
               </h2>
             </div>
             {item.marketSelections.map((childItem) => {
-              console.log("Child Item", childItem)
-
               return (
                 <AccordionChildItem
                   key={childItem.id}
                   item={childItem}
-                  marketTitle={item.marketTitle}
-                  marketId={item.eventId}
-                  eventId={item.id}
+                  marketTitle={childItem.title}
+                  marketId={childItem.marketId}
+                  eventId={childItem.eventId}
                   setTypeOfBet={setTypeOfBet}
                   typeOfBet={typeOfBet}
+                  setTeamBetId={setTeamBetId}
+                  setCheckoutAmount={setCheckoutAmount}
                 />
               )
             })}
@@ -227,7 +138,7 @@ const AccordionItem = ({ item }) => {
         isModalOpen={isModalOpen}
         toggle={toggle}
         className={"tw-h-[30%] tw-ml-[-2] "}
-        style={{ height: "38%", marginTop: "2rem" }}
+        style={{ height: "38%" }}
       >
         <CashOutModal />
       </Modal>

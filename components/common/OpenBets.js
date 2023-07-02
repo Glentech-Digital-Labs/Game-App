@@ -41,6 +41,7 @@ function OpenBets({ betData }) {
               odds={betDetails.odds}
               amount={betDetails.amount}
               profit={"2500.00"}
+              key={betDetails.id}
             />
           )
         })}
