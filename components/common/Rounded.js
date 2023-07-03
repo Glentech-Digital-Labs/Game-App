@@ -2,24 +2,20 @@
 import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { setSportId, resetSportsId } from "/redux/feature/sports/sportsSlice"
-import {
-  setSocket,
-  sendData,
-  receiveData,
-} from "/redux/feature/socket/socketSlice"
+import { receiveData } from "/redux/feature/socket/socketSlice"
 import "./index.css"
 
 function Rounded({ label, Icon, backgroundColor, sportsId }) {
   const dispatch = useDispatch()
   const selectId = useSelector((state) => state.sportsContext)
   const socketData = useSelector((state) => state.socket.socket)
+  const [sportsIds, setSportsIDs] = useState(1)
 
   const [backColor, setBackColor] = useState("")
 
   function clickHandler(id) {
     dispatch(setSportId(id))
-    const data = { message: "Hello, Socket.io!" }
-    dispatch(sendData({ data }))
+    setSportsIDs(id)
   }
   useEffect(() => {
     if (selectId.sportsId === sportsId) {

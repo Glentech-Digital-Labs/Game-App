@@ -29,6 +29,7 @@ const AccordionChildItem = ({
   setTeamBetId,
   setCheckoutAmount,
 }) => {
+  const oddsData = useSelector((state) => state.socket.events_selection.data)
   const [expanded, setExpanded] = useState(false)
   const [selectedId, setSelectedId] = useState(0)
   const [loading, setLoading] = useState(false)
@@ -36,6 +37,26 @@ const AccordionChildItem = ({
   const placedBetData = useSelector(
     (state) => state.sportsContext.placedBetData
   )
+
+  // console.log("Selector data in accordian", oddsData["markets"])
+  // console.log("Yeh hai Item", item)
+  let allKeys = Object.keys(oddsData["markets"])
+
+  let backPrices
+  let layPrices
+  allKeys.map((mKid, index) => {
+    if (mKid == item["marketId"]) {
+      oddsData["markets"][mKid]["selections"].map((selection, index) => {
+        if (selection.sId == item.id) {
+          backPrices = selection["backPrices"]
+          layPrices = selection["layPrices"]
+        }
+      })
+    }
+  })
+
+  console.log("backPrices", backPrices)
+  console.log("layPrice", layPrices)
 
   const toggleItem = (betType) => {
     setExpanded(!expanded)
@@ -72,7 +93,7 @@ const AccordionChildItem = ({
                 onClick={() => toggleItem("Back")}
               >
                 <span className="tw-text-12px tw-font-extrabold">
-                  {item.backPrices[0]?.["price"]}
+                  {backPrices[0]?.["price"]}
                 </span>
               </button>
               <button
@@ -84,7 +105,7 @@ const AccordionChildItem = ({
                 onClick={() => toggleItem("Lay")}
               >
                 <span className="tw-text-12px tw-font-extrabold">
-                  {item.layPrices[0]?.["price"]}
+                  {layPrices[0]?.["price"]}
                 </span>
               </button>
             </div>

@@ -13,16 +13,11 @@ function HomePage() {
   const socket = useSelector((state) => state.socket.socket)
   // const [isConnected, setIsConnected] = useState(socket.connected)
 
-  console.log("Socket amar rahi", socket)
-
-  // socket.on("connect", () => {
-  //   console.log("Jai shree ram")
-  // })
-
   useEffect(() => {
     async function fetchSportsData() {
       const response = await FetchData(
-        `sports/${selectedSportsId.sportsId}/all/events`
+        `sports/${selectedSportsId.sportsId}/inplay/events`,
+        { next: { revalidate: 60 * 5 } }
       )
 
       if (response.success) {
@@ -30,9 +25,9 @@ function HomePage() {
       }
     }
     fetchSportsData()
-    return () => {
-      fetchSportsData()
-    }
+    // return () => {
+    //   fetchSportsData()
+    // }
   }, [selectedSportsId.sportsId])
 
   return (

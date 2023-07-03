@@ -6,12 +6,11 @@ const BASE_URL = Data.BASE_URL
 async function FetchData(path, options) {
   const modifiedOptions = {
     method: options?.method ? options.method : "GET",
-    credentials: "include",
+    // credentials: "include",
     ...options,
     headers: {
       ...options?.headers,
       "ngrok-skip-browser-warning": "69420",
-      // headers: { Cookie: cookies().toString() }
       "Content-Type": "application/json; ",
     },
     ...(options?.method ? { body: JSON.stringify(options?.body) } : ""),
