@@ -1,10 +1,12 @@
 "use client"
 import React from "react"
-import { BsPlayBtn } from "/utils/Icons"
-import { GoHome } from "/utils/Icons"
-import { RiSettingsLine } from "/utils/Icons"
-import { AiFillPlaySquare } from "/utils/Icons"
-import { BiMenu } from "/utils/Icons"
+import {
+  RiSettingsLine,
+  GoHome,
+  AiFillPlaySquare,
+  BiMenu,
+  BsPlayBtn,
+} from "/utils/Icons"
 import { useRouter } from "next/navigation"
 function BottomMenu() {
   const router = useRouter()

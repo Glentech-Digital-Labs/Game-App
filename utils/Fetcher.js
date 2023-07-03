@@ -10,15 +10,14 @@ async function FetchData(path, options) {
     ...options,
     headers: {
       ...options?.headers,
-      "Access-Control-Allow-Credentials": true,
-      // Cookie: context.req.headers.cookie,
-      // headers: { Cookie: cookies().toString() },
-      "Content-Type": "application/json; charset=UTF-8",
+      "ngrok-skip-browser-warning": "69420",
+      // headers: { Cookie: cookies().toString() }
+      "Content-Type": "application/json; ",
     },
     ...(options?.method ? { body: JSON.stringify(options?.body) } : ""),
   }
 
-  const res = await fetch(`${BASE_URL}/${path}`, modifiedOptions)
+  const res = await fetch(`${BASE_URL}/${path}`, { ...modifiedOptions })
 
   // if (!res.ok) {
   // }

@@ -95,16 +95,16 @@ function BackLayButtons({
     }
   }, [typeOfBet])
 
-  const betHandler = (type) => {
-    if (Math.floor(betPoint) <= 0) {
-      return
-    }
-    if (type == "add") {
-      setBetPoint((prev) => prev + 0.01)
-    } else {
-      setBetPoint((prev) => prev - 0.01)
-    }
-  }
+  // const betHandler = (type) => {
+  //   if (Math.floor(betPoint) <= 0) {
+  //     return
+  //   }
+  //   if (type == "add") {
+  //     setBetPoint((prev) => prev + 0.01)
+  //   } else {
+  //     setBetPoint((prev) => prev - 0.01)
+  //   }
+  // }
 
   const amountHandler = (type) => {
     if (type == "add") {
@@ -121,7 +121,7 @@ function BackLayButtons({
           <div
             className="backLay_side_button"
             style={{ borderStyle: "outset" }}
-            onClick={() => betHandler("add")}
+            // onClick={() => betHandler("add")}
           >
             +
           </div>
@@ -129,7 +129,7 @@ function BackLayButtons({
           <div
             className="backLay_side_button"
             style={{ borderStyle: "outset" }}
-            onClick={() => betHandler()}
+            // onClick={() => betHandler()}
           >
             -
           </div>

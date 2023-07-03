@@ -9,11 +9,20 @@ import Url from "../utils/config"
 import { io } from "socket.io-client"
 
 export function Providers({ children }) {
-  // const dispatch = useDispatch()
   useEffect(() => {
-    const socket = io(Url.BASE_URL, {
+    const socket = io(Url.SOCKET_URL, {
       autoConnect: true,
+      extraHeaders: {
+        "ngrok-skip-browser-warning": "69420",
+      },
     })
+    console.log("THis is socket data", socket)
+
+    socket.on("connect", () => {
+      console.log("socket Id", socket)
+      store.dispatch(setSocket(socket))
+    })
+
     store.dispatch(setSocket(socket))
     socket.on("dataEvent", (data) => {
       dispatch(receiveData(data))
@@ -21,6 +30,8 @@ export function Providers({ children }) {
 
     return () => {
       socket.disconnect()
+      socket.off("connect")
+      // socket.off("disconnect", onDisconnect)
       // store.dispatch(setSocket(null)) // Clear socket connection in Redux store
     }
   }, [store.dispatch])

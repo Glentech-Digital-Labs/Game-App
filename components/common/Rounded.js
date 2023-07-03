@@ -14,8 +14,6 @@ function Rounded({ label, Icon, backgroundColor, sportsId }) {
   const selectId = useSelector((state) => state.sportsContext)
   const socketData = useSelector((state) => state.socket.socket)
 
-  console.log("THis is socket data", socketData)
-
   const [backColor, setBackColor] = useState("")
 
   function clickHandler(id) {
