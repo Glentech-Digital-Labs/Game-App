@@ -1,4 +1,9 @@
-import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit"
+import {
+  createAsyncThunk,
+  createSlice,
+  current,
+  getDefaultMiddleware,
+} from "@reduxjs/toolkit"
 
 export const receiveData = createAsyncThunk(
   "socket/receiveData",
@@ -57,7 +62,6 @@ const socketSlice = createSlice({
       })
     },
   },
-  // middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 })
 
 export const {

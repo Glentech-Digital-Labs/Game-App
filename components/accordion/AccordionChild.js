@@ -1,5 +1,5 @@
-const { BettingInput, Loading } = require("@components/common")
-const { useState } = require("react")
+const { BettingInput, Loading, Shimmer } = require("@components/common")
+const { useState, useEffect } = require("react")
 const { useSelector } = require("react-redux")
 
 function calculateWinningOutcomesPAndL(teamId, placedBetData, setTeamBetId) {
@@ -33,6 +33,7 @@ const AccordionChildItem = ({
   const [expanded, setExpanded] = useState(false)
   const [selectedId, setSelectedId] = useState(0)
   const [loading, setLoading] = useState(false)
+  const [isShowShimmer, setIsShowShimmer] = useState(false)
 
   const placedBetData = useSelector(
     (state) => state.sportsContext.placedBetData
@@ -40,23 +41,26 @@ const AccordionChildItem = ({
 
   // console.log("Selector data in accordian", oddsData["markets"])
   // console.log("Yeh hai Item", item)
-  let allKeys = Object.keys(oddsData["markets"])
+  let matchOdds = oddsData?.["markets"] || []
+  let allKeys = Object.keys(matchOdds)
 
-  let backPrices
-  let layPrices
-  allKeys.map((mKid, index) => {
-    if (mKid == item["marketId"]) {
-      oddsData["markets"][mKid]["selections"].map((selection, index) => {
-        if (selection.sId == item.id) {
-          backPrices = selection["backPrices"]
-          layPrices = selection["layPrices"]
-        }
-      })
-    }
-  })
+  // let backPrices = item.backPrices[0]?.["price"] || 0
+  // let layPrices = item.layPrices[0]?.["price"] || 0
+  let backPrices = 0
+  let layPrices = 0
 
-  console.log("backPrices", backPrices)
-  console.log("layPrice", layPrices)
+  if (allKeys.length !== 0) {
+    allKeys?.map((mKid, index) => {
+      if (mKid == item["marketId"]) {
+        oddsData["markets"][mKid]["selections"]?.map((selection, index) => {
+          if (selection.sId == item.id) {
+            backPrices = selection["backPrices"][0]?.["price"] || 0
+            layPrices = selection["layPrices"][0]?.["price"] || 0
+          }
+        })
+      }
+    })
+  }
 
   const toggleItem = (betType) => {
     setExpanded(!expanded)
@@ -70,10 +74,17 @@ const AccordionChildItem = ({
     setCheckoutAmount(betPALData)
   }
 
+  useEffect(() => {
+    setIsShowShimmer(true)
+    return () => {
+      setIsShowShimmer(false)
+    }
+  }, [backPrices])
+
   return (
     <>
       {loading && <Loading />}
-      <div className="accordion-item">
+      <div className="accordion-item ">
         <div className={`accordion-item-header ${expanded ? "expanded" : ""}`}>
           <div
             className={`tw-bg-transparent tw-flex tw-justify-between tw-border-b-2 tw-border-b-slate-800 b tw-h-16 tw-font-semibold tw-text-2xl  tw-items-center tw-px-2  `}
@@ -92,8 +103,8 @@ const AccordionChildItem = ({
                 }}
                 onClick={() => toggleItem("Back")}
               >
-                <span className="tw-text-12px tw-font-extrabold">
-                  {backPrices[0]?.["price"]}
+                <span className={`tw-text-12px tw-font-extrabold`}>
+                  {backPrices}
                 </span>
               </button>
               <button
@@ -104,8 +115,8 @@ const AccordionChildItem = ({
                 }}
                 onClick={() => toggleItem("Lay")}
               >
-                <span className="tw-text-12px tw-font-extrabold">
-                  {layPrices[0]?.["price"]}
+                <span className={`tw-text-12px tw-font-extrabold`}>
+                  {layPrices}
                 </span>
               </button>
             </div>

@@ -16,6 +16,7 @@ export {
   YellowButton,
   Checkbox,
   Loading,
+  Shimmer,
 } from "./common"
 export { OtpInput } from "./otp/OtpComponent"
 export { Accordion } from "./accordion/Accordion"

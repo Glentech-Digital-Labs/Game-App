@@ -5,18 +5,16 @@ import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { getRelativeTime } from "/utils/utils"
 import Link from "next/link"
-// import { socket } from "/Socket"
 
 function HomePage() {
   const selectedSportsId = useSelector((state) => state.sportsContext)
   const [singleSportsData, setSingleSportsData] = useState([])
   const socket = useSelector((state) => state.socket.socket)
-  // const [isConnected, setIsConnected] = useState(socket.connected)
 
   useEffect(() => {
     async function fetchSportsData() {
       const response = await FetchData(
-        `sports/${selectedSportsId.sportsId}/all/events`,
+        `sports/${selectedSportsId.sportsId}/inplay/events`,
         { next: { revalidate: 60 * 5 } }
       )
 

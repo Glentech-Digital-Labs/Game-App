@@ -8,6 +8,7 @@ import {
   BsPlayBtn,
 } from "/utils/Icons"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 function BottomMenu() {
   const router = useRouter()
   return (
@@ -20,12 +21,14 @@ function BottomMenu() {
         <p>Home</p>
       </div>
       <div className="tw-flex tw-flex-col tw-justify-center">
-        <AiFillPlaySquare
-          fontSize={24}
-          className="tw-mx-auto"
-          color="#5D5D66"
-        />
-        <p>In Play</p>
+        <Link href={"/inplay"}>
+          <AiFillPlaySquare
+            fontSize={24}
+            className="tw-mx-auto"
+            color="#5D5D66"
+          />
+          <p>In Play</p>
+        </Link>
       </div>
 
       <div className="tw-flex tw-flex-col tw-justify-center">

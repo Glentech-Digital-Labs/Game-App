@@ -12,4 +12,8 @@ export const store = configureStore({
     sportsContext: sportsReducer,
     socket: socketReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 })

@@ -59,6 +59,8 @@ function Bet() {
     }
   }, [socket])
 
+  console.log("Math point", matchPointsData)
+
   return (
     <div>
       <iframe

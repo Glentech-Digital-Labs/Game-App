@@ -76,7 +76,7 @@ function Layout({ children }) {
       </Modal>
       {children}
 
-      <BottomMenu />
+      {/* <BottomMenu /> */}
     </div>
   )
 }
