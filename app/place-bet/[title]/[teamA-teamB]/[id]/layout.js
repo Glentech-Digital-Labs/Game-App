@@ -69,14 +69,14 @@ function Layout({ children }) {
   let competition = decodeURIComponent(params["title"])
 
   return (
-    <div className="tw-relative">
+    <div className="tw-relative ">
       <Headers toggle={toggle} competition={competition} team={team} />
       <Modal isModalOpen={isModalOpen} toggle={toggle}>
         <OpenBets betData={betData} />
       </Modal>
       {children}
 
-      {/* <BottomMenu /> */}
+      <BottomMenu />
     </div>
   )
 }

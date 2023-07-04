@@ -59,7 +59,7 @@ function Login() {
       setIsLoading(false)
       // setCookie("cookieKey", value, { req, res, maxAge: 60 * 6 * 24 })
       dispatch(resetError())
-      router.replace("/home")
+      router.replace("/home/inplay")
     }
   }
 

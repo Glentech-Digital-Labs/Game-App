@@ -65,12 +65,11 @@ function Registration() {
   const [showPassword, setShowPassword] = useState(false)
   const [showConformPassword, setShowConformPassword] = useState(false)
   const [loading, setLoading] = useState(false)
-  const dispatch = useDispatch()
   const errorData = useSelector((state) => state.errorContext)
-  const userData = useSelector((state) => state.userContext)
   const { isToastOpen, tostToggle } = useToast()
   const [isChecked, setIsChecked] = useState(false)
   const router = useRouter()
+  const dispatch = useDispatch()
 
   const [registerUserData, setRegisterUserData] = useState({
     userName: "",

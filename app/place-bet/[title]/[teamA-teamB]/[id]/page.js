@@ -42,9 +42,6 @@ function Bet() {
         console.log(response)
       )
       socket.on("NEW_ODDS", (data) => {
-        // let changedData = JSON.stringify(data[1])
-        // let dataIs = { data: data[1] }
-        // console.log("Data of New Odds", data)
         const dataChange = { data }
         setMachPointsData(data)
 

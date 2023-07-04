@@ -5,13 +5,11 @@ import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { getRelativeTime } from "/utils/utils"
 import Link from "next/link"
-// import { socket } from "/Socket"
 
 function HomePage() {
   const selectedSportsId = useSelector((state) => state.sportsContext)
   const [singleSportsData, setSingleSportsData] = useState([])
   const socket = useSelector((state) => state.socket.socket)
-  // const [isConnected, setIsConnected] = useState(socket.connected)
 
   useEffect(() => {
     async function fetchSportsData() {
@@ -31,7 +29,7 @@ function HomePage() {
   }, [selectedSportsId.sportsId])
 
   return (
-    <>
+    <div className="tw-mb-20 ">
       {singleSportsData.map((singleSport, index) => (
         <div
           className="tw-mx-2 tw-cursor-pointer"
@@ -69,7 +67,7 @@ function HomePage() {
           })}
         </div>
       ))}
-    </>
+    </div>
   )
 }
 

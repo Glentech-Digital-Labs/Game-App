@@ -6,12 +6,12 @@ function TeamBet({ className, teamName, odds, amount, profit }) {
       <div
         className={`${className}  tw-grid tw-grid-cols-5 tw-justify-center tw-items-center tw-gap-2 tw-min-w-full tw-rounded-lg tw-px-2 tw-h-10 tw-my-4`}
       >
-        <div className="tw-col-span-2">{teamName}</div>
+        <div className="tw-col-span-2">{teamName.slice(0, 12)}</div>
         <div className="tw-col-span-1 tw-to-bet-pink-color">
           {parseFloat(odds).toFixed(2)}
         </div>
-        <div className="tw-col-span-1">{parseFloat(amount).toFixed(2)}</div>
-        <div className="tw-col-span-1">{parseFloat(profit)?.toFixed(2)}</div>
+        <div className="tw-col-span-1">{parseFloat(amount).toFixed(1)}</div>
+        <div className="tw-col-span-1">{parseFloat(profit)?.toFixed(1)}</div>
       </div>
     </>
   )

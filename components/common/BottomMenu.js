@@ -21,7 +21,7 @@ function BottomMenu() {
         <p>Home</p>
       </div>
       <div className="tw-flex tw-flex-col tw-justify-center">
-        <Link href={"/inplay"}>
+        <Link href={"/home/inplay"}>
           <AiFillPlaySquare
             fontSize={24}
             className="tw-mx-auto"

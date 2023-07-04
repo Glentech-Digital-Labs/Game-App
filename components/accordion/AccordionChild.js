@@ -128,12 +128,14 @@ const AccordionChildItem = ({
               marketTitle={marketTitle}
               typeOfBet={typeOfBet}
               team={item?.title}
-              backPrice={item.backPrices[0]?.["price"]}
-              layPrice={item.layPrices[0]?.["price"]}
+              backPrice={backPrices}
+              layPrice={layPrices}
               marketId={marketId}
               eventId={eventId}
               selectionId={item.id}
               setLoading={setLoading}
+              setSelectedId={setSelectedId}
+              // /place-bet/${newTitle}/${match.teamA}-${match.teamB}/${match.id}
             />
           </div>
         )}

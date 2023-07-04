@@ -334,23 +334,21 @@
 /* Toast Wrapper */
 
 .toast_wrapper {
-  position: absolute;
+  position: fixed;
   top: 3rem;
-  right: 0;
   padding: 8px;
-  background-color: rgba(47, 165, 255, 0.415);
-  transition: width 1s ease, opacity 0.2s ease-in;
+  background-color: rgba(220, 47, 255, 0.897);
+  transition: right 2s ease-in-out;
 }
 .open {
   width: 300px;
-  opacity: 1;
+  right: 0px;
 }
 .close {
-  width: 0;
-  top: 0;
-  opacity: 0;
+  right: -300px;
   overflow: hidden;
 }
+
 /* Toast Wrapper */
 
 /* IDS ROLLER */

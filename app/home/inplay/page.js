@@ -29,7 +29,7 @@ function HomePage() {
   }, [selectedSportsId.sportsId])
 
   return (
-    <>
+    <div className="tw-mb-24">
       {singleSportsData.map((singleSport, index) => (
         <div
           className="tw-mx-2 tw-cursor-pointer"
@@ -67,7 +67,7 @@ function HomePage() {
           })}
         </div>
       ))}
-    </>
+    </div>
   )
 }
 

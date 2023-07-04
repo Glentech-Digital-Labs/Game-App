@@ -5,8 +5,7 @@ function Home() {
   return (
     <div>
       {/* <Login /> */}
-      {/* <Registration /> */}
-      Switch pages
+      <Registration />
       {/* <OtpInput /> */}
     </div>
   )

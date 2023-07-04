@@ -15,7 +15,7 @@ function Rounded({ label, Icon, backgroundColor, sportsId }) {
 
   function clickHandler(id) {
     dispatch(setSportId(id))
-    setSportsIDs(id)
+    // setSportsIDs(id)
   }
   useEffect(() => {
     if (selectId.sportsId === sportsId) {
@@ -27,7 +27,7 @@ function Rounded({ label, Icon, backgroundColor, sportsId }) {
   }, [selectId.sportsId])
 
   return (
-    <div
+    <button
       className={`${backColor} tw-rounded-3xl tw-cursor-pointer tw-flex tw-justify-center tw-min-w-fit tw-px-3 tw-w-24 tw-h-12 tw-my-2  tw-mx-2  tw-text-white  tw-border-2 tw-border-solid tw-border-[#201F2A]`}
       style={{ backgroundColor: backColor.toString() }}
       id={sportsId}
@@ -48,7 +48,7 @@ function Rounded({ label, Icon, backgroundColor, sportsId }) {
       >
         {label}
       </p>
-    </div>
+    </button>
   )
 }
 
