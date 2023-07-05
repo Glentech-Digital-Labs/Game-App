@@ -37,7 +37,6 @@ function ContentEditableInput({ initialValue, className, Icon, label, type }) {
             type={type}
             suppressContentEditableWarning={true}
             className={`${className} tw-font-semibold  tw-outline-none tw-text-[18px]`}
-            value
           >
             {value}
           </div>

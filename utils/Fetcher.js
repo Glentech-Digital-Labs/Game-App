@@ -1,6 +1,5 @@
 import Data from "./config"
 
-// import { cookies } from "next/headers"
 const BASE_URL = Data.BASE_URL
 
 async function FetchData(path, options) {
