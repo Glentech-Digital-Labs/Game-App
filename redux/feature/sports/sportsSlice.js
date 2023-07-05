@@ -11,7 +11,6 @@ export const sportsSlice = createSlice({
   initialState,
   reducers: {
     setSportId: (state, action) => {
-      console.log("From data slice", action.payload)
       return { ...state, sportsId: action.payload }
     },
     resetSportsId: (state) => {

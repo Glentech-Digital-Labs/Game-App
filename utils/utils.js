@@ -46,4 +46,78 @@ function getRelativeTime(dateStr) {
   }
 }
 
-export { getRelativeTime }
+function transformNestedObject(obj) {
+  const result = []
+
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      const value = obj[key]
+      if (key.includes(".")) {
+        const keys = key.split(".")
+        let currentObj = result
+
+        for (let i = 0; i < keys.length - 1; i++) {
+          const nestedKey = keys[i]
+          currentObj[nestedKey] = currentObj[nestedKey] || {}
+          currentObj = currentObj[nestedKey]
+        }
+
+        const lastKey = keys[keys.length - 1]
+        currentObj[lastKey] = value
+      } else {
+        result[key] = value
+      }
+    }
+  }
+
+  return result
+}
+
+function getBettingPrice(oddsData, item) {
+  let matchOdds = oddsData?.["markets"] || []
+  let allKeys = Object.keys(matchOdds)
+
+  let backPrices = 0
+  let layPrices = 0
+
+  if (allKeys.length !== 0) {
+    allKeys?.map((mKid, index) => {
+      if (mKid == item["marketId"]) {
+        oddsData["markets"][mKid]["selections"]?.map((selection, index) => {
+          if (selection.sId == item.id) {
+            backPrices = selection["backPrices"][0]?.["price"] || 0
+            layPrices = selection["layPrices"][0]?.["price"] || 0
+          }
+        })
+      }
+    })
+  }
+  return {
+    backPrices,
+    layPrices,
+  }
+}
+
+function calculateWinningOutcomesPAndL(teamId, placedBetData, setTeamBetId) {
+  if (typeof teamId === null || typeof teamId === undefined) return
+
+  return placedBetData.reduce((prev, bet) => {
+    const { odds, amount } = bet
+    if (bet.selectionId === teamId) {
+      setTeamBetId(teamId)
+      bet.betType === "BACK"
+        ? (prev += amount * (odds - 1))
+        : (prev -= amount * (odds - 1))
+    } else {
+      bet.betType === "BACK" ? (prev -= amount) : (prev += amount)
+    }
+    return prev
+  }, 0)
+}
+
+export {
+  getRelativeTime,
+  transformNestedObject,
+  calculateWinningOutcomesPAndL,
+  getBettingPrice,
+}

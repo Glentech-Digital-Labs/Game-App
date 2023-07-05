@@ -7,10 +7,7 @@ import FetchData from "@utils/Fetcher"
 
 import { useDispatch, useSelector } from "react-redux"
 
-import {
-  setEventSelectionData,
-  receiveData,
-} from "/redux/feature/socket/socketSlice"
+import { receiveData } from "/redux/feature/socket/socketSlice"
 
 async function getData(eventId, setMatchData) {
   const response = await FetchData(`sports/event/${eventId}/markets`)
@@ -29,34 +26,34 @@ function Bet() {
 
   useEffect(() => {
     getData(eventId, setMatchData)
-    return () => {
-      getData()
-    }
+    // return () => {
+    //   getData()
+    // }
   }, [eventId])
+
+  const handleEvent = (data, callback) => {
+    const dataChange = { data }
+    setMachPointsData(data)
+    dispatch(receiveData(dataChange))
+    if (typeof callback === "function") {
+      console.log(`Unsubscrice the data`)
+      callback("Acknowledgment from client")
+    }
+  }
 
   useEffect(() => {
     if (!socket) {
       return () => {}
-    } else {
-      socket.emit("SUBSCRIBE_AN_EVENT", `${eventId}`, (response) =>
-        console.log(response)
-      )
-      socket.on("NEW_ODDS", (data) => {
-        const dataChange = { data }
-        setMachPointsData(data)
-
-        dispatch(receiveData(dataChange))
-      })
     }
+    socket.emit("SUBSCRIBE_AN_EVENT", `${eventId}`, (response) =>
+      console.log(response)
+    )
+    socket.on("NEW_EVENT_ODDS", handleEvent)
     return () => {
-      socket.emit("UN_SUBSCRIBE_AN_EVENT", `${eventId}`, (data, callback) => {
-        console.log("Unsubscribe kar diya")
-        callback("SUBSCRIBE_AN_EVENT")
-      })
+      socket.emit("UN_SUBSCRIBE_AN_EVENT", handleEvent)
+      socket.off("NEW_EVENT_ODDS", handleEvent)
     }
   }, [socket])
-
-  console.log("Math point", matchPointsData)
 
   return (
     <div>

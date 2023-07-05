@@ -1,23 +1,8 @@
+import { calculateWinningOutcomesPAndL, getBettingPrice } from "@utils/utils"
+
 const { BettingInput, Loading, Shimmer } = require("@components/common")
 const { useState, useEffect } = require("react")
 const { useSelector } = require("react-redux")
-
-function calculateWinningOutcomesPAndL(teamId, placedBetData, setTeamBetId) {
-  if (typeof teamId === null || typeof teamId === undefined) return
-
-  return placedBetData.reduce((prev, bet) => {
-    const { odds, amount } = bet
-    if (bet.selectionId === teamId) {
-      setTeamBetId(teamId)
-      bet.betType === "BACK"
-        ? (prev += amount * (odds - 1))
-        : (prev -= amount * (odds - 1))
-    } else {
-      bet.betType === "BACK" ? (prev -= amount) : (prev += amount)
-    }
-    return prev
-  }, 0)
-}
 
 const AccordionChildItem = ({
   item,
@@ -39,28 +24,7 @@ const AccordionChildItem = ({
     (state) => state.sportsContext.placedBetData
   )
 
-  // console.log("Selector data in accordian", oddsData["markets"])
-  // console.log("Yeh hai Item", item)
-  let matchOdds = oddsData?.["markets"] || []
-  let allKeys = Object.keys(matchOdds)
-
-  // let backPrices = item.backPrices[0]?.["price"] || 0
-  // let layPrices = item.layPrices[0]?.["price"] || 0
-  let backPrices = 0
-  let layPrices = 0
-
-  if (allKeys.length !== 0) {
-    allKeys?.map((mKid, index) => {
-      if (mKid == item["marketId"]) {
-        oddsData["markets"][mKid]["selections"]?.map((selection, index) => {
-          if (selection.sId == item.id) {
-            backPrices = selection["backPrices"][0]?.["price"] || 0
-            layPrices = selection["layPrices"][0]?.["price"] || 0
-          }
-        })
-      }
-    })
-  }
+  let { backPrices, layPrices } = getBettingPrice(oddsData, item)
 
   const toggleItem = (betType) => {
     setExpanded(!expanded)
@@ -135,7 +99,6 @@ const AccordionChildItem = ({
               selectionId={item.id}
               setLoading={setLoading}
               setSelectedId={setSelectedId}
-              // /place-bet/${newTitle}/${match.teamA}-${match.teamB}/${match.id}
             />
           </div>
         )}

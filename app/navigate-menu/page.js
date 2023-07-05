@@ -12,32 +12,68 @@ import { BiTennisBall, BiCricketBall } from "/utils/Icons"
 function NavigateMenu() {
   return (
     <div>
-      <div className="tw-bg-[#252530] tw-flex tw-justify-center tw-my-4 tw-py-2">
+      <div className="tw-bg-[#252530] tw-flex tw-justify-center tw-my-4 tw-py-2 tw-border-1">
         Quicks Links
       </div>
-      <div className="tw-grid tw-grid-cols-4 tw-gap-2">
-        <IconCards Icon={BsFillPlayBtnFill} label={"In Play"} />
-        <IconCards Icon={AiFillGift} label={"Referral "} />
-        <IconCards Icon={AiFillStar} label={"My Market"} />
-        <IconCards Icon={FaHeadset} label={"setting"} />
+      <div className="tw-grid tw-grid-cols-4 tw-gap-2 tw-text-[#7E7E92]">
+        <div className="box_card ">
+          <IconCards
+            Icon={BsFillPlayBtnFill}
+            label={"In Play"}
+            className={"tw-t-2"}
+          />
+        </div>
+        <div className="box_card ">
+          <IconCards
+            Icon={AiFillGift}
+            label={"Referral "}
+            className={"tw-t-2"}
+          />
+        </div>
+        <div className="box_card ">
+          <IconCards
+            Icon={AiFillStar}
+            label={"My Market"}
+            className={"tw-t-2"}
+          />
+        </div>
+        <div className="box_card ">
+          <IconCards Icon={FaHeadset} label={"setting"} className={"tw-t-2"} />
+        </div>
       </div>
-      <div className="tw-bg-[#252530] tw-flex tw-justify-center tw-my-4 tw-py-2">
+      <div className="tw-bg-[#252530] tw-flex tw-justify-center tw-my-4 tw-py-2 tw-border-1">
         Popular Sports
       </div>
-      <div className="tw-grid tw-grid-cols-4 tw-gap-2">
-        <IconCards Icon={BiCricketBall} label={"Cricket"} />
-        <IconCards Icon={IoMdFootball} label={"Football "} />
-        <IconCards Icon={BiTennisBall} label={"Tennis"} />
-        <IconCards Icon={GiBasketballBall} label={"BasketBall"} />
+      <div className="tw-grid tw-grid-cols-4 tw-gap-2 tw-text-[#7E7E92]">
+        <div className="box_card ">
+          <IconCards Icon={BiCricketBall} label={"Cricket"} />
+        </div>
+        <div className="box_card ">
+          <IconCards Icon={IoMdFootball} label={"Football "} />
+        </div>
+        <div className="box_card ">
+          <IconCards Icon={BiTennisBall} label={"Tennis"} />
+        </div>
+        <div className="box_card ">
+          <IconCards Icon={GiBasketballBall} label={"BasketBall"} />
+        </div>
       </div>
-      <div className="tw-bg-[#252530] tw-flex tw-justify-center tw-my-4 tw-py-2">
+      <div className="tw-bg-[#252530] tw-flex tw-justify-center tw-my-4 tw-py-2 tw-border-1">
         More From Us
       </div>
-      <div className="tw-grid tw-grid-cols-4 tw-gap-2">
-        <IconCards Icon={BsFillPlayBtnFill} label={"In Play"} />
-        <IconCards Icon={AiFillGift} label={"Referral "} />
-        <IconCards Icon={AiFillStar} label={"My Market"} />
-        <IconCards Icon={FaHeadset} label={"setting"} />
+      <div className="tw-grid tw-grid-cols-4 tw-gap-2 tw-text-[#7E7E92]">
+        <div className="box_card ">
+          <IconCards Icon={BsFillPlayBtnFill} label={"In Play"} />
+        </div>
+        <div className="box_card ">
+          <IconCards Icon={AiFillGift} label={"Referral "} />
+        </div>
+        <div className="box_card ">
+          <IconCards Icon={AiFillStar} label={"My Market"} />
+        </div>
+        <div className="box_card ">
+          <IconCards Icon={FaHeadset} label={"setting"} />
+        </div>
       </div>
     </div>
   )

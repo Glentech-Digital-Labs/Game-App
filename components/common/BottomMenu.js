@@ -35,10 +35,13 @@ function BottomMenu() {
         <BsPlayBtn fontSize={24} className="tw-mx-auto" color="#5D5D66" />
         <p>Open Bet</p>
       </div>
-      <div className="tw-flex tw-flex-col tw-justify-center">
+      <Link
+        className="tw-flex tw-flex-col tw-justify-center"
+        href={`/navigate-menu`}
+      >
         <BiMenu fontSize={24} className="tw-mx-auto" color="#5D5D66" />
         <p>Menu</p>
-      </div>
+      </Link>
       <div className="tw-flex tw-flex-col tw-justify-center">
         <RiSettingsLine fontSize={24} className="tw-mx-auto" color="#5D5D66" />
         <p>Setting</p>

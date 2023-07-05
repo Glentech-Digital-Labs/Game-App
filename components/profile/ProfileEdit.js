@@ -23,6 +23,9 @@ async function getUserData() {
   if (response.success) {
     return response.data
   }
+  if (!response.success) {
+    throw new Error("There is error in Fetching Profile")
+  }
 }
 const dataFromPromise = getUserData()
 

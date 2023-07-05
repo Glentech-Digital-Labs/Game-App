@@ -8,7 +8,6 @@ import "./index.css"
 function Rounded({ label, Icon, backgroundColor, sportsId }) {
   const dispatch = useDispatch()
   const selectId = useSelector((state) => state.sportsContext)
-  const socketData = useSelector((state) => state.socket.socket)
   const [sportsIds, setSportsIDs] = useState(1)
 
   const [backColor, setBackColor] = useState("")
