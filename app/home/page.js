@@ -45,7 +45,7 @@ function HomePage() {
       {loading ? (
         Array(10)
           .fill(0)
-          .map((item) => <MatchCardLoading />)
+          .map((item, index) => <MatchCardLoading key={index} />)
       ) : (
         <div className="tw-mb-20 ">
           {singleSportsData.map((singleSport, index) => (

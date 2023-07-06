@@ -1,5 +1,5 @@
 "use client"
-import { InPlayMatchCard, MatchCard } from "@components"
+import { InPlayMatchCard, MatchCard, MatchCardLoading } from "@components"
 import FetchData from "@utils/Fetcher"
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -38,7 +38,6 @@ function HomePage() {
     dispatch(receiveData(dataChange))
     console.log("Jai shree ram")
     if (typeof callback === "function") {
-      console.log(`Unsbscribe`)
       callback("Acknowledgment from client")
     }
   }
@@ -69,7 +68,7 @@ function HomePage() {
       {loading &&
         Array(10)
           .fill(0)
-          .map((item) => <MatchCardLoading />)}
+          .map((item, index) => <MatchCardLoading key={index} />)}
       <div className="tw-mb-24">
         {matchData.map((match, index) => {
           let newTitle = !!match["competition.title"]
