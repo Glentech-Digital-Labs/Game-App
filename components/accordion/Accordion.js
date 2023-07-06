@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import "./Accordion.css" // Create this CSS file for styling
 import {
   AiOutlineExclamation,
@@ -11,6 +11,7 @@ import { CashOutModal } from "@components/common"
 import { Modal } from "@components/modal/Modal"
 import { useModal } from "@hooks"
 import { AccordionChildItem } from "./AccordionChild"
+import FetchData from "@utils/Fetcher"
 
 function AccordionTopPart({
   expanded,
@@ -88,11 +89,30 @@ const AccordionItem = ({ item }) => {
   const { isModalOpen, toggle } = useModal()
   const [teamBetId, setTeamBetId] = useState("")
   const [checkoutAmount, setCheckoutAmount] = useState(0)
+  const [cashOutModalData, setCashOutModalData] = useState([])
 
   const toggleItem = (id) => {
     setExpanded(!expanded)
     setSelectedId(id)
   }
+
+  useEffect(() => {
+    async function getCashOutData(params) {
+      const response = await FetchData(
+        `betting/event/${item.eventId}/cashout/recept`
+      )
+
+      if (!!response.ok) {
+        throw new Error("Error in fetching the cashout")
+      }
+      if (response.success) {
+        setCashOutModalData(response.data)
+      }
+    }
+    getCashOutData()
+    return () => {}
+  }, [])
+
   return (
     <>
       <div className="accordion-item">
@@ -140,7 +160,7 @@ const AccordionItem = ({ item }) => {
         className={"tw-h-[30%] tw-ml-[-2] "}
         style={{ height: "38%" }}
       >
-        <CashOutModal />
+        <CashOutModal cashOutModalData={cashOutModalData} toggle={toggle} />
       </Modal>
     </>
   )
