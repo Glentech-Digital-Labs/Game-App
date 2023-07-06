@@ -50,7 +50,7 @@ function Bet() {
     )
     socket.on("NEW_EVENT_ODDS", handleEvent)
     return () => {
-      socket.emit("UN_SUBSCRIBE_AN_EVENT", handleEvent)
+      socket.emit("UN_SUBSCRIBE_AN_EVENT", `${eventId}`, handleEvent)
       socket.off("NEW_EVENT_ODDS", handleEvent)
     }
   }, [socket])

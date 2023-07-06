@@ -36,7 +36,9 @@ function HomePage() {
     const dataChange = { data }
     setMachPointsData(data)
     dispatch(receiveData(dataChange))
+    console.log("Jai shree ram")
     if (typeof callback === "function") {
+      console.log(`Unsbscribe`)
       callback("Acknowledgment from client")
     }
   }
@@ -53,7 +55,11 @@ function HomePage() {
     )
     socket.on("NEW_SPORTS_ODDS", handleEvent)
     return () => {
-      socket.emit("UN_SUBSCRIBE_AN_EVENT", handleEvent)
+      socket.emit(
+        "UN_SUBSCRIBE_AN_EVENT",
+        `${selectedSportsId.sportsId}`,
+        handleEvent
+      )
       socket.off("NEW_SPORTS_ODD", handleEvent)
     }
   }, [selectedSportsId.sportsId, socket])

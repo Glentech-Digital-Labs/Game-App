@@ -15,7 +15,7 @@ function HeaderLayout() {
   useEffect(() => {
     async function getData() {
       const response = await FetchData("sports/active-list")
-      if (!response?.ok) {
+      if (!!response?.ok) {
         throw new Error("Error in fetching Data")
       }
       if (response.success) {
@@ -30,7 +30,7 @@ function HeaderLayout() {
 
   return (
     <>
-      <div className="header tw-flex tw-justify-between">
+      <div className="header tw-flex tw-justify-between ">
         <Image
           src={Logo}
           width={100}

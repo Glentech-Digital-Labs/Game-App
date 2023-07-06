@@ -46,7 +46,7 @@ function Login() {
         email: email,
       },
     })
-    if (!response?.ok) {
+    if (!!response?.ok) {
       setIsLoading(false)
       throw new Error("Error in fetching Data")
     }
