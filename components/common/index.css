@@ -339,13 +339,16 @@
   padding: 8px;
   background-color: rgba(220, 47, 255, 0.897);
   transition: right 2s ease-in-out;
+  z-index: 10;
 }
 .open {
-  width: 300px;
+  /* width: 300px; */
+  height: fit-content;
   right: 0px;
 }
 .close {
   right: -300px;
+  height: fit-content;
   overflow: hidden;
 }
 

@@ -115,9 +115,36 @@ function calculateWinningOutcomesPAndL(teamId, placedBetData, setTeamBetId) {
   }, 0)
 }
 
+function calculateProfitAndLiability(amount, betType, odds) {
+  if (
+    typeof amount === "number" ||
+    typeof odds === "number" ||
+    Object.values(betTypes).includes(betType)
+  ) {
+    if (betType === betTypes.BACK)
+      return {
+        profit: amount * (odds - 1),
+        liability: amount,
+      }
+
+    return {
+      profit: amount,
+      liability: amount * (odds - 1),
+    }
+  }
+}
+// Profit loss calculation
+
 export {
   getRelativeTime,
   transformNestedObject,
   calculateWinningOutcomesPAndL,
   getBettingPrice,
+  calculateProfitAndLiability,
+}
+
+// Profit loss calculation
+const betTypes = {
+  BACK: "BACK",
+  LAY: "LAY",
 }

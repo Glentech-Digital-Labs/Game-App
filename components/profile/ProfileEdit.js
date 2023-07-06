@@ -20,6 +20,10 @@ import FetchData from "@utils/Fetcher"
 
 async function getUserData() {
   const response = await FetchData("user/profile")
+
+  if (!!response.ok) {
+    throw new Error("There is error in Fetching Profile")
+  }
   if (response.success) {
     return response.data
   }

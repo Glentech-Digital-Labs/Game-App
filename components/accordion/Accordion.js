@@ -11,7 +11,6 @@ import { CashOutModal } from "@components/common"
 import { Modal } from "@components/modal/Modal"
 import { useModal } from "@hooks"
 import { AccordionChildItem } from "./AccordionChild"
-import { useSelector } from "react-redux"
 
 function AccordionTopPart({
   expanded,

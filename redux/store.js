@@ -4,11 +4,14 @@ import errorReducer from "./feature/error/errorSlice"
 import userReducer from "./feature/user/userSlice"
 import sportsReducer from "./feature/sports/sportsSlice"
 import socketReducer from "./feature/socket/socketSlice"
+import { persistStore } from "redux-persist"
+import persistConfig from "./persistConfig"
+import { persistReducer } from "redux-persist"
 
 export const store = configureStore({
   reducer: {
     errorContext: errorReducer,
-    userContext: userReducer,
+    userContext: persistReducer(persistConfig, userReducer),
     sportsContext: sportsReducer,
     socket: socketReducer,
   },
@@ -17,3 +20,4 @@ export const store = configureStore({
       serializableCheck: false,
     }),
 })
+export const persistor = persistStore(store)

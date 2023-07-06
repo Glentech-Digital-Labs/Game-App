@@ -20,7 +20,7 @@ function HomePage() {
         { next: { revalidate: 60 * 5 } }
       )
 
-      if (!response.ok) {
+      if (!!response.ok) {
         setLoading(false)
         throw new Error("Some error while fetching  the data")
       }
@@ -39,7 +39,6 @@ function HomePage() {
     //   fetchSportsData()
     // }
   }, [selectedSportsId.sportsId])
-  console.log("Loader", loading)
 
   return (
     <>

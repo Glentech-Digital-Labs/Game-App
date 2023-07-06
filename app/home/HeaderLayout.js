@@ -30,13 +30,13 @@ function HeaderLayout() {
 
   return (
     <>
-      <div className="header tw-flex tw-justify-between ">
+      <div className="header tw-flex tw-justify-between tw-w-screen tw-px-2">
         <Image
           src={Logo}
           width={100}
           height={100}
           alt="Logo of sports star"
-          className="tw-relative tw-align-baseline tw-ml-4"
+          className="tw-relative tw-align-baseline "
         />
         <HeaderProfile />
       </div>

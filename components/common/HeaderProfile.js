@@ -7,14 +7,14 @@ import { YellowButton } from "./YellowButton"
 function HeaderProfile() {
   const userData = useSelector((state) => state.userContext)
   return (
-    <div className="tw-flex  tw-justify-between ">
+    <div className="tw-flex  tw-justify-between tw-w-screen">
       <div className="tw-flex tw-ml-4">
         <BiWallet className="tw-self-center" fontSize={30} />
         <span className="tw-self-center">
           &#8377;{userData?.depositBalance || 0}
         </span>
       </div>
-      <div className="tw-flex tw-align-middle tw-mx-4">
+      <div className="tw-flex tw-align-middle tw-mx-2">
         <BiUser className="tw-self-center" fontSize={30} />
         <span className="tw-self-center">{userData.userName}</span>
       </div>

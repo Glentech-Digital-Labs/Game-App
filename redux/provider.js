@@ -2,11 +2,12 @@
 
 import { useEffect } from "react"
 
-import { store } from "./store"
+import { store, persistor } from "./store"
 import { Provider, useDispatch } from "react-redux"
 import { setSocket, setConnected } from "./feature/socket/socketSlice"
 import Url from "../utils/config"
 import { io } from "socket.io-client"
+import { PersistGate } from "redux-persist/integration/react"
 
 export function Providers({ children }) {
   useEffect(() => {
@@ -51,5 +52,11 @@ export function Providers({ children }) {
       // store.dispatch(setSocket(null)) // Clear socket connection in Redux store
     }
   }, [store.dispatch])
-  return <Provider store={store}>{children}</Provider>
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        {children}
+      </PersistGate>
+    </Provider>
+  )
 }

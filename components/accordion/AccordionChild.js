@@ -1,6 +1,7 @@
+import { useToast } from "@hooks"
 import { calculateWinningOutcomesPAndL, getBettingPrice } from "@utils/utils"
 
-const { BettingInput, Loader, Shimmer } = require("@components/common")
+const { BettingInput, Loader, Shimmer, Toast } = require("@components/common")
 const { useState, useEffect } = require("react")
 const { useSelector } = require("react-redux")
 
@@ -19,6 +20,7 @@ const AccordionChildItem = ({
   const [selectedId, setSelectedId] = useState(0)
   const [loading, setLoading] = useState(false)
   const [isShowShimmer, setIsShowShimmer] = useState(false)
+  const { isToastOpen, tostToggle } = useToast()
 
   const placedBetData = useSelector(
     (state) => state.sportsContext.placedBetData
@@ -27,7 +29,7 @@ const AccordionChildItem = ({
   let { backPrices, layPrices } = getBettingPrice(oddsData, item)
 
   const toggleItem = (betType) => {
-    setExpanded(!expanded)
+    setExpanded((prev) => !prev)
     setSelectedId(item.id)
     setTypeOfBet(betType)
     let betPALData = calculateWinningOutcomesPAndL(
@@ -48,6 +50,13 @@ const AccordionChildItem = ({
   return (
     <>
       {loading && <Loader />}
+      <Toast
+        className={"tw-h-4"}
+        isToastOpen={isToastOpen}
+        tostToggle={tostToggle}
+      >
+        <span>Congratulation Bet is Placed</span>
+      </Toast>
       <div className="accordion-item ">
         <div className={`accordion-item-header ${expanded ? "expanded" : ""}`}>
           <div
@@ -99,6 +108,8 @@ const AccordionChildItem = ({
               selectionId={item.id}
               setLoading={setLoading}
               setSelectedId={setSelectedId}
+              setExpanded={setExpanded}
+              tostToggle={tostToggle}
             />
           </div>
         )}

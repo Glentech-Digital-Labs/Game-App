@@ -17,6 +17,7 @@ import {
 import FetchData from "@utils/Fetcher"
 import { setNewBet } from "/redux/feature/sports/sportsSlice"
 import { useDispatch } from "react-redux"
+import { useToast } from "@hooks"
 
 // Change of color on click is left has to do
 let array = [200, 300, 400, 500, 600, 700]
@@ -163,6 +164,9 @@ function BettingInput({
   selectionId,
   setLoading,
   setSelectedId,
+  setExpanded,
+  setIsBetPlace,
+  tostToggle,
 }) {
   const [amount, setAmount] = useState(0)
   const numberAmount = parseInt(amount)
@@ -170,7 +174,6 @@ function BettingInput({
   const dispatch = useDispatch()
   const [profit, setProfit] = useState(0)
   const [liability, setLiability] = useState(0)
-  const [isPlaceBet, setIsBetPlace] = useState(false)
 
   async function placeBetHandler() {
     setLoading(true)
@@ -187,14 +190,18 @@ function BettingInput({
         },
       }
     )
+    if (!!response.ok) {
+      setExpanded(false)
+    }
     if (response.success) {
       dispatch(setNewBet())
       setLoading(false)
-      // to close after the bet
-      setIsBetPlace(true)
+      setExpanded(false)
+      tostToggle()
       setSelectedId(0)
     } else {
       setLoading(false)
+      setExpanded(false)
     }
   }
 
@@ -227,52 +234,54 @@ function BettingInput({
   }, [amount, betPoint])
 
   return (
-    <div className="tw-bg-[#2B2B31]   tw-pl-2 ">
-      {isPlaceBet && <Toast>{`Sona Babu tumahar bet lag gya`}</Toast>}
-      <div className="tw-flex tw-text-lg tw-h-8  tw-items-center tw-font-sf-font tw-text-12px tw-font-medium tw-justify-between tw-mb-3 ">
-        <div className="tw-flex tw-items-center tw-mt-2">
-          <span className="tw-font-sf-font tw-text-12px tw-font-medium">
-            {shortMarketTitle}
-          </span>
-          <AiOutlineArrowRight fontSize={12} className="" />{" "}
-          <span className="tw-font-sf-font tw-text-12px tw-font-medium">
-            {typeOfBet}
-          </span>{" "}
-          <AiOutlineArrowRight fontSize={12} className="" />
-          <span className="tw-font-sf-font tw-text-12px tw-font-medium">
-            {team}
-          </span>
+    <>
+      <div className="tw-bg-[#2B2B31]   tw-pl-2 ">
+        <div className="tw-flex tw-text-lg tw-h-8  tw-items-center tw-font-sf-font tw-text-12px tw-font-medium tw-justify-between tw-mb-3 ">
+          <div className="tw-flex tw-items-center tw-mt-2">
+            <span className="tw-font-sf-font tw-text-12px tw-font-medium">
+              {shortMarketTitle}
+            </span>
+            <AiOutlineArrowRight fontSize={12} className="" />{" "}
+            <span className="tw-font-sf-font tw-text-12px tw-font-medium">
+              {typeOfBet}
+            </span>{" "}
+            <AiOutlineArrowRight fontSize={12} className="" />
+            <span className="tw-font-sf-font tw-text-12px tw-font-medium">
+              {team}
+            </span>
+          </div>
+          <div className="tw-flex tw-mt-2">
+            <p className="tw-bg-emerald-500 tw-px-2  tw-rounded-full">
+              {+profit?.toFixed(1)}
+            </p>
+            <p className="tw-bg-red-400 tw-px-2  tw-rounded-full tw-items-center tw-justify-center tw-mx-2">
+              {" "}
+              {+liability?.toFixed(1)}
+            </p>
+          </div>
         </div>
-        <div className="tw-flex tw-mt-2">
-          <p className="tw-bg-emerald-500 tw-px-2  tw-rounded-full">
-            {+profit?.toFixed(1)}
-          </p>
-          <p className="tw-bg-red-400 tw-px-2  tw-rounded-full tw-items-center tw-justify-center tw-mx-2">
-            {" "}
-            {+liability?.toFixed(1)}
-          </p>
-        </div>
-      </div>
-      <BackLayButtons
-        backPrice={backPrice}
-        layPrice={layPrice}
-        typeOfBet={typeOfBet}
-        amount={numberAmount}
-        setAmount={setAmount}
-        betPoint={betPoint}
-        setBetPoint={setBetPoint}
-      />
-      <div className="tw-flex tw-mt-4 ">
-        <BlackButton label={"Cancel"} className={"tw-w-[48%] tw-mr-2"} />
-        <YellowButton
-          label={"Place Bet"}
-          className={"tw-w-[48%]"}
-          onClick={placeBetHandler}
+        <BackLayButtons
+          backPrice={backPrice}
+          layPrice={layPrice}
+          typeOfBet={typeOfBet}
+          amount={numberAmount}
+          setAmount={setAmount}
+          betPoint={betPoint}
+          setBetPoint={setBetPoint}
         />
+        <div className="tw-flex tw-mt-4 ">
+          <BlackButton label={"Cancel"} className={"tw-w-[48%] tw-mr-2"} />
+          <YellowButton
+            label={"Place Bet"}
+            className={"tw-w-[48%]"}
+            onClick={placeBetHandler}
+          />
+        </div>
+        <AmountComponent setAmount={setAmount} />
+        <NumberComponent setAmount={setAmount} />
       </div>
-      <AmountComponent setAmount={setAmount} />
-      <NumberComponent setAmount={setAmount} />
-    </div>
+      <button onClick={() => tostToggle()}>check toggle</button>
+    </>
   )
 }
 

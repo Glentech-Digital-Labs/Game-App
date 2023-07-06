@@ -1,3 +1,4 @@
+import { calculateProfitAndLiability } from "@utils/utils"
 import React from "react"
 
 function TeamBet({ className, teamName, odds, amount, profit }) {
@@ -34,14 +35,20 @@ function OpenBets({ betData }) {
           } else {
             className = "purple-bet-color"
           }
+          const { profit } = calculateProfitAndLiability(
+            betDetails.amount,
+            betDetails.betType,
+            betDetails.odds
+          )
           return (
             <TeamBet
               className={className}
-              teamName={betDetails["marketSelection"]["title"]}
+              teamName={betDetails["marketSelection.title"]}
               odds={betDetails.odds}
               amount={betDetails.amount}
-              profit={"2500.00"}
-              key={betDetails.id}
+              profit={profit}
+              // key={betDetails.id}
+              key={Math.random()}
             />
           )
         })}
