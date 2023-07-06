@@ -15,10 +15,11 @@ export {
   Circle,
   YellowButton,
   Checkbox,
-  Loading,
+  Loader,
   Shimmer,
   InPlayMatchCard,
   MatchCardLoading,
+  HeaderProfile,
 } from "./common"
 export { OtpInput } from "./otp/OtpComponent"
 export { Accordion } from "./accordion/Accordion"

@@ -1,11 +1,11 @@
 "use client"
-import { OtpInput } from "@components"
+import { Loader, OtpInput } from "@components"
 import { Circle, YellowButton } from "@components"
 import React, { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { useDispatch, useSelector } from "react-redux"
 import FetchData from "@utils/Fetcher"
-import { resetUser, setUser } from "/redux/feature/user/userSlice"
+import { resetUser } from "/redux/feature/user/userSlice"
 
 // Resend the Otp is still Left
 function Otp() {
@@ -33,6 +33,7 @@ function Otp() {
         mode: "submitOtp",
       },
     })
+
     if (response.success) {
       dispatch(resetUser())
       router.replace("/home")
@@ -53,35 +54,37 @@ function Otp() {
   }, [timer])
 
   return (
-    <div className="tw-flex tw-flex-col ">
-      <p className="tw-text-xl tw-font-semibold tw-mt-6 tw-self-center">
-        <span>{`OTP send to ${userData.phoneNumber}`}</span>
-      </p>
-      <p className="tw-text-lg tw-font-semibold tw-mt-6 tw-self-center">
-        Enter the OTP you Received
-      </p>
-      <div className="tw-flex tw-justify-center tw-my-8">
-        <OtpInput value={otp} valueLength={4} onChange={onChange} />
+    <>
+      <div className="tw-flex tw-flex-col ">
+        <p className="tw-text-xl tw-font-semibold tw-mt-6 tw-self-center">
+          <span>{`OTP send to ${userData.phoneNumber}`}</span>
+        </p>
+        <p className="tw-text-lg tw-font-semibold tw-mt-6 tw-self-center">
+          Enter the OTP you Received
+        </p>
+        <div className="tw-flex tw-justify-center tw-my-8">
+          <OtpInput value={otp} valueLength={4} onChange={onChange} />
+        </div>
+        <div className="tw-text-center tw-my-8">
+          {otpSend ? (
+            <>
+              Resend OTP in{" "}
+              <span className="tw-text-red-500">{`  ${timer} second`}</span>
+            </>
+          ) : (
+            <p className="tw-text-red-500">Resend</p>
+          )}
+        </div>
+        <div className="tw-min-w-full tw-flex tw-justify-center tw-mb-6">
+          <YellowButton
+            label={"submit"}
+            className={"tw-w-[90%]"}
+            onClick={submitHandler}
+          />
+        </div>
+        <Circle />
       </div>
-      <div className="tw-text-center tw-my-8">
-        {otpSend ? (
-          <>
-            Resend OTP in{" "}
-            <span className="tw-text-red-500">{`  ${timer} second`}</span>
-          </>
-        ) : (
-          <p className="tw-text-red-500">Resend</p>
-        )}
-      </div>
-      <div className="tw-min-w-full tw-flex tw-justify-center tw-mb-6">
-        <YellowButton
-          label={"submit"}
-          className={"tw-w-[90%]"}
-          onClick={submitHandler}
-        />
-      </div>
-      <Circle />
-    </div>
+    </>
   )
 }
 

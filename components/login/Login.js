@@ -2,7 +2,7 @@
 import {
   BlackButton,
   Checkbox,
-  Loading,
+  Loader,
   PasswordInput,
   TextInput,
   Toast,
@@ -17,6 +17,7 @@ import { useToast } from "@hooks"
 import { useRouter } from "next/navigation"
 import { useDispatch, useSelector } from "react-redux"
 import { setError, resetError } from "../../redux/feature/error/errorSlice"
+import { setUser } from "@redux/feature/user/userSlice"
 // import { setCookie } from "cookies-next"
 // import { cookies } from "next/headers"
 
@@ -45,6 +46,10 @@ function Login() {
         email: email,
       },
     })
+    if (!response?.ok) {
+      setIsLoading(false)
+      throw new Error("Error in fetching Data")
+    }
     if (!response.success) {
       let data = {
         errorMessage: response.message,
@@ -56,9 +61,10 @@ function Login() {
       tostToggle()
     }
     if (response.success) {
+      let userData = response["data"]["user"]
       setIsLoading(false)
-      // setCookie("cookieKey", value, { req, res, maxAge: 60 * 6 * 24 })
       dispatch(resetError())
+      dispatch(setUser({ ...userData }))
       router.replace("/home/inplay")
     }
   }
@@ -66,7 +72,7 @@ function Login() {
   return (
     <>
       {isToastOpen && <Toast>{errorData.errorMessage}</Toast>}
-      {loading && <Loading />}
+      {loading && <Loader />}
       <form className=" tw-ml-[10%]" onSubmit={submitHandler}>
         <TextInput
           label={"Email"}

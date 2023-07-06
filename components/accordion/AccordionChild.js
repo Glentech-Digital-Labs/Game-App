@@ -1,6 +1,6 @@
 import { calculateWinningOutcomesPAndL, getBettingPrice } from "@utils/utils"
 
-const { BettingInput, Loading, Shimmer } = require("@components/common")
+const { BettingInput, Loader, Shimmer } = require("@components/common")
 const { useState, useEffect } = require("react")
 const { useSelector } = require("react-redux")
 
@@ -47,7 +47,7 @@ const AccordionChildItem = ({
 
   return (
     <>
-      {loading && <Loading />}
+      {loading && <Loader />}
       <div className="accordion-item ">
         <div className={`accordion-item-header ${expanded ? "expanded" : ""}`}>
           <div

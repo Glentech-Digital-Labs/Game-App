@@ -4,13 +4,7 @@ import { useEffect } from "react"
 
 import { store } from "./store"
 import { Provider, useDispatch } from "react-redux"
-import {
-  setSocket,
-  sendData,
-  receiveData,
-  setConnected,
-  setData,
-} from "./feature/socket/socketSlice"
+import { setSocket, setConnected } from "./feature/socket/socketSlice"
 import Url from "../utils/config"
 import { io } from "socket.io-client"
 

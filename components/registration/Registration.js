@@ -1,7 +1,7 @@
 "use client"
 import {
   Checkbox,
-  Loading,
+  Loader,
   PasswordInput,
   TextInput,
   Toast,
@@ -78,6 +78,7 @@ function Registration() {
     email: "",
     countryCode: "+91",
     refererCode: "",
+    depositBalance: 0,
   })
 
   const submitHandler = async (event) => {
@@ -94,6 +95,11 @@ function Registration() {
         mode: "requestOtp",
       },
     })
+
+    if (!response.ok) {
+      setLoading(false)
+      throw new Error("Some error while fetching  the data")
+    }
 
     if (!responseData.success) {
       let data = {
@@ -119,7 +125,7 @@ function Registration() {
       <Toast isToastOpen={isToastOpen} tostToggle={tostToggle}>
         {errorData.errorMessage}
       </Toast>
-      {loading && <Loading />}
+      {loading && <Loader />}
       <form className=" tw-ml-[10%]" onSubmit={submitHandler}>
         <TextInput
           type="text"
