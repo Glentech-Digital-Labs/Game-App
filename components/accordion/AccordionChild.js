@@ -50,12 +50,8 @@ const AccordionChildItem = ({
   return (
     <>
       {loading && <Loader />}
-      <Toast
-        className={"tw-h-4"}
-        isToastOpen={isToastOpen}
-        tostToggle={tostToggle}
-      >
-        <span>Congratulation Bet is Placed</span>
+      <Toast isToastOpen={isToastOpen} tostToggle={tostToggle}>
+        <span className="tw-h-6">Congratulation Bet is Placed</span>
       </Toast>
       <div className="accordion-item ">
         <div className={`accordion-item-header ${expanded ? "expanded" : ""}`}>

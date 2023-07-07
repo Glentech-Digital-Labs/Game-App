@@ -5,7 +5,7 @@ function Toast({ children, isToastOpen, tostToggle, className, style }) {
     <>
       <div
         className={`toast_wrapper tw-rounded-l-full c ${
-          isToastOpen ? "open" : "close"
+          isToastOpen ? "open_toast" : "close_close"
         } ${className}`}
         style={style}
       >

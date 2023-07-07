@@ -337,18 +337,25 @@
   position: fixed;
   top: 3rem;
   padding: 8px;
-  background-color: rgba(220, 47, 255, 0.897);
+  height: 3rem;
+  background-color: #000;
   transition: right 2s ease-in-out;
   z-index: 10;
+  border-radius: 8px;
+  /* background: linear-gradient(
+    303deg,
+    rgba(25, 24, 30, 0.11) 0%,
+    rgba(29, 28, 34, 0.11) 31.54%,
+    rgba(199, 198, 228, 0.11) 73.22%,
+    rgba(223, 223, 223, 0.11) 100%
+  ); */
+  backdrop-filter: blur(2.5px);
 }
-.open {
-  /* width: 300px; */
-  height: fit-content;
+.open_toast {
   right: 0px;
 }
-.close {
+.close_close {
   right: -300px;
-  height: fit-content;
   overflow: hidden;
 }
 
