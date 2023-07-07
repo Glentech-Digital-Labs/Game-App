@@ -1,4 +1,4 @@
-import { calculateProfitAndLiability } from "@utils/utils"
+import { calculateProfitAndLiability } from "/utils/utils"
 import React from "react"
 
 function TeamBet({ className, teamName, odds, amount, profit }) {

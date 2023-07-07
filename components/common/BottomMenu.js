@@ -42,7 +42,10 @@ function BottomMenu() {
         <BiMenu fontSize={24} className="tw-mx-auto" color="#5D5D66" />
         <p>Menu</p>
       </Link>
-      <div className="tw-flex tw-flex-col tw-justify-center">
+      <div
+        className="tw-flex tw-flex-col tw-justify-center"
+        onClick={() => router.push("/profile")}
+      >
         <RiSettingsLine fontSize={24} className="tw-mx-auto" color="#5D5D66" />
         <p>Setting</p>
       </div>

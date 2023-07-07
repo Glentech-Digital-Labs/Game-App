@@ -1,12 +1,19 @@
 "use client"
-import { useState } from "react"
+import { useMemo, useState } from "react"
 
-function ContentEditableInput({ initialValue, className, Icon, label, type }) {
-  const [value, setValue] = useState(initialValue)
-
+function ContentEditableInput({
+  initialValue,
+  className,
+  Icon,
+  label,
+  type,
+  data,
+}) {
+  const [value, setValue] = useState(data)
   const handelChangeInput = (event) => {
     setValue(event.target.value)
   }
+
   return (
     <div className="tw-w-full tw-flex tw-bg-[#212128] tw-my-4 tw-py-2  tw-rounded-lg tw-border-2 tw-border-[#282B38] tw-h-16">
       <div
@@ -38,7 +45,7 @@ function ContentEditableInput({ initialValue, className, Icon, label, type }) {
             suppressContentEditableWarning={true}
             className={`${className} tw-font-semibold  tw-outline-none tw-text-[18px]`}
           >
-            {value}
+            {data}
           </div>
         )}
       </div>

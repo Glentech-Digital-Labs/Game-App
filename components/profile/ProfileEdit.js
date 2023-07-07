@@ -31,12 +31,21 @@ async function getUserData() {
     throw new Error("There is error in Fetching Profile")
   }
 }
-const dataFromPromise = getUserData()
+// const dataFromPromise = getUserData()
 
 // UPdating ApI is still Left
 
 function ProfileEdit() {
-  const userData = use(dataFromPromise)
+  // const userData = use(dataFromPromise)
+  const [userData, setUserData] = useState({})
+  const arrayLength = Object.keys(userData).length
+  useEffect(() => {
+    async function getData() {
+      const response = await FetchData("user/profile")
+      setUserData(response.data)
+    }
+    getData()
+  }, [arrayLength])
   return (
     <div className="tw-flex tw-flex-col">
       <div className="tw-w-36 tw-h-36 tw-rounded-full tw-mt-6 tw-relative tw-mx-auto">
@@ -54,30 +63,35 @@ function ProfileEdit() {
           initialValue={userData?.userName}
           label={"Username"}
           type={"text"}
+          data={userData["userName"]}
         />
         <ContentEditableInput
           Icon={AiOutlineUser}
-          initialValue={userData?.fullName}
+          initialValue={"userData.fullName"}
           label={"First Name"}
           type={"text"}
+          data={userData["fullName"]}
         />
         <ContentEditableInput
           Icon={MdEmail}
           initialValue={userData?.email}
           label={"Email"}
           type={"email"}
+          data={userData["email"]}
         />
         <ContentEditableInput
           Icon={BsFillTelephoneFill}
           initialValue={userData?.phoneNumber}
           label={"Phone"}
           type={"text"}
+          data={userData["userName"]}
         />
         <ContentEditableInput
           Icon={AiFillLock}
           initialValue={"12134567"}
           label={"Password"}
           type={"password"}
+          data={userData["phoneNumber"]}
         />
       </div>
       <YellowButton
