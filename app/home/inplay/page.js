@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getRelativeTime } from "/utils/utils"
 import Link from "next/link"
 import { transformNestedObject } from "/utils/utils"
-import { receiveData } from "/redux/feature/user/userSlice"
+import { receiveData } from "../../../redux/feature/socket/socketSlice"
 
 function HomePage() {
   const selectedSportsId = useSelector((state) => state.sportsContext)
