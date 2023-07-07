@@ -120,6 +120,11 @@ function Registration() {
     return responseData
   }
 
+  function routeHandler() {
+    event.preventDefault()
+    router.push("/login")
+  }
+
   return (
     <div className="tw-relative">
       <Toast isToastOpen={isToastOpen} tostToggle={tostToggle}>
@@ -210,7 +215,7 @@ function Registration() {
         label={"Login"}
         type="submit"
         disable={loading}
-        onClick={() => router.push("/login")}
+        onClick={() => routeHandler()}
         className={"tw-w-[80%] tw-my-4 "}
         style={{ marginLeft: "2.4rem" }}
       />

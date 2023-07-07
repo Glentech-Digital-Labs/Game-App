@@ -13,7 +13,7 @@ function HeaderProfile() {
       <div className="tw-flex tw-ml-4 tw-flex-col tw-justify-center">
         <BiWallet className="tw-self-center" fontSize={30} />
         <span className="tw-self-center">
-          &#8377;{userData?.depositBalance || 0}
+          &#8377;{parseFloat(userData?.depositBalance).toFixed(1) || 0}
         </span>
       </div>
       <div

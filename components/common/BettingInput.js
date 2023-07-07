@@ -20,25 +20,31 @@ import { useDispatch } from "react-redux"
 import { useToast } from "@hooks"
 
 // Change of color on click is left has to do
-let array = [200, 300, 400, 500, 600, 700]
+let array = [100, 200, 300, 400, 500, 600, 700]
 function AmountComponent({ setAmount }) {
+  const [selectedId, setSelectedId] = useState(0)
   return (
     <>
       <div className="tw-flex tw-my-4 tw-overflow-x-auto tw-w-full">
-        <div
-          className="yellowButton tw-rounded-lg tw-w-16 tw-h-8 tw-px-3  tw-flex  tw-items-center tw-justify-center tw-border-2 "
-          style={{ borderStyle: "outset", borderColor: "yellow" }}
-        >
-          &#8377;100
-        </div>
-        {array.map((item, index) => (
-          <AmountCard
-            amount={item}
-            className={"BlackButton"}
-            setAmount={setAmount}
-            key={item}
-          />
-        ))}
+        {array.map((item, index) => {
+          let color
+          if (item == selectedId) {
+            color = "yellowButton"
+          } else {
+            color = "BlackButton"
+          }
+
+          return (
+            <AmountCard
+              amount={item}
+              className={color}
+              setAmount={setAmount}
+              key={item}
+              id={item}
+              setSelectedId={setSelectedId}
+            />
+          )
+        })}
       </div>
     </>
   )
@@ -280,7 +286,6 @@ function BettingInput({
         <AmountComponent setAmount={setAmount} />
         <NumberComponent setAmount={setAmount} />
       </div>
-      <button onClick={() => tostToggle()}>check toggle</button>
     </>
   )
 }

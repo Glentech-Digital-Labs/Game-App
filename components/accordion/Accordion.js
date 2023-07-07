@@ -82,7 +82,7 @@ function AccordionTopPart({
   )
 }
 
-const AccordionItem = ({ item }) => {
+const AccordionItem = ({ item, index }) => {
   const [expanded, setExpanded] = useState(false)
   const [selectedId, setSelectedId] = useState(0)
   const [typeOfBet, setTypeOfBet] = useState("")
@@ -95,6 +95,13 @@ const AccordionItem = ({ item }) => {
     setExpanded(!expanded)
     setSelectedId(id)
   }
+  // This for first time open of things
+  useEffect(() => {
+    if (index == 1) {
+      setExpanded(!expanded)
+      setSelectedId(1)
+    }
+  }, [])
 
   useEffect(() => {
     async function getCashOutData(params) {
@@ -168,11 +175,10 @@ const AccordionItem = ({ item }) => {
 
 // You can put this for server side render
 const Accordion = ({ data }) => {
-  // console.log("MAIN DATA", data)
   return (
     <div className="accordion">
-      {data.map((item) => (
-        <AccordionItem key={item.id} item={item} />
+      {data.map((item, index) => (
+        <AccordionItem key={item.id} item={item} index={index} />
       ))}
     </div>
   )

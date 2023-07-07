@@ -30,7 +30,6 @@ function ContentEditableInput({
             value={value}
             className="tw-border-none "
             onChange={handelChangeInput}
-            autoFocus
             style={{
               minWidth: "100%",
               borderRadius: "0px",
