@@ -203,6 +203,17 @@ function Registration() {
           className={"tw-w-[90%] "}
         />
       </form>
+      <p className="tw-text-center tw-text-[18px] tw-mt-4">
+        Already account ,Login
+      </p>
+      <YellowButton
+        label={"Login"}
+        type="submit"
+        disable={loading}
+        onClick={() => router.push("/login")}
+        className={"tw-w-[80%] tw-my-4 "}
+        style={{ marginLeft: "2.4rem" }}
+      />
     </div>
   )
 }

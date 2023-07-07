@@ -4,8 +4,8 @@ import React, { Profiler } from "react"
 function Home() {
   return (
     <div>
-      {/* <Login /> */}
-      <Registration />
+      <Login />
+      {/* <Registration /> */}
       {/* <OtpInput /> */}
     </div>
   )

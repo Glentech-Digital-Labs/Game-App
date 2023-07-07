@@ -118,7 +118,11 @@ function Login() {
         />
 
         <p className="tw-mt-4 tw-mb-2 tw-ml-[30%]">New to Gigblitz ?</p>
-        <BlackButton label={"Join Now"} className="tw-w-[90%]" />
+        <BlackButton
+          label={"Join Now"}
+          className="tw-w-[90%]"
+          onClick={() => router.push("/registration")}
+        />
       </form>
       <Image
         src={BetFairIcon}
