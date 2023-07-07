@@ -1,13 +1,39 @@
 import React from "react"
 import CurrencyData from "../../utils/currency.json"
 import "./index.css"
+import { getRelativeTime } from "@utils/utils"
 
-function TransactionCard({ status, amount }) {
-  const currencySymbol = CurrencyData["USD"]["symbol"]
-  const statusColor = status == "Approved" ? "#2EFF2E" : "#EF5B2C"
-  const amountColor = status == "Approved" ? "#EFB873" : "#EF5B2C"
+function TransactionCard({
+  status,
+  amount,
+  approvedDate,
+  requestData,
+  currency,
+  type,
+  closingBalance,
+}) {
+  const currencySymbol = CurrencyData["INR"]["symbol"]
+  let statusColor
+  let amountColor
+  let approvedData = getRelativeTime(approvedDate)
+  let requestDate = getRelativeTime(requestData)
+
+  if (status == "COMPLETED") {
+    statusColor = "#2EFF2E"
+    amountColor = "#EFB873"
+  }
+  if (status == "PENDING") {
+    statusColor = "#FF647E"
+    amountColor = "#FF647E"
+  }
+
+  if (status == "REJECTED") {
+    statusColor = "#EF5B2C"
+    amountColor = "#EF5B2C"
+  }
+
   return (
-    <div className="match_card tw-rounded-xl tw-mt-4 ">
+    <div className="match_card tw-rounded-xl tw-mt-4 tw-mx-2">
       <div className=" card_background tw-px-4 tw-flex tw-items-center  tw-rounded-t-lg tw-justify-between tw-h-12">
         <span
           className=" tw-font-semibold tw-text-xl"
@@ -26,18 +52,18 @@ function TransactionCard({ status, amount }) {
       </div>
       <div className="tw-grid tw-grid-cols-2 card_background tw-rounded-b-lg tw-px-2 tw-h-40  ">
         <div className="tw-col-span-1 tw-flex tw-flex-col  tw-justify-between ">
-          <p>From</p>
-          <p>currency</p>
+          <p>Closing balance</p>
+          <p>Currency</p>
           <p>Transfer type</p>
           <p>Request Date</p>
           <p>Approved Date</p>
         </div>
         <div className="tw-col-span-1 tw-flex tw-flex-col  tw-justify-between">
-          <p>: Scanner</p>
-          <p>: INR</p>
-          <p>: Deposit</p>
-          <p>: 23 May 2024 04:43 PM</p>
-          <p>: 23 May 2024 04:43 PM</p>
+          <p>: {closingBalance}</p>
+          <p>: {currency}</p>
+          <p>: {type}</p>
+          <p>: {requestDate}</p>
+          <p>: {approvedData}</p>
         </div>
       </div>
     </div>

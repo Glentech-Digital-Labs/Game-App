@@ -1,5 +1,4 @@
 import { BiWallet } from "/utils/Icons"
-import { Input } from "@components/common/InputComponent"
 
 function Header() {
   return (
@@ -37,44 +36,5 @@ function Header() {
     </div>
   )
 }
-function InputComponent() {
-  return (
-    <>
-      <div className="tw-col-span-1 tw-grid tw-grid-rows-2 tw-min-w-full">
-        <Input
-          type={"date"}
-          label={"From"}
-          style={{ minWidth: "100%" }}
-          className={"tw-border-2  tw-border-gray-600 "}
-        />
 
-        <Input
-          type={"text"}
-          value={"Deposit"}
-          label={"Transition Type"}
-          setValue={() => {}}
-          style={{ minWidth: "100%" }}
-          className={"tw-border-2  tw-border-gray-600 "}
-        />
-      </div>
-      <div className="tw-col-span-1 tw-grid tw-grid-rows-2 tw-min-w-full">
-        <Input
-          type={"date"}
-          label={"To"}
-          style={{ minWidth: "100%" }}
-          className={"tw-border-2  tw-border-gray-600 "}
-        />
-        <Input
-          type={"text"}
-          value={"Deposit"}
-          label={"Status"}
-          setValue={() => {}}
-          style={{ minWidth: "100%" }}
-          className={"tw-border-2  tw-border-gray-600"}
-        />
-      </div>
-    </>
-  )
-}
-
-export { Header, InputComponent }
+export { Header }
