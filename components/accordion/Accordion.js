@@ -144,6 +144,7 @@ const AccordionItem = ({ item, index }) => {
               </h2>
             </div>
             {item.marketSelections.map((childItem) => {
+              console.log(`Market Id`, childItem.marketId)
               return (
                 <AccordionChildItem
                   key={childItem.id}

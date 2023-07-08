@@ -49,3 +49,4 @@ export { GoHome } from "react-icons/go"
 export { RiSettingsLine } from "react-icons/ri"
 
 export { IoLogoWhatsapp } from "react-icons/io"
+export { GrTransaction } from "react-icons/gr"

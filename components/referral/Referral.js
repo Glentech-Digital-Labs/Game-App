@@ -8,22 +8,9 @@ import { PriceImages, SocialMedia, ReferredPeople } from "./Referral.server"
 
 function ReferralComponent() {
   const { isModalOpen, toggle } = useModal()
-  function onRender(
-    id,
-    phase,
-    actualDuration,
-    baseDuration,
-    startTime,
-    commitTime
-  ) {
-    ;("phase", phase)("actualDuration", actualDuration)(
-      "baseDuration",
-      baseDuration
-    )("startTime", startTime)("commitTime", commitTime)
-  }
 
   return (
-    <Profiler id="App" onRender={onRender}>
+    <Profiler id="App">
       <div className="tw-relative tw-min-w-full tw-h-[80vh] referral-main ">
         <PriceImages />
         <div className="tw-absolute  tw-mt-44 tw-flex tw-flex-col tw-justify-center tw-mx-4 ">

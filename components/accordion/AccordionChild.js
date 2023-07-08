@@ -47,6 +47,8 @@ const AccordionChildItem = ({
     }
   }, [backPrices])
 
+  console.log("Slection Ids", selectedId)
+
   return (
     <>
       {loading && <Loader />}

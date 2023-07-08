@@ -4,6 +4,7 @@ const initialState = {
   sportsId: 1,
   newBet: true,
   placedBetData: [],
+  exposerBalance: {},
 }
 
 export const sportsSlice = createSlice({

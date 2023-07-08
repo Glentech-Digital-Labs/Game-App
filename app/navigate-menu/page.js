@@ -1,15 +1,32 @@
+"use client"
 import { IconCards } from "@components"
 import React from "react"
-import { AiFillGift, AiFillStar } from "/utils/Icons"
-import { BsFillPlayBtnFill } from "/utils/Icons"
-import { FaHeadset } from "/utils/Icons"
 
-import { IoMdFootball, IoTennisballSharp } from "/utils/Icons"
-import { GiBasketballBall } from "/utils/Icons"
+import {
+  GiBasketballBall,
+  GrTransaction,
+  IoMdFootball,
+  BsFillPlayBtnFill,
+  AiFillGift,
+  AiFillStar,
+  FaHeadset,
+  BiTennisBall,
+  BiCricketBall,
+} from "/utils/Icons"
 
-import { BiTennisBall, BiCricketBall } from "/utils/Icons"
+import { useRouter } from "next/navigation"
+import { setSportId, resetSportsId } from "/redux/feature/sports/sportsSlice"
+import { useDispatch } from "react-redux"
 
 function NavigateMenu() {
+  const router = useRouter()
+  const dispatch = useDispatch()
+
+  function handleSportsRoute(id) {
+    router.push("/home")
+    dispatch(setSportId(id))
+  }
+
   return (
     <div>
       <div className="tw-bg-[#252530] tw-flex tw-justify-center tw-my-4 tw-py-2 tw-border-1">
@@ -21,6 +38,7 @@ function NavigateMenu() {
             Icon={BsFillPlayBtnFill}
             label={"In Play"}
             className={"tw-t-2"}
+            onClick={() => router.push("/home/inplay")}
           />
         </div>
         <div className="box_card ">
@@ -28,17 +46,24 @@ function NavigateMenu() {
             Icon={AiFillGift}
             label={"Referral "}
             className={"tw-t-2"}
+            onClick={() => router.push("/Referral")}
           />
         </div>
         <div className="box_card ">
           <IconCards
             Icon={AiFillStar}
-            label={"My Market"}
+            label={"Home"}
             className={"tw-t-2"}
+            onClick={() => router.push("/home")}
           />
         </div>
         <div className="box_card ">
-          <IconCards Icon={FaHeadset} label={"setting"} className={"tw-t-2"} />
+          <IconCards
+            Icon={GrTransaction}
+            label={"Transaction"}
+            className={"tw-t-2 tw-text-white"}
+            onClick={() => router.push("/transactions")}
+          />
         </div>
       </div>
       <div className="tw-bg-[#252530] tw-flex tw-justify-center tw-my-4 tw-py-2 tw-border-1">
@@ -46,13 +71,25 @@ function NavigateMenu() {
       </div>
       <div className="tw-grid tw-grid-cols-4 tw-gap-2 tw-text-[#7E7E92]">
         <div className="box_card ">
-          <IconCards Icon={BiCricketBall} label={"Cricket"} />
+          <IconCards
+            Icon={BiCricketBall}
+            label={"Cricket"}
+            onClick={() => handleSportsRoute(4)}
+          />
         </div>
         <div className="box_card ">
-          <IconCards Icon={IoMdFootball} label={"Football "} />
+          <IconCards
+            Icon={IoMdFootball}
+            label={"Football "}
+            onClick={() => handleSportsRoute(1)}
+          />
         </div>
         <div className="box_card ">
-          <IconCards Icon={BiTennisBall} label={"Tennis"} />
+          <IconCards
+            Icon={BiTennisBall}
+            label={"Tennis"}
+            onClick={() => handleSportsRoute(2)}
+          />
         </div>
         <div className="box_card ">
           <IconCards Icon={GiBasketballBall} label={"BasketBall"} />
@@ -63,7 +100,11 @@ function NavigateMenu() {
       </div>
       <div className="tw-grid tw-grid-cols-4 tw-gap-2 tw-text-[#7E7E92]">
         <div className="box_card ">
-          <IconCards Icon={BsFillPlayBtnFill} label={"In Play"} />
+          <IconCards
+            Icon={BsFillPlayBtnFill}
+            label={"Transaction"}
+            onClick={() => router.push("/transactions")}
+          />
         </div>
         <div className="box_card ">
           <IconCards Icon={AiFillGift} label={"Referral "} />

@@ -24,6 +24,11 @@ function Bet() {
   const socket = useSelector((state) => state.socket.socket)
   const [matchPointsData, setMachPointsData] = useState([])
 
+  if (eventId.length > 8) {
+    let xItem = eventId.split("/")
+    setEventId(xItem[xItem.length - 1])
+  }
+
   useEffect(() => {
     getData(eventId, setMatchData)
     // return () => {
