@@ -14,6 +14,8 @@ const AccordionChildItem = ({
   setTypeOfBet,
   setTeamBetId,
   setCheckoutAmount,
+  checkoutAmount,
+  teamBetId,
 }) => {
   const oddsData = useSelector((state) => state.socket.events_selection.data)
   const [expanded, setExpanded] = useState(false)
@@ -39,6 +41,18 @@ const AccordionChildItem = ({
     )
     setCheckoutAmount(betPALData)
   }
+  let betPALData = calculateWinningOutcomesPAndL(
+    item.id,
+    placedBetData,
+    setTeamBetId
+  )
+  let color
+  if (betPALData < 0) {
+    color = "#FF6868"
+  }
+  if (betPALData > 0) {
+    color = "#03CD5D"
+  }
 
   useEffect(() => {
     setIsShowShimmer(true)
@@ -46,8 +60,6 @@ const AccordionChildItem = ({
       setIsShowShimmer(false)
     }
   }, [backPrices])
-
-  console.log("Slection Ids", selectedId)
 
   return (
     <>
@@ -62,7 +74,15 @@ const AccordionChildItem = ({
             // onClick={() => toggleChildAccordion(index)}
           >
             <h1 className="tw-text-14px tw-font-medium tw-font-sf-font">
-              {item?.title}
+              <span>{item?.title}</span>
+              {betPALData !== 0 && (
+                <span
+                  className="tw-ml-2 tw-w-4 tw-h-2 tw-rounded-xl"
+                  style={{ backgroundColor: color }}
+                >
+                  {parseFloat(betPALData).toFixed(1)}
+                </span>
+              )}
             </h1>
 
             <div className="tw-flex tw-justify-end tw-font-inter-font">

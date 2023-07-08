@@ -24,7 +24,6 @@ function HomePage() {
         `sports/${selectedSportsId.sportsId}/inplay/events`,
         { next: { revalidate: 60 } }
       )
-
       if (response.success) {
         setSingleSportsData(response.data)
       }
@@ -75,8 +74,10 @@ function HomePage() {
             ? match["competition.title"]
             : "Ram"
           let selection = oddsData?.[match.id]?.["selections"][0]
-          const backPrice = selection?.["backPrices"]?.[0]?.["price"] || 0
-          const layPrice = selection?.["layPrices"]?.[0]?.["price"] || 0
+          const backPrice =
+            selection?.["backPrices"]?.[0]?.["price"] || match.backPrice
+          const layPrice =
+            selection?.["layPrices"]?.[0]?.["price"] || match.layPrice
           return (
             <Link
               href={`/place-bet/${newTitle}/${match.teamA}-${match.teamB}/${match.id}`}

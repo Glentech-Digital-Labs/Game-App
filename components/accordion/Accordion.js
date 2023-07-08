@@ -42,7 +42,7 @@ function AccordionTopPart({
             className="tw-bg-[#03CD5D] tw-font-medium tw-text-12px tw-px-2 tw-py-1 tw-rounded-md tw-items-center tw-justify-center tw-flex tw-h-7 tw-w-fit tw-self-center tw-mr-2"
             onClick={toggle}
           >
-            <span className="tw-flex">{`Cash out : ${parseFloat(
+            <span className="tw-flex">{`P and L : ${parseFloat(
               checkoutAmount
             ).toFixed(0)}`}</span>
           </button>
@@ -104,7 +104,7 @@ const AccordionItem = ({ item, index }) => {
   }, [])
 
   useEffect(() => {
-    async function getCashOutData(params) {
+    async function getCashOutData() {
       const response = await FetchData(
         `betting/event/${item.eventId}/cashout/recept`
       )
@@ -144,7 +144,6 @@ const AccordionItem = ({ item, index }) => {
               </h2>
             </div>
             {item.marketSelections.map((childItem) => {
-              console.log(`Market Id`, childItem.marketId)
               return (
                 <AccordionChildItem
                   key={childItem.id}
@@ -156,6 +155,8 @@ const AccordionItem = ({ item, index }) => {
                   typeOfBet={typeOfBet}
                   setTeamBetId={setTeamBetId}
                   setCheckoutAmount={setCheckoutAmount}
+                  checkoutAmount={checkoutAmount}
+                  teamBetId={teamBetId}
                 />
               )
             })}

@@ -83,7 +83,7 @@ function HomeLayout({ children }) {
     <section>
       <HeaderLayout />
       {children}
-      <BottomLayout />
+      {/* <BottomLayout /> */}
     </section>
   )
 }

@@ -16,7 +16,8 @@ import {
 } from "/utils/Icons"
 import FetchData from "@utils/Fetcher"
 import { setNewBet } from "/redux/feature/sports/sportsSlice"
-import { useDispatch } from "react-redux"
+import { setUser } from "/redux/feature/user/userSlice"
+import { useDispatch, useSelector } from "react-redux"
 import { useToast } from "@hooks"
 
 // Change of color on click is left has to do
@@ -180,6 +181,7 @@ function BettingInput({
   const dispatch = useDispatch()
   const [profit, setProfit] = useState(0)
   const [liability, setLiability] = useState(0)
+  const userData = useSelector((state) => state.userContext)
 
   async function placeBetHandler() {
     setLoading(true)
@@ -200,7 +202,16 @@ function BettingInput({
       setExpanded(false)
     }
     if (response.success) {
+      const depositedBalance = response.data.depositBalance
+      const bonusBalance = response.data.bonusBalance
       dispatch(setNewBet())
+      dispatch(
+        setUser({
+          ...userData,
+          depositBalance: depositedBalance,
+          bonusBalance: bonusBalance,
+        })
+      )
       setLoading(false)
       setExpanded(false)
       tostToggle()

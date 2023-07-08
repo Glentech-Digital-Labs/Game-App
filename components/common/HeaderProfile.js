@@ -8,13 +8,13 @@ import { useRouter } from "next/navigation"
 function HeaderProfile() {
   const router = useRouter()
   const userData = useSelector((state) => state.userContext)
+  const amount =
+    parseFloat(userData?.depositBalance) + parseFloat(userData?.bonusBalance)
   return (
     <div className="tw-flex  tw-justify-between tw-w-screen">
       <div className="tw-flex tw-ml-4 tw-flex-col tw-justify-center">
         <BiWallet className="tw-self-center" fontSize={30} />
-        <span className="tw-self-center">
-          &#8377;{parseFloat(userData?.depositBalance).toFixed(1) || 0}
-        </span>
+        <span className="tw-self-center">&#8377;{amount.toFixed(1) || 0}</span>
       </div>
       <div
         className="tw-flex tw-align-middle tw-mx-2 tw-flex-col tw-justify-center"
@@ -28,6 +28,7 @@ function HeaderProfile() {
         label={"+ Add"}
         className="tw-px-2 tw-mx-2 tw-self-center"
         style={{ height: "2rem", width: "4rem" }}
+        onClick={() => router.push("/payment")}
       />
     </div>
   )

@@ -74,10 +74,10 @@ function HomePage() {
                     prefetch={true}
                   >
                     <MatchCard
-                      back={"2.1"}
-                      lay={"2.4"}
-                      firstTeam={match.teamA}
-                      secondTeam={match.teamB}
+                      back={match.layPrice}
+                      lay={match.backPrice}
+                      firstTeam={match.teamB}
+                      secondTeam={match.teamA}
                       time={getRelativeTime(match.openDate)}
                     />
                   </Link>
