@@ -9,6 +9,16 @@ const nextConfig = {
       "media.hovercode.com",
     ],
   },
+
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/home",
+        permanent: true,
+      },
+    ]
+  },
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.externals.push("_http_common")

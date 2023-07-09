@@ -23,6 +23,7 @@ const AccordionChildItem = ({
   const [loading, setLoading] = useState(false)
   const [isShowShimmer, setIsShowShimmer] = useState(false)
   const { isToastOpen, tostToggle } = useToast()
+  const [betPandL, setBetPandL] = useState("")
 
   const placedBetData = useSelector(
     (state) => state.sportsContext.placedBetData
@@ -39,6 +40,7 @@ const AccordionChildItem = ({
       placedBetData,
       setTeamBetId
     )
+    setBetPandL(betPALData)
     setCheckoutAmount(betPALData)
   }
 
@@ -48,6 +50,15 @@ const AccordionChildItem = ({
       setIsShowShimmer(false)
     }
   }, [backPrices])
+
+  useEffect(() => {
+    betPALData = calculateWinningOutcomesPAndL(
+      item.id,
+      placedBetData,
+      setTeamBetId
+    )
+    setBetPandL(betPALData)
+  }, [item.id])
 
   return (
     <>
@@ -63,13 +74,13 @@ const AccordionChildItem = ({
           >
             <h1 className="tw-text-14px tw-font-medium tw-font-sf-font">
               <span>{item?.title}</span>
-              {betPALData !== 0 && !!betPALData && (
+              {betPandL !== 0 && !!betPandL && (
                 <span
-                  className={`tw-ml-2 tw-w-4 tw-h-2 tw-rounded-xl ${
-                    betPALData > 0 ? "tw-bg-[#03CD5D]" : "tw-bg-[#FF6868]"
+                  className={`tw-ml-2 tw-w-fit tw-h-fit tw-px-2 tw-py-1 tw-rounded-xl ${
+                    betPandL > 0 ? "tw-bg-[#03CD5D]" : "tw-bg-[#FF6868]"
                   }`}
                 >
-                  {parseFloat(betPALData).toFixed(1)}
+                  {parseFloat(betPandL).toFixed(1)}
                 </span>
               )}
             </h1>

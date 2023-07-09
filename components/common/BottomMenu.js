@@ -48,7 +48,7 @@ function BottomMenu() {
     if (response.success) {
       setIsLoading(false)
       dispatch(resetUser())
-      router.push("/login")
+      // router.push("/login")
     }
     if (!response.success) {
       setIsLoading(false)

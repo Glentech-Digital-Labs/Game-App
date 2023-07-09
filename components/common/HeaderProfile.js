@@ -1,5 +1,5 @@
 "use client"
-import React from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { BiUser, BiWallet } from "/utils/Icons"
 import { useSelector } from "react-redux"
 import { YellowButton } from "./YellowButton"
@@ -29,15 +29,22 @@ function RegisterComponent() {
 function HeaderProfile() {
   const router = useRouter()
   const userData = useSelector((state) => state.userContext)
+  const [isLoggedIn, setIsLoading] = useState(false)
+  let ref = useRef(1)
   const amount =
     parseFloat(userData?.depositBalance) + parseFloat(userData?.bonusBalance)
-  const isLoggedIn = userData["userName"]?.length < 1
+  let isUserData = userData["userName"]?.length > 1
+
+  useEffect(() => {
+    async function getData() {
+      setIsLoading(isUserData)
+    }
+    getData()
+  }, [isUserData])
 
   return (
     <div className="tw-flex  tw-justify-between tw-w-screen">
       {isLoggedIn ? (
-        <RegisterComponent />
-      ) : (
         <>
           <div className="tw-flex tw-ml-4 tw-flex-col tw-justify-center">
             <BiWallet className="tw-self-center" fontSize={30} />
@@ -60,6 +67,8 @@ function HeaderProfile() {
             onClick={() => router.push("/payment")}
           />
         </>
+      ) : (
+        <RegisterComponent />
       )}
     </div>
   )
