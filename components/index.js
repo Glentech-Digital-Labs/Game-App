@@ -20,6 +20,7 @@ export {
   InPlayMatchCard,
   MatchCardLoading,
   HeaderProfile,
+  MultipleSelect,
 } from "./common"
 export { OtpInput } from "./otp/OtpComponent"
 export { Accordion } from "./accordion/Accordion"

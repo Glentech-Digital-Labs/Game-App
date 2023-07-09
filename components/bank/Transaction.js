@@ -1,19 +1,28 @@
 "use client"
-import React, { useState } from "react"
-import { YellowButton } from "@components/common"
+import React, { useEffect, useRef, useState } from "react"
+import { MultipleSelect, YellowButton } from "@components/common"
 import { TransactionCard } from "./TransactionCard"
 import { Header } from "./Transactions.server"
 import { Input } from "@components/common/InputComponent"
 import Data from "utils/config"
 
 const BASE_URL = Data.BASE_URL
-
-async function getTransactionData({ url, dates }) {
+const optionsTransactions = ["DEPOSIT", "WITHDRAWAL", "ALL"]
+const optionStatus = ["PENDING", "REJECTED", "COMPLETED", "ALL"]
+async function getTransactionData({
+  url,
+  dates,
+  transactionType,
+  paymentStatus,
+  page,
+}) {
   const queryParams = {
     ["from"]: dates?.from,
     ["to"]: dates?.to,
-    page: "1",
-    perPage: "10",
+    transactionType: transactionType,
+    status: paymentStatus,
+    page: page,
+    perPage: "4",
   }
   const queryString = Object.keys(queryParams)
     .map(
@@ -55,8 +64,10 @@ function SummeryComponent({ label_1, data_1, label_2, data_2 }) {
 function InputComponent({
   dates,
   setDates,
-  paymentDetails,
-  setPaymentDetails,
+  paymentStatus,
+  setPaymentStatus,
+  transactionType,
+  setTransactionType,
 }) {
   return (
     <>
@@ -71,14 +82,11 @@ function InputComponent({
           setValue={setDates}
         />
 
-        <Input
-          type={"text"}
-          value={paymentDetails.transactionType}
-          label={"Transition Type"}
-          setValue={setPaymentDetails}
-          field={"transactionType"}
-          style={{ minWidth: "100%" }}
-          className={"tw-border-2  tw-border-gray-600 "}
+        <MultipleSelect
+          options={optionsTransactions}
+          label={"Transaction"}
+          selectedOptions={transactionType}
+          setSelectedOptions={setTransactionType}
         />
       </div>
       <div className="tw-col-span-1 tw-grid tw-grid-rows-2 tw-min-w-full">
@@ -91,14 +99,12 @@ function InputComponent({
           field={"to"}
           setValue={setDates}
         />
-        <Input
-          type={"text"}
-          value={paymentDetails.paymentStatus}
+
+        <MultipleSelect
+          options={optionStatus}
           label={"Status"}
-          setValue={setPaymentDetails}
-          field={"paymentStatus"}
-          style={{ minWidth: "100%" }}
-          className={"tw-border-2  tw-border-gray-600"}
+          selectedOptions={paymentStatus}
+          setSelectedOptions={setPaymentStatus}
         />
       </div>
     </>
@@ -113,23 +119,29 @@ function Transaction({ children }) {
     to: today,
   })
   const [transitionData, setTransactionData] = useState([])
+  const [page, setPage] = useState(1)
 
   const toggleHeight = () => {
     setIsOpen(!isOpen)
   }
-
-  const [paymentDetails, setPaymentDetails] = useState({
-    transactionType: "Hello",
-    paymentStatus: "Hau",
-  })
+  const [transactionType, setTransactionType] = useState("")
+  const [paymentStatus, setPaymentStatus] = useState("")
+  const ref = useRef(false)
 
   async function getData() {
     const dataItem = await getTransactionData({
       url: "accounts/transactions",
       dates,
+      transactionType,
+      paymentStatus,
+      page,
     })
     setTransactionData(dataItem)
     console.log(dataItem)
+  }
+  function loadHandler() {
+    setPage((prevPage) => prevPage + 1)
+    getData()
   }
 
   return (
@@ -147,8 +159,10 @@ function Transaction({ children }) {
             <InputComponent
               dates={dates}
               setDates={setDates}
-              paymentDetails={paymentDetails}
-              setPaymentDetails={setPaymentDetails}
+              paymentStatus={paymentStatus}
+              setPaymentStatus={setPaymentStatus}
+              transactionType={transactionType}
+              setTransactionType={setTransactionType}
             />
           </div>
           <YellowButton
@@ -172,8 +186,8 @@ function Transaction({ children }) {
           <SummeryComponent
             label_1={"Transition type"}
             label_2={"Status"}
-            data_1={paymentDetails.transactionType}
-            data_2={paymentDetails.paymentStatus}
+            data_1={transactionType}
+            data_2={paymentStatus}
           />
         </div>
       </div>
@@ -183,7 +197,7 @@ function Transaction({ children }) {
       >
         Hide
       </div>
-      {transitionData.map((item, index) => (
+      {transitionData?.map((item, index) => (
         <TransactionCard
           amount={item.amount}
           approvedDate={item.approvedAt}
@@ -194,6 +208,12 @@ function Transaction({ children }) {
           closingBalance={item.closingBal}
         />
       ))}
+      <button
+        onClick={() => loadHandler()}
+        className="tw-mx-auto tw-text-14px tw-bg-gray-500 tw-w-fit tw-h-fit tw-my-4  tw-rounded-xl tw-px-2 tw-py-2 tw-translate-x-[160%]  "
+      >
+        Load More
+      </button>
       {/* <TransactionCard amount={1000} status={"Rejected"} /> */}
     </>
   )

@@ -1,14 +1,11 @@
 import React from "react"
+import "./index.css"
 
-function Shimmer() {
+const Shimmer = () => {
   return (
-    <>
-      {/* <article>
-        <div class="line"></div>
-        <div class="shimmer"></div>
-      </article> */}
-      <div className="shimmer">{/* Placeholder or loading animation */}</div>
-    </>
+    <div className="shimmer-wrapper">
+      <div className="shimmer"></div>
+    </div>
   )
 }
 

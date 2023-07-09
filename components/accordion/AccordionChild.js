@@ -46,13 +46,6 @@ const AccordionChildItem = ({
     placedBetData,
     setTeamBetId
   )
-  let color
-  if (betPALData < 0) {
-    color = "#FF6868"
-  }
-  if (betPALData > 0) {
-    color = "#03CD5D"
-  }
 
   useEffect(() => {
     setIsShowShimmer(true)
@@ -77,8 +70,9 @@ const AccordionChildItem = ({
               <span>{item?.title}</span>
               {betPALData !== 0 && (
                 <span
-                  className="tw-ml-2 tw-w-4 tw-h-2 tw-rounded-xl"
-                  style={{ backgroundColor: color }}
+                  className={`tw-ml-2 tw-w-4 tw-h-2 tw-rounded-xl ${
+                    betPALData > 0 ? "tw-bg-[#03CD5D]" : "tw-bg-[#FF6868]"
+                  }`}
                 >
                   {parseFloat(betPALData).toFixed(1)}
                 </span>
@@ -94,9 +88,13 @@ const AccordionChildItem = ({
                 }}
                 onClick={() => toggleItem("Back")}
               >
-                <span className={`tw-text-12px tw-font-extrabold`}>
-                  {backPrices}
-                </span>
+                {backPrices == 0 ? (
+                  <Shimmer />
+                ) : (
+                  <span className={`tw-text-12px tw-font-extrabold`}>
+                    {backPrices}
+                  </span>
+                )}
               </button>
               <button
                 className="tw-border-b-4 tw-border-[#B87A85]  tw-w-14  tw-h-12 tw-self-end tw-ml-4 tw-text-center betting-box tw-rounded-lg"
@@ -106,9 +104,13 @@ const AccordionChildItem = ({
                 }}
                 onClick={() => toggleItem("Lay")}
               >
-                <span className={`tw-text-12px tw-font-extrabold`}>
-                  {layPrices}
-                </span>
+                {layPrices == 0 ? (
+                  <Shimmer />
+                ) : (
+                  <span className={`tw-text-12px tw-font-extrabold`}>
+                    {layPrices}
+                  </span>
+                )}
               </button>
             </div>
           </div>
