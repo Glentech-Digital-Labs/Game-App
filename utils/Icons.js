@@ -2,6 +2,7 @@
 export {
   AiOutlineUser,
   AiFillLock,
+  AiFillHome,
   AiOutlineLeft,
   AiFillGift,
   AiFillStar,
@@ -15,8 +16,14 @@ export {
   AiFillEye,
   AiFillTwitterCircle,
   AiFillPlusCircle,
+  AiFillProfile,
 } from "react-icons/ai"
-export { MdEmail, MdCancel, MdOutlineContentCopy } from "react-icons/md"
+export {
+  MdEmail,
+  MdCancel,
+  MdOutlineContentCopy,
+  MdAccountBalance,
+} from "react-icons/md"
 export {
   BsFillTelephoneFill,
   BsFillPlayBtnFill,
@@ -25,6 +32,7 @@ export {
   BsPlayBtn,
   BsFacebook,
   BsTelegram,
+  BsFillPeopleFill,
 } from "react-icons/bs"
 
 export {
@@ -34,11 +42,13 @@ export {
   BiFootball,
   BiTennisBall,
   BiMenu,
+  BiLogOut,
+  BiHelpCircle,
 } from "react-icons/bi"
 
 export { FaVolleyballBall } from "react-icons/fa"
 
-export { FaHeadset } from "react-icons/fa"
+export { FaHeadset, FaMoneyBillWaveAlt } from "react-icons/fa"
 export { IoMdFootball } from "react-icons/io"
 export { GiBasketballBall } from "react-icons/gi"
 export { CiReceipt } from "react-icons/ci"

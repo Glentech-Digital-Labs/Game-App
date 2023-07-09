@@ -12,6 +12,12 @@ import {
   FaHeadset,
   BiTennisBall,
   BiCricketBall,
+  AiFillHome,
+  FaMoneyBillWaveAlt,
+  MdAccountBalance,
+  BsFillPeopleFill,
+  AiFillProfile,
+  BiHelpCircle,
 } from "/utils/Icons"
 
 import { useRouter } from "next/navigation"
@@ -51,7 +57,7 @@ function NavigateMenu() {
         </div>
         <div className="box_card ">
           <IconCards
-            Icon={AiFillStar}
+            Icon={AiFillHome}
             label={"Home"}
             className={"tw-t-2"}
             onClick={() => router.push("/home")}
@@ -59,7 +65,7 @@ function NavigateMenu() {
         </div>
         <div className="box_card ">
           <IconCards
-            Icon={GrTransaction}
+            Icon={FaMoneyBillWaveAlt}
             label={"Transaction"}
             className={"tw-t-2 tw-text-white"}
             onClick={() => router.push("/transactions")}
@@ -101,19 +107,19 @@ function NavigateMenu() {
       <div className="tw-grid tw-grid-cols-4 tw-gap-2 tw-text-[#7E7E92]">
         <div className="box_card ">
           <IconCards
-            Icon={BsFillPlayBtnFill}
-            label={"Transaction"}
-            onClick={() => router.push("/transactions")}
+            Icon={MdAccountBalance}
+            label={"Payment "}
+            onClick={() => router.push("/payment")}
           />
         </div>
-        <div className="box_card ">
-          <IconCards Icon={AiFillGift} label={"Referral "} />
+        <div className="box_card " onClick={() => router.push("/membership")}>
+          <IconCards Icon={BsFillPeopleFill} label={"Membership "} />
         </div>
         <div className="box_card ">
-          <IconCards Icon={AiFillStar} label={"My Market"} />
+          <IconCards Icon={AiFillProfile} label={"Profile"} />
         </div>
         <div className="box_card ">
-          <IconCards Icon={FaHeadset} label={"setting"} />
+          <IconCards Icon={BiHelpCircle} label={"Contact us"} />
         </div>
       </div>
     </div>

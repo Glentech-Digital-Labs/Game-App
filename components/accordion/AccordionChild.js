@@ -29,23 +29,23 @@ const AccordionChildItem = ({
   )
 
   let { backPrices, layPrices } = getBettingPrice(oddsData, item)
-
+  let betPALData
   const toggleItem = (betType) => {
     setExpanded((prev) => !prev)
     setSelectedId(item.id)
     setTypeOfBet(betType)
-    let betPALData = calculateWinningOutcomesPAndL(
+    betPALData = calculateWinningOutcomesPAndL(
       item.id,
       placedBetData,
       setTeamBetId
     )
     setCheckoutAmount(betPALData)
   }
-  let betPALData = calculateWinningOutcomesPAndL(
-    item.id,
-    placedBetData,
-    setTeamBetId
-  )
+  // let betPALData = calculateWinningOutcomesPAndL(
+  //   item.id,
+  //   placedBetData,
+  //   setTeamBetId
+  // )
 
   useEffect(() => {
     setIsShowShimmer(true)
@@ -68,7 +68,7 @@ const AccordionChildItem = ({
           >
             <h1 className="tw-text-14px tw-font-medium tw-font-sf-font">
               <span>{item?.title}</span>
-              {betPALData !== 0 && (
+              {betPALData !== 0 && !!betPALData && (
                 <span
                   className={`tw-ml-2 tw-w-4 tw-h-2 tw-rounded-xl ${
                     betPALData > 0 ? "tw-bg-[#03CD5D]" : "tw-bg-[#FF6868]"
@@ -116,7 +116,7 @@ const AccordionChildItem = ({
           </div>
         </div>
         {item.id == selectedId && expanded && (
-          <div className="tw-px-2">
+          <div className="">
             <BettingInput
               marketTitle={marketTitle}
               typeOfBet={typeOfBet}

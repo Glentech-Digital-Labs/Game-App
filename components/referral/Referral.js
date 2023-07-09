@@ -1,13 +1,20 @@
 "use client"
-import React, { Profiler } from "react"
+import React, { Profiler, useEffect, useState } from "react"
 import "./index.css"
 import { YellowButton } from "@components/common"
 import { useModal } from "@hooks"
 import { Modal } from "@components/modal/Modal"
 import { PriceImages, SocialMedia, ReferredPeople } from "./Referral.server"
+import { useSelector } from "react-redux"
 
 function ReferralComponent() {
   const { isModalOpen, toggle } = useModal()
+  const { referralCode } = useSelector((state) => state.userContext)
+  const [copiedValue, setCopiedValue] = useState("")
+  async function copyToClipBoard(text) {
+    await navigator.clipboard.writeText(text)
+    setCopiedValue(text)
+  }
 
   return (
     <Profiler id="App">
@@ -25,15 +32,25 @@ function ReferralComponent() {
           </p>
           <div className="tw-flex tw-border-2 tw-rounded-xl tw-border-gray-700 tw-justify-between tw-items-center">
             <div className="tw-border-r-2 tw-px-4">Referral Code</div>
-            <p className="tw-font-semibold tw-text-lg">GHDFCS</p>
-            <button className="tw-bg-white tw-text-black tw-p-2 tw-rounded-xl tw-mx-2 tw-my-2">
+            <p className="tw-font-semibold tw-text-lg">{referralCode}</p>
+            <button
+              className="tw-bg-white tw-text-black tw-p-2 tw-rounded-xl tw-mx-2 tw-my-2"
+              onClick={() => {
+                copyToClipBoard(referralCode)
+              }}
+            >
               Copy
             </button>
           </div>
           <div className="tw-flex tw-border-2 tw-rounded-xl tw-border-gray-700 tw-justify-between tw-items-center tw-my-4">
             <div className="tw-border-r-2 tw-px-4">Referral Link</div>
-            <p className="tw-font-semibold tw-text-lg">GHDFCS</p>
-            <button className="tw-bg-white tw-text-black tw-p-2 tw-rounded-xl tw-mx-2 tw-my-2">
+            <p className="tw-font-semibold tw-text-lg">{`registration/${referralCode}`}</p>
+            <button
+              className="tw-bg-white tw-text-black tw-p-2 tw-rounded-xl tw-mx-2 tw-my-2"
+              onClick={() => {
+                copyToClipBoard(`registration/${referralCode}`)
+              }}
+            >
               Copy
             </button>
           </div>

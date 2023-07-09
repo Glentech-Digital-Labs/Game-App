@@ -13,12 +13,13 @@ import { useDispatch, useSelector } from "react-redux"
 import { setError, resetError } from "../../redux/feature/error/errorSlice"
 import { resetUser, setUser } from "../../redux/feature/user/userSlice"
 import { useToast } from "@hooks"
-import { useRouter } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
 
 // When get Time try to implement  useMemo
+// I think this is very redundent I need to refactor this in the future
 
 function Referral({ setValue, refererCodeValue }) {
-  const [referredName, setReferredName] = useState()
+  const [referredName, setReferredName] = useState("")
   function inputHandler(e) {
     setValue((prev) => ({
       ...prev,
@@ -37,7 +38,7 @@ function Referral({ setValue, refererCodeValue }) {
     }
   }
 
-  if (refererCodeValue.length === 6) {
+  if (refererCodeValue?.length === 6) {
     getReferredPersonName()
   }
 
@@ -51,6 +52,7 @@ function Referral({ setValue, refererCodeValue }) {
         placeholder={"Max length 6"}
         onInput={inputHandler}
         maxLength={6}
+        value={refererCodeValue}
       />
       <p className="tw-self-center tw-mt-3 tw-text-[14px] tw-font-bold">
         {referredName}
@@ -70,14 +72,19 @@ function Registration() {
   const [isChecked, setIsChecked] = useState(false)
   const router = useRouter()
   const dispatch = useDispatch()
+  const params = useParams()
 
+  let referralCode = ""
+  if (Object.keys(params).length > 0) {
+    referralCode = params
+  }
   const [registerUserData, setRegisterUserData] = useState({
     userName: "",
     fullName: "",
     phoneNumber: "",
     email: "",
     countryCode: "+91",
-    refererCode: "",
+    refererCode: referralCode.referralCode,
     depositBalance: 0,
   })
 

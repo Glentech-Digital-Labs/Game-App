@@ -6,7 +6,7 @@ function IconCards({ Icon, className, label, onClick }) {
       className={`match_card tw-flex tw-flex-col tw-items-center ${className}`}
       onClick={onClick}
     >
-      <Icon fontSize={32} />
+      <Icon fontSize={32} className="tw-text-yellow-50" />
       <p>{label}</p>
     </div>
   )

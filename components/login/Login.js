@@ -33,12 +33,10 @@ function Login() {
 
   async function submitHandler(event) {
     event.preventDefault()
-
-    setIsLoading(true)
     if (!isCheckedConsent) {
-      se
-      return
+      return ""
     }
+    setIsLoading(true)
     const response = await FetchData("punter/login", {
       method: "POST",
       body: {
