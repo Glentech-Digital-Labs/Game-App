@@ -208,13 +208,14 @@ function Transaction({ children }) {
           closingBalance={item.closingBal}
         />
       ))}
-      <button
-        onClick={() => loadHandler()}
-        className="tw-mx-auto tw-text-14px tw-bg-gray-500 tw-w-fit tw-h-fit tw-my-4  tw-rounded-xl tw-px-2 tw-py-2 tw-translate-x-[160%]  "
-      >
-        Load More
-      </button>
-      {/* <TransactionCard amount={1000} status={"Rejected"} /> */}
+      {transitionData.length >= 4 && (
+        <button
+          onClick={() => loadHandler()}
+          className="tw-mx-auto tw-text-14px tw-bg-gray-500 tw-w-fit tw-h-fit tw-my-4  tw-rounded-xl tw-px-2 tw-py-2 tw-translate-x-[160%]  "
+        >
+          Load More
+        </button>
+      )}
     </>
   )
 }

@@ -20,12 +20,23 @@ function HomePage() {
 
   useEffect(() => {
     async function fetchSportsData() {
+      setLoading(true)
       const response = await FetchData(
         `sports/${selectedSportsId.sportsId}/inplay/events`,
         { next: { revalidate: 60 } }
       )
       if (response.success) {
+        setLoading(false)
         setSingleSportsData(response.data)
+      }
+
+      if (!!response.ok) {
+        setLoading(false)
+        throw new Error("Some error while fetching  the data")
+      }
+      if (!response.success) {
+        setLoading(false)
+        throw new Error(" Unable to to fetch the data")
       }
     }
     fetchSportsData()
@@ -64,38 +75,40 @@ function HomePage() {
 
   return (
     <>
-      {loading &&
+      {loading ? (
         Array(10)
           .fill(0)
-          .map((item, index) => <MatchCardLoading key={index} />)}
-      <div className="tw-mb-24">
-        {matchData.map((match, index) => {
-          let newTitle = !!match["competition.title"]
-            ? match["competition.title"]
-            : "Ram"
-          let selection = oddsData?.[match.id]?.["selections"][0]
-          const backPrice =
-            selection?.["backPrices"]?.[0]?.["price"] || match.backPrice
-          const layPrice =
-            selection?.["layPrices"]?.[0]?.["price"] || match.layPrice
-          return (
-            <Link
-              href={`/place-bet/${newTitle}/${match.teamA}-${match.teamB}/${match.id}`}
-              key={match.id}
-              prefetch={true}
-            >
-              <InPlayMatchCard
-                title={match["competition.title"]}
-                time={getRelativeTime(match.openDate)}
-                teamA={match.teamA}
-                teamB={match.teamB}
-                backPrice={backPrice}
-                layPrice={layPrice}
-              />
-            </Link>
-          )
-        })}
-      </div>
+          .map((item, index) => <MatchCardLoading key={index} />)
+      ) : (
+        <div className="tw-mb-24">
+          {matchData.map((match, index) => {
+            let newTitle = !!match["competition.title"]
+              ? match["competition.title"]
+              : "Ram"
+            let selection = oddsData?.[match.id]?.["selections"][0]
+            const backPrice =
+              selection?.["backPrices"]?.[0]?.["price"] || match.backPrice
+            const layPrice =
+              selection?.["layPrices"]?.[0]?.["price"] || match.layPrice
+            return (
+              <Link
+                href={`/place-bet/${newTitle}/${match.teamA}-${match.teamB}/${match.id}`}
+                key={match.id}
+                prefetch={true}
+              >
+                <InPlayMatchCard
+                  title={match["competition.title"]}
+                  time={getRelativeTime(match.openDate)}
+                  teamA={match.teamA}
+                  teamB={match.teamB}
+                  backPrice={backPrice}
+                  layPrice={layPrice}
+                />
+              </Link>
+            )
+          })}
+        </div>
+      )}
     </>
   )
 }

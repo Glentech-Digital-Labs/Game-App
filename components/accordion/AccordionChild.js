@@ -41,11 +41,6 @@ const AccordionChildItem = ({
     )
     setCheckoutAmount(betPALData)
   }
-  // let betPALData = calculateWinningOutcomesPAndL(
-  //   item.id,
-  //   placedBetData,
-  //   setTeamBetId
-  // )
 
   useEffect(() => {
     setIsShowShimmer(true)

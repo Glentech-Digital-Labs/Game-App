@@ -1,10 +1,9 @@
-import React, { Suspense } from "react"
+import React from "react"
 import Image from "next/image"
 
 import Logo from "/public/images/Sportradar-log.svg"
 
-import { BiWallet, BiUser } from "/utils/Icons"
-import { HeaderProfile, YellowButton } from "@components/common"
+import { HeaderProfile } from "@components/common"
 
 export const metadata = {
   title: "OTP ",

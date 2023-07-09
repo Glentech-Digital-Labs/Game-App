@@ -500,18 +500,18 @@
 
 @keyframes skeleton-loading {
   0% {
-    background-color: hsl(196, 33%, 82%);
+    background-color: hsla(45, 12%, 13%, 0.849);
   }
   100% {
-    background-color: hsl(200, 20%, 95%);
+    background-color: hsl(105, 5%, 15%);
   }
 }
 @keyframes bet-amount-loading {
   0% {
-    background-color: hsl(200, 20%, 95%);
+    background-color: hsla(204, 20%, 95%, 0.38);
   }
   100% {
-    background-color: hsl(194, 45%, 78%);
+    background-color: hsla(194, 45%, 78%, 0.054);
   }
 }
 /* match card skeleton */

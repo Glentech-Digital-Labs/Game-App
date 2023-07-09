@@ -114,6 +114,7 @@ function BottomLayout({
   submitHandler,
 }) {
   const [selectedId, setSelectedId] = useState(0)
+  const router = useRouter()
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0]
@@ -176,13 +177,17 @@ function BottomLayout({
         <AiFillPlusCircle fontSize={32} className=" " />
         <p className="tw-text-center tw-mt-2">Payment proof screenshot </p>
       </div>
-      <div className="tw-flex tw-fixed tw-bottom-4 tw-w-full">
+      <div className="tw-flex tw-mt-4 tw-bottom-4 tw-w-full tw-mx-3">
         <YellowButton
           label={"Submit"}
-          className={"tw-w-[48%]"}
+          className={"tw-w-[45%]"}
           onClick={submitHandler}
         />
-        <BlackButton label={"Cancel"} className={"tw-w-[48%] tw-ml-4"} />
+        <BlackButton
+          label={"Cancel"}
+          className={"tw-w-[45%] tw-ml-2"}
+          onClick={() => router.back()}
+        />
       </div>
     </>
   )

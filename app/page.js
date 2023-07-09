@@ -5,8 +5,6 @@ function Home() {
   return (
     <div>
       <Login />
-      {/* <Registration /> */}
-      {/* <OtpInput /> */}
     </div>
   )
 }

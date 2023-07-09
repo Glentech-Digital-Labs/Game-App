@@ -76,7 +76,7 @@ function Login() {
       <form className=" tw-ml-[10%]" onSubmit={submitHandler}>
         <TextInput
           label={"Email"}
-          placeholder={"Please put UserName"}
+          placeholder={"Email id"}
           type={"email"}
           pattern={"[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}
           value={email}
@@ -85,7 +85,7 @@ function Login() {
         />
         <PasswordInput
           label={"Password"}
-          placeholder={"Put password"}
+          placeholder={"password"}
           value={userPassword}
           setUserPassword={setUserPassword}
           showPassword={showPassword}

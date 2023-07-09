@@ -31,7 +31,7 @@ function HeaderProfile() {
   const userData = useSelector((state) => state.userContext)
   const amount =
     parseFloat(userData?.depositBalance) + parseFloat(userData?.bonusBalance)
-  const isLoggedIn = Object.keys(userData)["userName"]?.length < 1
+  const isLoggedIn = userData["userName"]?.length < 1
 
   return (
     <div className="tw-flex  tw-justify-between tw-w-screen">
