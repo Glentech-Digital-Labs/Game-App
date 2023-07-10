@@ -4,17 +4,7 @@ import "./index.css"
 import { formatDateTime, getRelativeTime } from "@utils/utils"
 import { BiCricketBall } from "utils/Icons"
 
-function CommissionCard({
-  status,
-  amount,
-  approvedDate,
-  requestData,
-  user,
-  time,
-  currency,
-  type,
-  closingBalance,
-}) {
+function CommissionCard({ amount, match, series, user, time }) {
   const currencySymbol = CurrencyData["INR"]["symbol"]
 
   let startTime = formatDateTime(time)
@@ -42,15 +32,17 @@ function CommissionCard({
           <p style={{ color: statusColor }}>Cricket</p>
         </div>
       </div>
-      <div className="tw-grid tw-grid-cols-3 card_background tw-rounded-b-lg tw-px-2 tw-h-24  tw-py-2">
+      <div className="tw-grid tw-grid-cols-3 card_background tw-rounded-b-lg tw-px-2 tw-h-28  tw-py-2">
         <div className="tw-col-span-1 tw-flex tw-flex-col tw-justify-between ">
           <p>User</p>
           <p>Match</p>
+          <p>series</p>
           <p>Data</p>
         </div>
         <div className="tw-col-span-2 tw-flex tw-flex-col tw-justify-between">
           <p>: {user}</p>
-          <p>: {"100"}</p>
+          <p>: {match}</p>
+          <p>: {series}</p>
           <p>: {startTime}</p>
         </div>
       </div>

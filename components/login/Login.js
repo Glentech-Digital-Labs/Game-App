@@ -18,6 +18,7 @@ import { useRouter } from "next/navigation"
 import { useDispatch, useSelector } from "react-redux"
 import { setError, resetError } from "../../redux/feature/error/errorSlice"
 import { setUser } from "@redux/feature/user/userSlice"
+import Link from "next/link"
 
 function Login() {
   const [email, setEmail] = useState("")
@@ -98,7 +99,9 @@ function Login() {
             <Checkbox isChecked={isChecked} setIsChecked={setIsChecked} />
             <p className="tw-whitespace-nowrap tw-ml-2 ">Remember me</p>
           </div>
-          <p className="tw-text-goldenColor">Forget Password</p>
+          <Link href="/forgetPassword" className="tw-text-goldenColor">
+            Forget Password
+          </Link>
         </div>
         <div className="tw-flex tw-w-[90%] tw-mb-4  ">
           {/* Checkbox is not working has to see ,getting the  */}

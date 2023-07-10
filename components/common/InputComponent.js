@@ -10,6 +10,7 @@ function Input({
   className,
   style,
   field,
+  parentStyle,
 }) {
   function userChangeHandler(event) {
     if (field) {
@@ -23,7 +24,7 @@ function Input({
   }
 
   return (
-    <div className="tw-my-3 ">
+    <div className="tw-my-3 " style={parentStyle}>
       <label className="tw-font-medium tw-text-[14px]">{label}</label>
       <br />
       <input
