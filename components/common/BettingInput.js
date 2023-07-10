@@ -19,6 +19,8 @@ import { setNewBet } from "/redux/feature/sports/sportsSlice"
 import { setUser } from "/redux/feature/user/userSlice"
 import { useDispatch, useSelector } from "react-redux"
 import { useToast } from "@hooks"
+import { resetUser } from "@redux/feature/user/userSlice"
+import { useRouter } from "next/navigation"
 
 // Change of color on click is left has to do
 let array = [100, 200, 300, 400, 500, 600, 700]
@@ -182,6 +184,7 @@ function BettingInput({
   const [profit, setProfit] = useState(0)
   const [liability, setLiability] = useState(0)
   const userData = useSelector((state) => state.userContext)
+  const router = useRouter()
 
   async function placeBetHandler() {
     setLoading(true)
@@ -198,6 +201,12 @@ function BettingInput({
         },
       }
     )
+
+    if (response.status == 401) {
+      dispatch(resetUser())
+      router.push("/login")
+    }
+
     if (!!response.ok) {
       setExpanded(false)
     }

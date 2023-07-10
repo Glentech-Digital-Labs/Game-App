@@ -20,7 +20,7 @@ export const userSlice = createSlice({
       return { ...state, ...action.payload }
     },
     resetUser: (state) => {
-      return { initialState }
+      return { ...initialState }
     },
   },
 })

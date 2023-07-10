@@ -20,6 +20,10 @@ async function FetchData(path, options) {
 
   const res = await fetch(`${BASE_URL}/${path}`, { ...modifiedOptions })
 
+  // if (res.status == 401) {
+  //   return res
+  // }
+
   if (!res.ok) {
     // throw new Error("Data Fetching me dikat hai ")
     return res
