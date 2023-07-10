@@ -21,6 +21,7 @@ export {
   MatchCardLoading,
   HeaderProfile,
   MultipleSelect,
+  LockedCard,
 } from "./common"
 export { OtpInput } from "./otp/OtpComponent"
 export { Accordion } from "./accordion/Accordion"

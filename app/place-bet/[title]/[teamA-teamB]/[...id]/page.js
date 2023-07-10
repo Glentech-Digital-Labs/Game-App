@@ -45,7 +45,6 @@ function Bet() {
     setMachPointsData(data)
     dispatch(receiveData(dataChange))
     if (typeof callback === "function") {
-      console.log(`Unsubscrice the data`)
       callback("Acknowledgment from client")
     }
   }

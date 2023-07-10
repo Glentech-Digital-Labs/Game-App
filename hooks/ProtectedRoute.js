@@ -35,7 +35,7 @@ const protectRouteWithCookie = (WrappedComponent) => {
             router.push("/login")
           }
         }
-        console.log("running")
+
         isLogged()
       }, 1000 * 60)
 

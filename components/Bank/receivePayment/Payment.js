@@ -256,8 +256,6 @@ function Payment() {
     }
   }
 
-  console.log(`UTR NUMBER`, utrNumber)
-
   return (
     <>
       <Toast isToastOpen={isToastOpen} tostToggle={tostToggle}>

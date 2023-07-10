@@ -72,8 +72,6 @@ function ProfileEdit() {
     }
   }
 
-  console.log(`User data`, userData)
-
   return (
     <div className="tw-flex tw-flex-col">
       <div className="tw-w-36 tw-h-36 tw-rounded-full tw-mt-6 tw-relative tw-mx-auto">

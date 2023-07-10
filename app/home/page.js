@@ -1,5 +1,5 @@
 "use client"
-import { MatchCard, MatchCardLoading } from "@components"
+import { LockedCard, MatchCard, MatchCardLoading } from "@components"
 import FetchData from "@utils/Fetcher"
 import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
@@ -67,12 +67,25 @@ function HomePage() {
                 let newTitle = !!match["competition.title"]
                   ? match["competition.title"]
                   : "Ram"
-                return (
-                  <Link
-                    href={`/place-bet/${newTitle}/${match.teamA}-${match.teamB}/${match.id}`}
-                    key={match.id}
-                    prefetch={true}
-                  >
+                return match["inPlay"] ? (
+                  <>
+                    <Link
+                      href={`/place-bet/${newTitle}/${match.teamA}-${match.teamB}/${match.id}`}
+                      key={match.id}
+                      prefetch={true}
+                    >
+                      <MatchCard
+                        back={match.layPrice}
+                        lay={match.backPrice}
+                        firstTeam={match.teamB}
+                        secondTeam={match.teamA}
+                        time={getRelativeTime(match.openDate)}
+                      />
+                    </Link>
+                  </>
+                ) : (
+                  <div>
+                    <LockedCard></LockedCard>
                     <MatchCard
                       back={match.layPrice}
                       lay={match.backPrice}
@@ -80,8 +93,24 @@ function HomePage() {
                       secondTeam={match.teamA}
                       time={getRelativeTime(match.openDate)}
                     />
-                  </Link>
+                  </div>
                 )
+                // return (
+                //   <Link
+                //     href={`/place-bet/${newTitle}/${match.teamA}-${match.teamB}/${match.id}`}
+                //     key={match.id}
+                //     prefetch={true}
+                //   >
+                //     <LockedCard></LockedCard>
+                //     <MatchCard
+                //       back={match.layPrice}
+                //       lay={match.backPrice}
+                //       firstTeam={match.teamB}
+                //       secondTeam={match.teamA}
+                //       time={getRelativeTime(match.openDate)}
+                //     />
+                //   </Link>
+                // )
               })}
             </div>
           ))}

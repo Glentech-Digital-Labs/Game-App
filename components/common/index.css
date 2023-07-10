@@ -546,3 +546,25 @@
 }
 
 /* dksfsdafsa */
+
+/* Over lay lock */
+.card_overlay {
+  z-index: 9999;
+  width: 100vw;
+  height: 8rem;
+  position: absolute;
+  top: -5px;
+  background: rgba(0, 0, 0, 0.194);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.locked_card_lock {
+  display: flex;
+  background-color: #252530ca;
+  width: 95%;
+  height: 90%;
+  margin-top: 0px;
+  border-radius: 1rem;
+}
+/* Over lay lock */

@@ -1,5 +1,10 @@
 "use client"
-import { InPlayMatchCard, MatchCard, MatchCardLoading } from "@components"
+import {
+  InPlayMatchCard,
+  LockedCard,
+  MatchCard,
+  MatchCardLoading,
+} from "@components"
 import FetchData from "../../../utils/Fetcher"
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -95,6 +100,7 @@ function HomePage() {
                 href={`/place-bet/${newTitle}/${match.teamA}-${match.teamB}/${match.id}`}
                 key={match.id}
                 prefetch={true}
+                className="tw-relative"
               >
                 <InPlayMatchCard
                   title={match["competition.title"]}

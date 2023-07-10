@@ -196,7 +196,6 @@ const currentOdds = {
 }
 
 const cashoutAmount = calculateCashoutAmount(bets, currentOdds)
-console.log("Cashout amount:", cashoutAmount)
 
 export {
   getRelativeTime,

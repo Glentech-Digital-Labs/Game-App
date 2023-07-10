@@ -18,7 +18,6 @@ function UpdatePassword() {
 
   let borderColor
   useEffect(() => {
-    console.log("Jai shree ram")
     if (conformPassword !== newPassword) {
       setIsPasswordmatch(false)
     }
