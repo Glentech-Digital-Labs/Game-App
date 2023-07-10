@@ -18,6 +18,7 @@ import {
   BsFillPeopleFill,
   AiFillProfile,
   BiHelpCircle,
+  BsReceiptCutoff,
 } from "/utils/Icons"
 
 import { useRouter } from "next/navigation"
@@ -115,11 +116,11 @@ function NavigateMenu() {
         <div className="box_card " onClick={() => router.push("/membership")}>
           <IconCards Icon={BsFillPeopleFill} label={"Membership "} />
         </div>
-        <div className="box_card ">
+        <div className="box_card " onClick={() => router.push("/profile")}>
           <IconCards Icon={AiFillProfile} label={"Profile"} />
         </div>
-        <div className="box_card ">
-          <IconCards Icon={BiHelpCircle} label={"Contact us"} />
+        <div className="box_card " onClick={() => router.push("/commission")}>
+          <IconCards Icon={BsReceiptCutoff} label={"Commission"} />
         </div>
       </div>
     </div>

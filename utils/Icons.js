@@ -33,6 +33,7 @@ export {
   BsFacebook,
   BsTelegram,
   BsFillPeopleFill,
+  BsReceiptCutoff,
 } from "react-icons/bs"
 
 export {

@@ -135,12 +135,27 @@ function calculateProfitAndLiability(amount, betType, odds) {
 }
 // Profit loss calculation
 
+function formatDateTime(dateTime) {
+  const options = {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  }
+
+  const formattedDateTime = new Date(dateTime).toLocaleString("en-US", options)
+  return formattedDateTime
+}
+
 export {
   getRelativeTime,
   transformNestedObject,
   calculateWinningOutcomesPAndL,
   getBettingPrice,
   calculateProfitAndLiability,
+  formatDateTime,
 }
 
 // Profit loss calculation

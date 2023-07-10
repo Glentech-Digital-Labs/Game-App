@@ -26,9 +26,15 @@ export { OtpInput } from "./otp/OtpComponent"
 export { Accordion } from "./accordion/Accordion"
 export { Modal } from "./modal/Modal"
 export { ProfileEdit } from "./profile/ProfileEdit"
-// export { BankDetails, AmountWithdraw, Transaction, Payment } from "./bank"
-export { BankDetails } from "./bank/BankDetails"
-export { AmountWithdraw } from "./bank/AmountWithdraw"
-export { Transaction } from "./bank/Transaction"
-export { Payment } from "./bank/receivePayment/Payment"
+export {
+  BankDetails,
+  AmountWithdraw,
+  Transaction,
+  Payment,
+  Commission,
+} from "./bank"
+// export { BankDetails } from "./bank/BankDetails"
+// export { AmountWithdraw } from "./bank/AmountWithdraw"
+// export { Transaction } from "./bank/Transaction"
+// export { Payment } from "./bank/receivePayment/Payment"
 export { Referral } from "./referral/Referral"
