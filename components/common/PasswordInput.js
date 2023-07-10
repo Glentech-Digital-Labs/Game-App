@@ -11,6 +11,8 @@ function PasswordInput({
   setUserPassword,
   setShowPassword,
   showPassword = false,
+  parentStyle,
+  inputStyle,
 }) {
   function passwordHandler(event) {
     setUserPassword(event.target.value)
@@ -22,7 +24,7 @@ function PasswordInput({
   }
 
   return (
-    <div className="tw-my-3  ">
+    <div className="tw-my-3 " style={parentStyle}>
       <label className="tw-font-medium tw-text-[14px]">{label}</label>
       <br />
       <div className={`tw-flex  tw-relative ${className}  tw-items-center`}>
@@ -31,8 +33,9 @@ function PasswordInput({
           type={type}
           value={value}
           required={true}
-          className={` tw-py-2 tw-min-h-full tw-mt-2 tw-w-[90%]`}
+          className={` tw-py-2 tw-min-h-full tw-mt-2 tw-w-[90%] tw-border-2`}
           onChange={passwordHandler}
+          style={inputStyle}
         />
 
         {type === "text" ? (

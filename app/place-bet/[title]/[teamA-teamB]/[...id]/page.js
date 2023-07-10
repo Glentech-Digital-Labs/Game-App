@@ -8,13 +8,7 @@ import FetchData from "@utils/Fetcher"
 import { useDispatch, useSelector } from "react-redux"
 
 import { receiveData } from "/redux/feature/socket/socketSlice"
-
-async function getData(eventId, setMatchData) {
-  const response = await FetchData(`sports/event/${eventId}/markets`)
-  if (response.success) {
-    setMatchData(response.data)
-  }
-}
+import { resetUser } from "@redux/feature/user/userSlice"
 
 function Bet() {
   const params = useParams()
@@ -30,7 +24,17 @@ function Bet() {
   }
 
   useEffect(() => {
-    getData(eventId, setMatchData)
+    async function getData() {
+      const response = await FetchData(`sports/event/${eventId}/markets`)
+      if (response.success) {
+        setMatchData(response.data)
+      }
+      // if (response.status == "401") {
+      //   dispatch(resetUser())
+
+      // }
+    }
+    getData()
     // return () => {
     //   getData()
     // }

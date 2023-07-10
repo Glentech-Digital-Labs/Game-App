@@ -12,6 +12,10 @@ import { Modal } from "@components/modal/Modal"
 import { useModal } from "@hooks"
 import { AccordionChildItem } from "./AccordionChild"
 import FetchData from "@utils/Fetcher"
+import { useDispatch, useSelector } from "react-redux"
+import { resetUser } from "@redux/feature/user/userSlice"
+import { useRouter } from "next/navigation"
+import { calculateCashoutAmount } from "@utils/utils"
 
 function AccordionTopPart({
   expanded,
@@ -22,6 +26,37 @@ function AccordionTopPart({
   toggle,
   checkoutAmount,
 }) {
+  const [cashOut, setCashOut] = useState("")
+  const dispatch = useDispatch()
+  const router = useRouter()
+  const selectionData = useSelector(
+    (state) => state.socket.events_selection.data.markets
+  )
+
+  const isItMatchOdds = item.marketTitle == "Match Odds"
+
+  // useEffect(() => {
+  //   async function getCashOutData() {
+  //     if (!isItMatchOdds) {
+  //       return ""
+  //     }
+  //     const response = await FetchData(
+  //       `betting/event/${item.eventId}/cashout/execute`
+  //     )
+  //     if (response.success) {
+  //       setCashOut(response.data)
+  //       // calculateCashoutAmount(response.data)
+  //     }
+  //     if (response.status == "401") {
+  //       dispatch(resetUser())
+  //       router.push("/login")
+  //     }
+  //     if (!response.success) {
+  //     }
+  //   }
+  //   getCashOutData()
+  // }, [])
+
   return (
     <div
       className={`tw-bg-[#36363D] tw-flex tw-justify-between tw-h-14 tw-mt-4 tw-px-4  `}
@@ -37,14 +72,14 @@ function AccordionTopPart({
         </h2>{" "}
       </div>
       <div className="tw-flex">
-        {item.id == selectedId && !!teamBetId && expanded ? (
+        {item.id == selectedId && !!teamBetId && isItMatchOdds && expanded ? (
           <button
             className="tw-bg-[#03CD5D] tw-font-medium tw-text-12px tw-px-2 tw-py-1 tw-rounded-md tw-items-center tw-justify-center tw-flex tw-h-7 tw-w-fit tw-self-center tw-mr-2"
             onClick={toggle}
           >
-            <span className="tw-flex">{`P and L : ${parseFloat(
-              checkoutAmount
-            ).toFixed(0)}`}</span>
+            <span className="tw-flex">{`CashOut : ${parseFloat(cashOut).toFixed(
+              0
+            )}`}</span>
           </button>
         ) : (
           ""
