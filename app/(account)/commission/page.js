@@ -1,4 +1,6 @@
+"use client"
 import { Commission } from "@components"
+import protectRouteWithCookie from "@hooks/ProtectedRoute"
 import React from "react"
 
 function CommissionPage() {
@@ -9,4 +11,4 @@ function CommissionPage() {
   )
 }
 
-export default CommissionPage
+export default protectRouteWithCookie(CommissionPage)

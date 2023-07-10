@@ -1,4 +1,6 @@
+"use client"
 import { Payment } from "@components"
+import protectRouteWithCookie from "@hooks/ProtectedRoute"
 
 function PaymentPage() {
   return (
@@ -10,4 +12,4 @@ function PaymentPage() {
   )
 }
 
-export default PaymentPage
+export default protectRouteWithCookie(PaymentPage)

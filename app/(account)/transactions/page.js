@@ -1,4 +1,6 @@
+"use client"
 import { Transaction } from "@components"
+import protectRouteWithCookie from "@hooks/ProtectedRoute"
 import React from "react"
 
 function TransactionsDetails() {
@@ -9,4 +11,4 @@ function TransactionsDetails() {
   )
 }
 
-export default TransactionsDetails
+export default protectRouteWithCookie(TransactionsDetails)
