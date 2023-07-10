@@ -17,6 +17,7 @@ import {
   AiFillLock,
 } from "/utils/Icons"
 import FetchData from "@utils/Fetcher"
+import { useRouter } from "next/navigation"
 
 async function getUserData() {
   const response = await FetchData("user/profile")
@@ -37,6 +38,7 @@ async function getUserData() {
 function ProfileEdit() {
   // const userData = use(dataFromPromise)
   const [userData, setUserData] = useState({})
+  const router = useRouter()
   let arrayLength
   if (!!userData?.length) {
     arrayLength = Object.keys(userData)?.length
@@ -48,6 +50,30 @@ function ProfileEdit() {
     }
     getData()
   }, [arrayLength])
+
+  async function updateUser() {
+    const response = await FetchData("user/profile/update", {
+      method: "POST",
+      body: {
+        userName: userData.userName,
+        fullName: userData.fullName,
+        email: userData.email,
+        countryCode: 91,
+        phoneNumber: userData.phoneNumber,
+      },
+    })
+    if (response.success) {
+      console.log(`Updated request`)
+      router.push("/home")
+    }
+
+    if (response.status == "401") {
+      router.push("/login")
+    }
+  }
+
+  console.log(`User data`, userData)
+
   return (
     <div className="tw-flex tw-flex-col">
       <div className="tw-w-36 tw-h-36 tw-rounded-full tw-mt-6 tw-relative tw-mx-auto">
@@ -86,20 +112,13 @@ function ProfileEdit() {
           initialValue={userData?.phoneNumber}
           label={"Phone"}
           type={"text"}
-          data={userData?.["userName"]}
-        />
-        <ContentEditableInput
-          Icon={AiFillLock}
-          initialValue={"12134567"}
-          label={"Password"}
-          type={"password"}
           data={userData?.["phoneNumber"]}
         />
       </div>
       <YellowButton
         label={"Update"}
         className={"tw-mx-4"}
-        onClick={getUserData}
+        onClick={updateUser}
       />
     </div>
   )

@@ -37,7 +37,7 @@ const protectRouteWithCookie = (WrappedComponent) => {
         }
         console.log("running")
         isLogged()
-      }, 1000)
+      }, 1000 * 60)
 
       return () => {
         clearInterval(interval)
