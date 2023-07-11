@@ -19,7 +19,6 @@ function TeamBet({ className, teamName, odds, amount, profit }) {
 }
 
 function OpenBets({ betData }) {
-  console.log("From open Bets", betData)
   return (
     <>
       <div className="tw-grid tw-grid-cols-5 tw-bg-[#36364A] tw-justify-center tw-items-center tw-gap-2 tw-min-w-full tw-rounded-lg tw-px-4 tw-h-14 tw-relative ">

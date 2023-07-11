@@ -2,7 +2,7 @@ import React from "react"
 import { BlackButton } from "./BlackButton"
 import { YellowButton } from "./YellowButton"
 
-function CashOutModal({ cashOutModalData, toggle }) {
+function CashOutModal({ cashOutModalData, toggle, onClick }) {
   return (
     <>
       <div className="tw-flex tw-bg-[#36364A] tw-items-center tw-gap-2 tw-min-w-full tw-rounded-t-lg tw-px-2 tw-h-14">
@@ -33,7 +33,11 @@ function CashOutModal({ cashOutModalData, toggle }) {
             className={"tw-w-[48%]"}
             onClick={toggle}
           />
-          <YellowButton label={"conform"} className={"tw-w-[48%] tw-ml-4"} />
+          <YellowButton
+            label={"conform"}
+            className={"tw-w-[48%] tw-ml-4"}
+            onClick={onClick}
+          />
         </div>
       </div>
     </>

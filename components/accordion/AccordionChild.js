@@ -42,7 +42,7 @@ const AccordionChildItem = ({
       placedBetData,
       setTeamBetId
     )
-    setBetPandL(betPALData)
+    setBetPandL(parseFloat(betPALData))
     setCheckoutAmount(betPALData)
   }
 
@@ -59,11 +59,8 @@ const AccordionChildItem = ({
       placedBetData,
       setTeamBetId
     )
-    setBetPandL(betPALData)
+    setBetPandL(parseFloat(betPALData))
   }, [item.id])
-
-  if ((marketTitle = "Match Odds")) {
-  }
 
   return (
     <>

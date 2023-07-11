@@ -99,15 +99,17 @@ function getBettingPrice(oddsData, item) {
 }
 
 function calculateWinningOutcomesPAndL(teamId, placedBetData, setTeamBetId) {
-  if (typeof teamId === null || typeof teamId === undefined) return
+  if (typeof teamId === "undefined" || teamId === null) return
 
   return placedBetData.reduce((prev, bet) => {
-    const { odds, amount } = bet
+    const odds = Number(bet.odds)
+    const amount = Number(bet.amount)
+
     if (bet.selectionId === teamId) {
       setTeamBetId(teamId)
       bet.betType === "BACK"
         ? (prev += amount * (odds - 1))
-        : (prev -= amount * (odds - 1))
+        : (prev = prev - amount * (odds - 1))
     } else {
       bet.betType === "BACK" ? (prev -= amount) : (prev += amount)
     }

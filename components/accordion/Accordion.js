@@ -13,9 +13,12 @@ import { useModal } from "@hooks"
 import { AccordionChildItem } from "./AccordionChild"
 import FetchData from "@utils/Fetcher"
 import { useDispatch, useSelector } from "react-redux"
-import { resetUser } from "@redux/feature/user/userSlice"
+
+import { cashOutFunction, createOddsTable } from "@utils/cashOut"
+import { setNewBet } from "@redux/feature/sports/sportsSlice"
 import { useRouter } from "next/navigation"
-import { calculateCashoutAmount, getBettingPrice } from "@utils/utils"
+import { delete_cookie } from "@utils/utils"
+import { resetUser } from "@redux/feature/user/userSlice"
 
 function AccordionTopPart({
   expanded,
@@ -27,70 +30,32 @@ function AccordionTopPart({
   checkoutAmount,
 }) {
   const [cashOut, setCashOut] = useState([])
-  const dispatch = useDispatch()
-  const router = useRouter()
-  const selectionData = useSelector((state) => state.socket.events_selection)
-  // const oddsData = useSelector((state) => state.socket.events_selection.data)
 
-  const isItMatchOdds = item.marketTitle == "Match Odds"
-  // let { backPrices, layPrices } = getBettingPrice(oddsData, item)
+  const oddsData = useSelector((state) => state.socket.events_selection?.data)
+  const isNewBetPlaced = useSelector((state) => state.sportsContext.newBet)
+
+  const allBets = useSelector((state) => state.sportsContext.placedBetData)
+  const isCashOutExecuted = !allBets[allBets.length - 1]?.isCB
+  const [showCashOut, setShowCashOut] = useState(isCashOutExecuted)
 
   useEffect(() => {
-    async function getCashOutData() {
-      if (!isItMatchOdds) {
-        return ""
-      }
-      const response = await FetchData(
-        `betting/event/${item.eventId}/cashout/execute`
-      )
-      if (response.success) {
-        setCashOut(response.data)
-        // calculateCashoutAmount(response.data)
-      }
-      if (response.status == "401") {
-        dispatch(resetUser())
-        router.push("/login")
-      }
-      if (!response.success) {
-      }
+    setShowCashOut(isCashOutExecuted)
+  }, [isCashOutExecuted])
+
+  useEffect(() => {
+    if (oddsData) {
+      Object?.keys(oddsData?.["markets"])?.map((item, index) => {
+        if (oddsData?.["markets"][item]["name"] == "Match Odds") {
+          const selections = oddsData?.["markets"][item]["selections"]
+          let tables = createOddsTable(selections)
+          let cashOutData = cashOutFunction(tables, allBets)
+          setCashOut(cashOutData)
+        }
+      })
     }
-    getCashOutData()
-  }, [])
+  }, [oddsData, isNewBetPlaced])
 
-  let randomNumber = Math.random()
-  // useEffect(() => {
-  //   function cashOutCalculation() {
-  //     let backPrice
-  //     let layPrice
-
-  //     if (cashOut?.result?.length <= 0) {
-  //       return ""
-  //     }
-  //     cashOut?.result?.map((item, index) => {
-  //       selectionData?.data?.markets?.[item.marketId]?.["selections"]?.map(
-  //         (childItem) => {
-  //           if (childItem.sId == item["selectionId"]) {
-  //             if (item.betType == "LAY") {
-  //               backPrice = childItem["backPrices"][0]["price"]
-  //             }
-  //             if (item.betType == "BACK") {
-  //               layPrice = childItem["layPrices"][0]["price"]
-  //             }
-  //           }
-  //         }
-  //       )
-  //     })
-  //     return {
-  //       backPrice,
-  //       layPrice,
-  //     }
-  //   }
-  //   const { backPrice, layPrice } = cashOutCalculation()
-
-  //   console.log("Back price ,lay Price", backPrice, layPrice)
-
-  //   // return () => {}
-  // }, [randomNumber])
+  const isItMatchOdds = item.marketTitle == "Match Odds"
 
   return (
     <div
@@ -107,13 +72,17 @@ function AccordionTopPart({
         </h2>{" "}
       </div>
       <div className="tw-flex">
-        {item.id == selectedId && !!teamBetId && isItMatchOdds && expanded ? (
+        {item.id == selectedId &&
+        !!teamBetId &&
+        showCashOut &&
+        isItMatchOdds &&
+        expanded ? (
           <button
             className="tw-bg-[#03CD5D] tw-font-medium tw-text-12px tw-px-2 tw-py-1 tw-rounded-md tw-items-center tw-justify-center tw-flex tw-h-7 tw-w-fit tw-self-center tw-mr-2"
             onClick={toggle}
           >
             <span className="tw-flex">{`CashOut : ${parseFloat(cashOut).toFixed(
-              0
+              1
             )}`}</span>
           </button>
         ) : (
@@ -164,6 +133,9 @@ const AccordionItem = ({ item, index }) => {
     backPrice: "",
     layPrice: "",
   })
+  const [cashOutExecute, setCashOutExecute] = useState("")
+  const dispatch = useDispatch()
+  const router = useRouter()
 
   const toggleItem = (id) => {
     setExpanded(!expanded)
@@ -193,6 +165,26 @@ const AccordionItem = ({ item, index }) => {
     getCashOutData()
     return () => {}
   }, [])
+
+  async function executeCashOut() {
+    const response = await FetchData(
+      `betting/event/${item.eventId}/cashout/execute`
+    )
+
+    if (!!response.ok) {
+      throw new Error("Error in fetching the Execute")
+    }
+    if (response.status == "401") {
+      delete_cookie("sessionId")
+      dispatch(resetUser())
+      router.push("/login")
+    }
+    if (response.success) {
+      dispatch(setNewBet())
+      setCashOutExecute(response.data)
+    }
+  }
+
   return (
     <>
       <div className="accordion-item">
@@ -244,7 +236,11 @@ const AccordionItem = ({ item, index }) => {
         className={"tw-h-[30%] tw-ml-[-2] "}
         style={{ height: "38%" }}
       >
-        <CashOutModal cashOutModalData={cashOutModalData} toggle={toggle} />
+        <CashOutModal
+          cashOutModalData={cashOutModalData}
+          toggle={toggle}
+          onClick={executeCashOut}
+        />
       </Modal>
     </>
   )
