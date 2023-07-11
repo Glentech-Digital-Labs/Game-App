@@ -164,7 +164,7 @@ const calculateCashoutAmount = (bets, currentOdds) => {
   let totalPotentialLiability = 0
 
   // Calculate potential payouts and liabilities for each bet based on current odds
-  bets.forEach((bet) => {
+  bets?.forEach((bet) => {
     const potentialPayout = bet.amount * currentOdds[bet.type]
     if (bet.type === "back") {
       totalPotentialPayout += potentialPayout

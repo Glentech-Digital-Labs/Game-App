@@ -106,17 +106,6 @@ function BackLayButtons({
     }
   }, [typeOfBet])
 
-  // const betHandler = (type) => {
-  //   if (Math.floor(betPoint) <= 0) {
-  //     return
-  //   }
-  //   if (type == "add") {
-  //     setBetPoint((prev) => prev + 0.01)
-  //   } else {
-  //     setBetPoint((prev) => prev - 0.01)
-  //   }
-  // }
-
   const amountHandler = (type) => {
     if (type == "add") {
       setAmount((prev) => parseFloat(prev) + 1)

@@ -17,6 +17,7 @@ const AccordionChildItem = ({
   marketTitle,
   checkoutAmount,
   teamBetId,
+  setCurrentBackLayPrice,
 }) => {
   const oddsData = useSelector((state) => state.socket.events_selection.data)
   const [expanded, setExpanded] = useState(false)
@@ -62,7 +63,6 @@ const AccordionChildItem = ({
   }, [item.id])
 
   if ((marketTitle = "Match Odds")) {
-    console.log(`hello ji`)
   }
 
   return (

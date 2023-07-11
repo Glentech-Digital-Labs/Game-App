@@ -15,7 +15,7 @@ import FetchData from "@utils/Fetcher"
 import { useDispatch, useSelector } from "react-redux"
 import { resetUser } from "@redux/feature/user/userSlice"
 import { useRouter } from "next/navigation"
-import { calculateCashoutAmount } from "@utils/utils"
+import { calculateCashoutAmount, getBettingPrice } from "@utils/utils"
 
 function AccordionTopPart({
   expanded,
@@ -26,36 +26,71 @@ function AccordionTopPart({
   toggle,
   checkoutAmount,
 }) {
-  const [cashOut, setCashOut] = useState("")
+  const [cashOut, setCashOut] = useState([])
   const dispatch = useDispatch()
   const router = useRouter()
-  // const selectionData = useSelector(
-  //   (state) => state.socket.events_selection.data.markets
-  // )
+  const selectionData = useSelector((state) => state.socket.events_selection)
+  // const oddsData = useSelector((state) => state.socket.events_selection.data)
 
   const isItMatchOdds = item.marketTitle == "Match Odds"
+  // let { backPrices, layPrices } = getBettingPrice(oddsData, item)
 
+  useEffect(() => {
+    async function getCashOutData() {
+      if (!isItMatchOdds) {
+        return ""
+      }
+      const response = await FetchData(
+        `betting/event/${item.eventId}/cashout/execute`
+      )
+      if (response.success) {
+        setCashOut(response.data)
+        // calculateCashoutAmount(response.data)
+      }
+      if (response.status == "401") {
+        dispatch(resetUser())
+        router.push("/login")
+      }
+      if (!response.success) {
+      }
+    }
+    getCashOutData()
+  }, [])
+
+  let randomNumber = Math.random()
   // useEffect(() => {
-  //   async function getCashOutData() {
-  //     if (!isItMatchOdds) {
+  //   function cashOutCalculation() {
+  //     let backPrice
+  //     let layPrice
+
+  //     if (cashOut?.result?.length <= 0) {
   //       return ""
   //     }
-  //     const response = await FetchData(
-  //       `betting/event/${item.eventId}/cashout/execute`
-  //     )
-  //     if (response.success) {
-  //       setCashOut(response.data)
-  //       // calculateCashoutAmount(response.data)
-  //     }
-  //     if (response.status == "401") {
-  //       dispatch(resetUser())
-  //       router.push("/login")
-  //     }
-  //     if (!response.success) {
+  //     cashOut?.result?.map((item, index) => {
+  //       selectionData?.data?.markets?.[item.marketId]?.["selections"]?.map(
+  //         (childItem) => {
+  //           if (childItem.sId == item["selectionId"]) {
+  //             if (item.betType == "LAY") {
+  //               backPrice = childItem["backPrices"][0]["price"]
+  //             }
+  //             if (item.betType == "BACK") {
+  //               layPrice = childItem["layPrices"][0]["price"]
+  //             }
+  //           }
+  //         }
+  //       )
+  //     })
+  //     return {
+  //       backPrice,
+  //       layPrice,
   //     }
   //   }
-  //   getCashOutData()
-  // }, [])
+  //   const { backPrice, layPrice } = cashOutCalculation()
+
+  //   console.log("Back price ,lay Price", backPrice, layPrice)
+
+  //   // return () => {}
+  // }, [randomNumber])
 
   return (
     <div
@@ -125,6 +160,10 @@ const AccordionItem = ({ item, index }) => {
   const [teamBetId, setTeamBetId] = useState("")
   const [checkoutAmount, setCheckoutAmount] = useState(0)
   const [cashOutModalData, setCashOutModalData] = useState([])
+  const [currentBackLayPrice, setCurrentBackLayPrice] = useState({
+    backPrice: "",
+    layPrice: "",
+  })
 
   const toggleItem = (id) => {
     setExpanded(!expanded)
@@ -192,6 +231,7 @@ const AccordionItem = ({ item, index }) => {
                   setCheckoutAmount={setCheckoutAmount}
                   checkoutAmount={checkoutAmount}
                   teamBetId={teamBetId}
+                  setCurrentBackLayPrice={setCurrentBackLayPrice}
                 />
               )
             })}

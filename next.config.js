@@ -28,12 +28,13 @@ const nextConfig = {
   rewrites: () => [
     {
       source: "/api/v1/:path*",
-      destination: "https://99dd-110-227-90-127.ngrok-free.app/api/v1/:path*",
+      destination:
+        "https://6f21-2401-4900-1c85-4da4-9150-bd6a-e991-6b0e.ngrok-free.app/api/v1/:path*",
     },
     {
       source: "/socket.io/:path*",
       destination:
-        "https://99dd-110-227-90-127.ngrok-free.app/socket.io/:path*",
+        "https://6f21-2401-4900-1c85-4da4-9150-bd6a-e991-6b0e.ngrok-free.app/socket.io/:path*",
     },
   ],
 }
