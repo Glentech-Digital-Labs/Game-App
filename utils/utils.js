@@ -145,7 +145,9 @@ function formatDateTime(dateTime) {
     hour12: true,
   }
 
-  const formattedDateTime = new Date(dateTime).toLocaleString("en-US", options)
+  const formattedDateTime = new Date(dateTime)
+    .toLocaleString("en-US", options)
+    .toUpperCase()
   return formattedDateTime
 }
 
