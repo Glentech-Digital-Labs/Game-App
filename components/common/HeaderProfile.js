@@ -1,10 +1,13 @@
 "use client"
 import React, { useState, useEffect, useRef } from "react"
 import { BiUser, BiWallet } from "/utils/Icons"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { YellowButton } from "./YellowButton"
 import { useRouter } from "next/navigation"
 import { BlackButton } from "./BlackButton"
+import FetchData from "@utils/Fetcher"
+import { resetUser } from "@redux/feature/user/userSlice"
+import { delete_cookie } from "@utils/utils"
 
 function RegisterComponent() {
   const router = useRouter()
@@ -25,11 +28,19 @@ function RegisterComponent() {
     </div>
   )
 }
+async function getLoginData() {
+  const response = await FetchData("punter/check/session")
+  if (response.success) {
+    return response.message
+  }
+  return response
+}
 
 function HeaderProfile() {
   const router = useRouter()
   const userData = useSelector((state) => state.userContext)
   const [isLoggedIn, setIsLoading] = useState(false)
+  const dispatch = useDispatch()
   let ref = useRef(1)
   const amount =
     parseFloat(userData?.depositBalance) + parseFloat(userData?.bonusBalance)
@@ -41,6 +52,18 @@ function HeaderProfile() {
     }
     getData()
   }, [isUserData])
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      const responseData = await getLoginData()
+      if (responseData.status == "401" || responseData.success == "false") {
+        dispatch(resetUser())
+        delete_cookie("sessionId")
+      }
+    }, 1000 * 60)
+    return () => {
+      clearInterval(interval)
+    }
+  }, [])
 
   return (
     <div className="tw-flex  tw-justify-between tw-w-screen">

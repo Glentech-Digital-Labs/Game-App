@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { getRelativeTime } from "/utils/utils"
 import Link from "next/link"
+import { formatDateTime } from "@utils/utils"
 
 function HomePage() {
   const selectedSportsId = useSelector((state) => state.sportsContext)
@@ -67,50 +68,33 @@ function HomePage() {
                 let newTitle = !!match["competition.title"]
                   ? match["competition.title"]
                   : "Ram"
+
                 return match["inPlay"] ? (
-                  <>
-                    <Link
-                      href={`/place-bet/${newTitle}/${match.teamA}-${match.teamB}/${match.id}`}
-                      key={match.id}
-                      prefetch={true}
-                    >
-                      <MatchCard
-                        back={match.layPrice}
-                        lay={match.backPrice}
-                        firstTeam={match.teamB}
-                        secondTeam={match.teamA}
-                        time={getRelativeTime(match.openDate)}
-                      />
-                    </Link>
-                  </>
-                ) : (
-                  <div>
-                    <LockedCard></LockedCard>
+                  <Link
+                    href={`/place-bet/${newTitle}/${match.teamA}-${match.teamB}/${match.id}`}
+                    key={match.id}
+                    prefetch={true}
+                  >
                     <MatchCard
                       back={match.layPrice}
                       lay={match.backPrice}
                       firstTeam={match.teamB}
                       secondTeam={match.teamA}
-                      time={getRelativeTime(match.openDate)}
+                      time={formatDateTime(match.openDate)}
+                    />
+                  </Link>
+                ) : (
+                  <div className="tw-relative">
+                    {/* <LockedCard></LockedCard> */}
+                    <MatchCard
+                      back={match.layPrice}
+                      lay={match.backPrice}
+                      firstTeam={match.teamB}
+                      secondTeam={match.teamA}
+                      time={formatDateTime(match.openDate)}
                     />
                   </div>
                 )
-                // return (
-                //   <Link
-                //     href={`/place-bet/${newTitle}/${match.teamA}-${match.teamB}/${match.id}`}
-                //     key={match.id}
-                //     prefetch={true}
-                //   >
-                //     <LockedCard></LockedCard>
-                //     <MatchCard
-                //       back={match.layPrice}
-                //       lay={match.backPrice}
-                //       firstTeam={match.teamB}
-                //       secondTeam={match.teamA}
-                //       time={getRelativeTime(match.openDate)}
-                //     />
-                //   </Link>
-                // )
               })}
             </div>
           ))}

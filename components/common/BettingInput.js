@@ -163,7 +163,7 @@ function BackLayButtons({
 }
 
 function BettingInput({
-  marketTitle,
+  selectionTitle,
   typeOfBet,
   team,
   backPrice,
@@ -231,11 +231,11 @@ function BettingInput({
     }
   }
 
-  let shortMarketTitle
-  if (marketTitle?.length > 15) {
-    shortMarketTitle = marketTitle.split(" ")[0]
+  let shortMarketSelection
+  if (selectionTitle?.length > 15) {
+    shortMarketSelection = selectionTitle.split(" ")[0]
   } else {
-    shortMarketTitle = marketTitle
+    shortMarketSelection = selectionTitle
   }
   function calculateProfitLiability() {
     let amountInNumber = parseInt(amount)
@@ -265,7 +265,7 @@ function BettingInput({
         <div className="tw-flex tw-text-lg tw-h-8  tw-items-center tw-font-sf-font tw-text-12px tw-font-medium tw-justify-between tw-mb-3 ">
           <div className="tw-flex tw-items-center tw-mt-2">
             <span className="tw-font-sf-font tw-text-12px tw-font-medium">
-              {shortMarketTitle}
+              {shortMarketSelection}
             </span>
             <AiOutlineArrowRight fontSize={12} className="" />{" "}
             <span className="tw-font-sf-font tw-text-12px tw-font-medium">

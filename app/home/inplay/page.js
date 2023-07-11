@@ -12,6 +12,7 @@ import { getRelativeTime } from "/utils/utils"
 import Link from "next/link"
 import { transformNestedObject } from "/utils/utils"
 import { receiveData } from "../../../redux/feature/socket/socketSlice"
+import { formatDateTime } from "@utils/utils"
 
 function HomePage() {
   const selectedSportsId = useSelector((state) => state.sportsContext)
@@ -104,7 +105,7 @@ function HomePage() {
               >
                 <InPlayMatchCard
                   title={match["competition.title"]}
-                  time={getRelativeTime(match.openDate)}
+                  time={formatDateTime(match.openDate)}
                   teamA={match.teamA}
                   teamB={match.teamB}
                   backPrice={backPrice}

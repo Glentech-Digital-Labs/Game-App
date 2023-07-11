@@ -7,13 +7,14 @@ const { useSelector } = require("react-redux")
 
 const AccordionChildItem = ({
   item,
-  marketTitle,
+  selectionTitle,
   marketId,
   eventId,
   typeOfBet,
   setTypeOfBet,
   setTeamBetId,
   setCheckoutAmount,
+  marketTitle,
   checkoutAmount,
   teamBetId,
 }) => {
@@ -59,6 +60,10 @@ const AccordionChildItem = ({
     )
     setBetPandL(betPALData)
   }, [item.id])
+
+  if ((marketTitle = "Match Odds")) {
+    console.log(`hello ji`)
+  }
 
   return (
     <>
@@ -124,7 +129,7 @@ const AccordionChildItem = ({
         {item.id == selectedId && expanded && (
           <div className="">
             <BettingInput
-              marketTitle={marketTitle}
+              selectionTitle={selectionTitle}
               typeOfBet={typeOfBet}
               team={item?.title}
               backPrice={backPrices}

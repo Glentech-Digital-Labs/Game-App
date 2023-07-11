@@ -29,9 +29,9 @@ function AccordionTopPart({
   const [cashOut, setCashOut] = useState("")
   const dispatch = useDispatch()
   const router = useRouter()
-  const selectionData = useSelector(
-    (state) => state.socket.events_selection.data.markets
-  )
+  // const selectionData = useSelector(
+  //   (state) => state.socket.events_selection.data.markets
+  // )
 
   const isItMatchOdds = item.marketTitle == "Match Odds"
 
@@ -154,7 +154,6 @@ const AccordionItem = ({ item, index }) => {
     getCashOutData()
     return () => {}
   }, [])
-
   return (
     <>
       <div className="accordion-item">
@@ -183,9 +182,10 @@ const AccordionItem = ({ item, index }) => {
                 <AccordionChildItem
                   key={childItem.id}
                   item={childItem}
-                  marketTitle={childItem.title}
+                  selectionTitle={childItem.title}
                   marketId={childItem.marketId}
                   eventId={childItem.eventId}
+                  marketTitle={item.marketTitle}
                   setTypeOfBet={setTypeOfBet}
                   typeOfBet={typeOfBet}
                   setTeamBetId={setTeamBetId}
