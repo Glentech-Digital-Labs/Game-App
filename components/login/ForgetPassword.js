@@ -1,20 +1,54 @@
 "use client"
 import { YellowButton } from "@components/common"
 import { Input } from "@components/common/InputComponent"
+import FetchData from "@utils/Fetcher"
 import { useRouter } from "next/navigation"
 import React, { useState } from "react"
+import Data from "utils/config"
 
 const validator = "^([a-zA-Z0-9_-.]+)@([a-zA-Z0-9_-.]+).([a-zA-Z]{2,5})$"
 
+async function getForgetPasswordMail({ url, email }) {
+  const queryParams = {
+    ["email"]: email,
+  }
+  const queryString = Object.keys(queryParams)
+    .map(
+      (key) =>
+        `${encodeURIComponent(key)}=${encodeURIComponent(queryParams[key])}`
+    )
+    .join("&")
+  const requestUrl = `${BASE_URL}/${url}?${queryString}`
+  return fetch(requestUrl, {
+    headers: {
+      "ngrok-skip-browser-warning": "69420",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((resp) => resp.json())
+    .then((data) => {
+      return data
+    })
+    .catch((error) => console.error(error))
+}
+const BASE_URL = Data.BASE_URL
 function ForgetPassword() {
   const router = useRouter()
   const [email, setEmail] = useState("")
 
-  function onSubmit() {
-    if (validator.test(email)) {
-      return ""
+  async function onSubmit() {
+    // if (email.match(validator)) {
+    //   return ""
+    // }
+    const response = await getForgetPasswordMail({
+      url: "punter/forgot-password/init",
+      email,
+    })
+    if (response.success) {
+      router.push("passwordReset/1")
+    } else {
+      console.log("there is error")
     }
-    router.push("/otp")
   }
 
   return (

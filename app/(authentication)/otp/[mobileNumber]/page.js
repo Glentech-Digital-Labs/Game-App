@@ -44,7 +44,7 @@ function Otp() {
     if (timer >= 1) {
       intervalRef.current = setInterval(() => {
         decreaseNum()
-      }, 1000)
+      }, 1000 * 60)
     } else {
       setSendOtp(false)
     }
