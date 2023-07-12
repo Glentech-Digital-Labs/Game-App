@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from "react"
-import "./Accordion.css" // Create this CSS file for styling
+import "./Accordion.css"
 import {
   AiOutlineExclamation,
   AiOutlineMinus,
@@ -43,10 +43,14 @@ function AccordionTopPart({
   }, [isCashOutExecuted])
 
   useEffect(() => {
-    if (oddsData) {
-      Object?.keys(oddsData?.["markets"])?.map((item, index) => {
-        if (oddsData?.["markets"][item]["name"] == "Match Odds") {
-          const selections = oddsData?.["markets"][item]["selections"]
+    if (
+      oddsData !== null &&
+      typeof oddsData !== "undefined" &&
+      typeof oddsData !== "string"
+    ) {
+      Object?.keys(oddsData["markets"])?.map((item, index) => {
+        if (oddsData["markets"][item]["name"] == "Match Odds") {
+          const selections = oddsData["markets"][item]["selections"]
           let tables = createOddsTable(selections)
           let cashOutData = cashOutFunction(tables, allBets)
           setCashOut(cashOutData)
@@ -182,6 +186,7 @@ const AccordionItem = ({ item, index }) => {
     if (response.success) {
       dispatch(setNewBet())
       setCashOutExecute(response.data)
+      toggle()
     }
   }
 

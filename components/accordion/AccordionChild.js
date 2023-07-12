@@ -62,6 +62,8 @@ const AccordionChildItem = ({
     setBetPandL(parseFloat(betPALData))
   }, [item.id])
 
+  let isMatchOdds = !!marketTitle && marketTitle == "Match Odds"
+
   return (
     <>
       {loading && <Loader />}
@@ -76,7 +78,7 @@ const AccordionChildItem = ({
           >
             <h1 className="tw-text-14px tw-font-medium tw-font-sf-font">
               <span>{item?.title}</span>
-              {betPandL !== 0 && !!betPandL && (
+              {betPandL !== 0 && isMatchOdds && !!betPandL && (
                 <span
                   className={`tw-ml-2 tw-w-fit tw-h-fit tw-px-2 tw-py-1 tw-rounded-xl ${
                     betPandL > 0 ? "tw-bg-[#03CD5D]" : "tw-bg-[#FF6868]"

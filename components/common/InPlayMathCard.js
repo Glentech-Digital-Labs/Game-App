@@ -1,6 +1,14 @@
 import React from "react"
 
-function InPlayMatchCard({ title, teamA, teamB, time, backPrice, layPrice }) {
+function InPlayMatchCard({
+  title,
+  teamA,
+  teamB,
+  time,
+  backPrice,
+  layPrice,
+  onClick,
+}) {
   return (
     <div
       className="match_card_home tw-h-32   tw-flex tw-flex-col tw-my-3 tw-border-1 tw-justify-evenly tw-border-[.5px] tw-border-[#797D86] "
@@ -9,6 +17,7 @@ function InPlayMatchCard({ title, teamA, teamB, time, backPrice, layPrice }) {
         marginRight: ".5rem",
         borderStyle: "outset",
       }}
+      onClick={onClick}
     >
       <div className="tw-flex tw-justify-between  tw-mx-2">
         <p className="tw-text-14px tw-font-medium tw-text-[#797D86]">{title}</p>

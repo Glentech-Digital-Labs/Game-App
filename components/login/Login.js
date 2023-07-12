@@ -124,12 +124,14 @@ function Login() {
         />
 
         <p className="tw-mt-4 tw-mb-2 tw-ml-[30%]">New to Gigblitz ?</p>
+      </form>
+      <div className="tw-flex tw-justify-center">
         <BlackButton
           label={"Join Now"}
-          className="tw-w-[90%]"
+          className="tw-w-[80%] tw-self-center"
           onClick={() => router.push("/registration")}
         />
-      </form>
+      </div>
       {/* <Image
         src={BetFairIcon}
         width={200}

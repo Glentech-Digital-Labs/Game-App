@@ -49,8 +49,16 @@ function Headers({ toggle, competition, team }) {
 async function getBetData(setBetData, dispatch, paramID) {
   const response = await FetchData(`betting/event/${paramID}/bets`)
   if (response.success) {
-    setBetData(response.data)
-    dispatch(setPlacedBetData(response.data))
+    let transformedArray = []
+    let checkingArray = []
+    response.data?.map((item, index) => {
+      if (!checkingArray.includes(item.id)) {
+        transformedArray.push(item)
+        checkingArray.push(item.id)
+      }
+    })
+    setBetData(transformedArray)
+    dispatch(setPlacedBetData(transformedArray))
   }
 }
 function Layout({ children }) {

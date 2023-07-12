@@ -13,7 +13,7 @@ function CommissionCard({ amount, match, series, user, time }) {
   let amountColor = "#EFB873"
 
   return (
-    <div className="match_card_commission tw-rounded-xl tw-mt-4 tw-mx-2">
+    <div className="match_card_commission tw-rounded-xl tw-mt-4 tw-mx-2 tw-mb-4">
       <div className=" card_background tw-px-4 tw-flex tw-items-center  tw-rounded-t-lg tw-justify-between tw-h-12">
         <span
           className=" tw-font-semibold tw-text-xl"
@@ -32,7 +32,7 @@ function CommissionCard({ amount, match, series, user, time }) {
           <p style={{ color: statusColor }}>Cricket</p>
         </div>
       </div>
-      <div className="tw-grid tw-grid-cols-3 card_background tw-rounded-b-lg tw-px-2 tw-h-28  tw-py-2">
+      <div className="tw-grid tw-grid-cols-3 card_background tw-rounded-b-lg tw-px-2 tw-h-36  tw-py-2">
         <div className="tw-col-span-1 tw-flex tw-flex-col tw-justify-between ">
           <p>User</p>
           <p>Match</p>

@@ -11,17 +11,17 @@ function CashOutModal({ cashOutModalData, toggle, onClick }) {
       <div className="tw-mx-3 tw-my-4">
         <div className="tw-flex tw-justify-between">
           <h2>Liability</h2>
-          <h2>&#8377; {cashOutModalData.cashOutAmount.toFixed(2)}</h2>
+          <h2>&#8377; {cashOutModalData.cashOutAmount?.toFixed(2)}</h2>
         </div>
         <div className="tw-flex tw-justify-between tw-my-4">
           <h2>Cashout</h2>
           <h2 className="tw-text-[#03CD5D]">
-            &#8377; {cashOutModalData.balance.toFixed(2)}
+            &#8377; {cashOutModalData?.balance?.toFixed(2)}
           </h2>
         </div>
         <div className="tw-flex tw-justify-between ">
           <h2>Balance</h2>
-          <h2 className="">&#8377; {cashOutModalData.amount.toFixed(2)}</h2>
+          <h2 className="">&#8377; {cashOutModalData.amount?.toFixed(2)}</h2>
         </div>
         <div className="tw-flex tw-my-4 tw-text-14px">
           If the odds change during submission,the amount may be increased

@@ -13,6 +13,7 @@ import Link from "next/link"
 import { transformNestedObject } from "/utils/utils"
 import { receiveData } from "../../../redux/feature/socket/socketSlice"
 import { formatDateTime } from "@utils/utils"
+import { useRouter } from "next/navigation"
 
 function HomePage() {
   const selectedSportsId = useSelector((state) => state.sportsContext)
@@ -23,6 +24,7 @@ function HomePage() {
   const dispatch = useDispatch()
   const oddsData = useSelector((state) => state.socket.events_selection.data)
   const [loading, setLoading] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
     async function fetchSportsData() {
@@ -96,13 +98,11 @@ function HomePage() {
               selection?.["backPrices"]?.[0]?.["price"] || match.backPrice
             const layPrice =
               selection?.["layPrices"]?.[0]?.["price"] || match.layPrice
+
+            const url = `/place-bet/${newTitle}/${match.teamA}-${match.teamB}/${match.id}`
             return (
-              <Link
-                href={`/place-bet/${newTitle}/${match.teamA}-${match.teamB}/${match.id}`}
-                key={match.id}
-                prefetch={true}
-                className="tw-relative"
-              >
+              // <Link href={url} key={match.id} className="tw-relative">
+              <div key={match.id} onClick={() => router.push(url)}>
                 <InPlayMatchCard
                   title={match["competition.title"]}
                   time={formatDateTime(match.openDate)}
@@ -111,7 +111,8 @@ function HomePage() {
                   backPrice={backPrice}
                   layPrice={layPrice}
                 />
-              </Link>
+              </div>
+              // </Link>
             )
           })}
         </div>
