@@ -568,3 +568,55 @@
   border-radius: 1rem;
 }
 /* Over lay lock */
+
+/* Thumb container */
+.container_thumb_container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+}
+
+.thumb-down {
+  width: 100px;
+  height: 100px;
+  background-image: url("/images/Thumb-down.png"); /* Replace with the path to your thumb down image */
+  background-size: cover;
+  animation: thumb-down-animation 2s infinite;
+}
+
+@keyframes thumb-down-animation {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px) rotate(10deg);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.no-data {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.error-gif {
+  height: 100%;
+  background-image: url("/images/output-onlinegiftools.gif"); /* Replace with the path to your thumb down image */
+  background-size: contain;
+  display: block;
+  background-repeat: no-repeat;
+  aspect-ratio: 4/3;
+}
+
+/* Thumb container */

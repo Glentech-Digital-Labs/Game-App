@@ -2,6 +2,9 @@
 import { IconCards } from "@components"
 import React from "react"
 
+// Needed to be refector Very important to do so,
+// When get time Do it
+
 import {
   GiBasketballBall,
   GrTransaction,
@@ -39,7 +42,7 @@ function NavigateMenu() {
       <div className="tw-bg-[#252530] tw-flex tw-justify-center tw-my-4 tw-py-2 tw-border-1">
         Quicks Links
       </div>
-      <div className="tw-grid tw-grid-cols-4 tw-gap-2 tw-text-[#7E7E92]">
+      <div className="tw-grid tw-grid-cols-4 tw-gap-2 tw-text-[#7E7E92] tw-px-2">
         <div className="box_card ">
           <IconCards
             Icon={BsFillPlayBtnFill}
@@ -76,7 +79,7 @@ function NavigateMenu() {
       <div className="tw-bg-[#252530] tw-flex tw-justify-center tw-my-4 tw-py-2 tw-border-1">
         Popular Sports
       </div>
-      <div className="tw-grid tw-grid-cols-4 tw-gap-2 tw-text-[#7E7E92]">
+      <div className="tw-grid tw-grid-cols-4 tw-gap-2 tw-text-[#7E7E92] tw-px-2">
         <div className="box_card ">
           <IconCards
             Icon={BiCricketBall}
@@ -105,7 +108,7 @@ function NavigateMenu() {
       <div className="tw-bg-[#252530] tw-flex tw-justify-center tw-my-4 tw-py-2 tw-border-1">
         More From Us
       </div>
-      <div className="tw-grid tw-grid-cols-4 tw-gap-2 tw-text-[#7E7E92]">
+      <div className="tw-grid tw-grid-cols-4 tw-gap-2 tw-text-[#7E7E92] tw-px-2">
         <div className="box_card ">
           <IconCards
             Icon={MdAccountBalance}

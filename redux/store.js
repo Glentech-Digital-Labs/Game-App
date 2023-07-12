@@ -4,6 +4,7 @@ import errorReducer from "./feature/error/errorSlice"
 import userReducer from "./feature/user/userSlice"
 import sportsReducer from "./feature/sports/sportsSlice"
 import socketReducer from "./feature/socket/socketSlice"
+import loaderReducer from "./feature/loader/loaderSlice"
 import { persistStore } from "redux-persist"
 import persistConfig from "./persistConfig"
 import { persistReducer } from "redux-persist"
@@ -14,6 +15,7 @@ export const store = configureStore({
     userContext: persistReducer(persistConfig, userReducer),
     sportsContext: sportsReducer,
     socket: socketReducer,
+    loader: loaderReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -1,8 +1,10 @@
 import { Providers } from "@redux/provider"
 import "@styles/global.css"
+import { NavigationEvents } from "@utils/navigationEvent"
 import { SessionProvider } from "next-auth/react"
 import { Inter } from "next/font/google"
 import localFont from "next/font/local"
+import { Suspense } from "react"
 export const metadata = {
   title: "Playing App ",
   description: "Making Gaming App",
@@ -29,9 +31,10 @@ function RootLayout({ children, session }) {
   return (
     <html className={`${inter.variable} ${sfFont.variable}`} lang={"en"}>
       <body>
-        {/* <SessionProvider session={session}> */}
         <Providers>{children}</Providers>
-        {/* </SessionProvider> */}
+        <Suspense fallback={"loading...."}>
+          <NavigationEvents />
+        </Suspense>
       </body>
     </html>
   )

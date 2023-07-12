@@ -4,6 +4,7 @@ import {
   LockedCard,
   MatchCard,
   MatchCardLoading,
+  Nodata,
 } from "@components"
 import FetchData from "../../../utils/Fetcher"
 import React, { useEffect, useState } from "react"
@@ -89,6 +90,7 @@ function HomePage() {
           .map((item, index) => <MatchCardLoading key={index} />)
       ) : (
         <div className="tw-mb-24">
+          {matchData.length == 0 && <Nodata />}
           {matchData.map((match, index) => {
             let newTitle = !!match["competition.title"]
               ? match["competition.title"]

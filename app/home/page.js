@@ -1,9 +1,8 @@
 "use client"
-import { LockedCard, MatchCard, MatchCardLoading } from "@components"
+import { LockedCard, MatchCard, MatchCardLoading, Nodata } from "@components"
 import FetchData from "@utils/Fetcher"
 import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { getRelativeTime } from "/utils/utils"
 import Link from "next/link"
 import { formatDateTime } from "@utils/utils"
 
@@ -49,6 +48,7 @@ function HomePage() {
           .map((item, index) => <MatchCardLoading key={index} />)
       ) : (
         <div className="tw-mb-20 ">
+          {singleSportsData.length == 0 && <Nodata />}
           {singleSportsData.map((singleSport, index) => (
             <div
               className="tw-mx-2 tw-cursor-pointer"

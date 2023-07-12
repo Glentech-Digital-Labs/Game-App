@@ -1,3 +1,4 @@
+import { Nodata } from "./Nodata"
 import { calculateProfitAndLiability } from "/utils/utils"
 import React from "react"
 
@@ -28,6 +29,7 @@ function OpenBets({ betData }) {
         <div className="tw-col-span-1">Profit</div>
       </div>
       <div className="tw-overflow-y-auto tw-h-[85%] tw-px-4">
+        {betData?.length == 0 && <Nodata />}
         {betData?.map((betDetails) => {
           let className
           if (betDetails.betType == "LAY") {

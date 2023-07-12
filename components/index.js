@@ -22,6 +22,8 @@ export {
   HeaderProfile,
   MultipleSelect,
   LockedCard,
+  Nodata,
+  ErrorComponent,
 } from "./common"
 export { OtpInput } from "./otp/OtpComponent"
 export { Accordion } from "./accordion/Accordion"
