@@ -57,7 +57,15 @@ function BottomMenu() {
 
   async function betHandler() {
     const response = await getBetsData({ setIsLoading })
-    setBetsData(response)
+    let transformedArray = []
+    let checkingArray = []
+    response?.map((item, index) => {
+      if (!checkingArray.includes(item.id)) {
+        transformedArray.push(item)
+        checkingArray.push(item.id)
+      }
+    })
+    setBetsData(transformedArray)
     toggle()
   }
 
