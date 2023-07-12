@@ -48,7 +48,7 @@ function AccordionTopPart({
       typeof oddsData !== "undefined" &&
       typeof oddsData !== "string"
     ) {
-      Object?.keys(oddsData["markets"])?.map((item, index) => {
+      Object.keys(oddsData?.["markets"] || {})?.map((item, index) => {
         if (oddsData["markets"][item]["name"] == "Match Odds") {
           const selections = oddsData["markets"][item]["selections"]
           let tables = createOddsTable(selections)
