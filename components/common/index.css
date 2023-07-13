@@ -593,17 +593,17 @@
   filter: invert(1);
 }
 
-/* @keyframes thumb-down-animation {
+@keyframes thumb-down-animation {
   0% {
-    transform: translateY(-10%);
+    transform: translateX(-10%);
   }
   50% {
-    transform: translateX(40%);
+    transform: translateX(60%);
   }
   100% {
-    transform: translateY(-10%);
+    transform: translateX(-10%);
   }
-} */
+}
 
 .no-data {
   position: absolute;

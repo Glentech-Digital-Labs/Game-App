@@ -125,7 +125,7 @@ function AccordionTopPart({
   )
 }
 
-const AccordionItem = ({ item, index }) => {
+const AccordionItem = ({ item, index, data }) => {
   const [expanded, setExpanded] = useState(false)
   const [selectedId, setSelectedId] = useState(0)
   const [typeOfBet, setTypeOfBet] = useState("")
@@ -147,9 +147,9 @@ const AccordionItem = ({ item, index }) => {
   }
   // This for first time open of things
   useEffect(() => {
-    if (index == 1) {
+    if (index == 0) {
       setExpanded(!expanded)
-      setSelectedId(1)
+      setSelectedId(0)
     }
   }, [])
 
@@ -192,7 +192,19 @@ const AccordionItem = ({ item, index }) => {
 
   return (
     <>
-      <div className="accordion-item">
+      <Modal
+        isModalOpen={isModalOpen}
+        toggle={toggle}
+        className={"tw-h-[30%] tw-ml-[-2] "}
+        style={{ height: "38%" }}
+      >
+        <CashOutModal
+          cashOutModalData={cashOutModalData}
+          toggle={toggle}
+          onClick={executeCashOut}
+        />
+      </Modal>
+      <div className="accordion-item ">
         <AccordionTopPart
           item={item}
           toggleItem={toggleItem}
@@ -204,7 +216,7 @@ const AccordionItem = ({ item, index }) => {
         />
 
         {expanded && (
-          <div className="accordion-item-content">
+          <div className="accordion-item-content ">
             <div className="tw-bg-transparent tw-flex tw-justify-end tw-border-b-2 tw-border-b-slate-800 b tw-h-6 tw-font-semibold tw-text-2xl  tw-items-center">
               <h2 className="tw-mr-8 tw-font-inter-font tw-text-12px tw-font-semibold">
                 Back
@@ -235,29 +247,30 @@ const AccordionItem = ({ item, index }) => {
           </div>
         )}
       </div>
-      <Modal
-        isModalOpen={isModalOpen}
-        toggle={toggle}
-        className={"tw-h-[30%] tw-ml-[-2] "}
-        style={{ height: "38%" }}
-      >
-        <CashOutModal
-          cashOutModalData={cashOutModalData}
-          toggle={toggle}
-          onClick={executeCashOut}
-        />
-      </Modal>
     </>
   )
 }
 
 // You can put this for server side render
 const Accordion = ({ data }) => {
+  let matchOddsData = []
+  let nonMatchOddsData = []
+
+  data.map((item, index) => {
+    if (item.marketTitle == "Match Odds") {
+      matchOddsData.push(item)
+    } else {
+      nonMatchOddsData.push(item)
+    }
+  })
+  let modifiedData = [...matchOddsData, ...nonMatchOddsData]
   return (
-    <div className="accordion">
-      {data.map((item, index) => (
-        <AccordionItem key={item.id} item={item} index={index} />
-      ))}
+    <div className="accordion " style={{ paddingBottom: "6rem" }}>
+      {modifiedData.map((item, index) => {
+        return (
+          <AccordionItem key={item.id} item={item} index={index} data={data} />
+        )
+      })}
     </div>
   )
 }

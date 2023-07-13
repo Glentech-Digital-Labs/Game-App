@@ -12,27 +12,27 @@ const BASE_URL = Data.BASE_URL
 function InputComponent({ dates, setDates }) {
   return (
     <>
-      <div className="tw-flex tw-justify-between tw-min-w-full  ">
-        <div className="tw-mr-4">
-          <Input
-            type={"date"}
-            label={"From"}
-            style={{ minWidth: "100%" }}
-            className={"tw-border-2  tw-border-gray-600 tw-pl-4  "}
-            value={dates.from}
-            field={"from"}
-            setValue={setDates}
-          />
-        </div>
+      <div className="tw-flex tw-justify-between tw-min-w-full tw-gap-2 ">
+        <Input
+          type={"date"}
+          label={"From"}
+          style={{ minWidth: "100%" }}
+          className={"tw-border-2  tw-border-gray-600 tw-pl-4 tw-flex-1 "}
+          value={dates.from}
+          field={"from"}
+          setValue={setDates}
+          parentStyle={{ minWidth: "100%" }}
+        />
 
         <Input
           type={"date"}
           label={"To"}
           style={{ minWidth: "100%" }}
-          className={"tw-border-2  tw-border-gray-600 "}
+          className={"tw-border-2  tw-border-gray-600 tw-flex-1"}
           value={dates.to}
           field={"to"}
           setValue={setDates}
+          parentStyle={{ minWidth: "100%" }}
         />
       </div>
     </>

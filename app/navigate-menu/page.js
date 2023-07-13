@@ -1,6 +1,6 @@
 "use client"
 import { IconCards } from "@components"
-import React from "react"
+import React, { Suspense } from "react"
 
 // Needed to be refector Very important to do so,
 // When get time Do it
@@ -38,7 +38,7 @@ function NavigateMenu() {
   }
 
   return (
-    <div>
+    <>
       <div className="tw-bg-[#252530] tw-flex tw-justify-center tw-my-4 tw-py-2 tw-border-1">
         Quicks Links
       </div>
@@ -126,7 +126,7 @@ function NavigateMenu() {
           <IconCards Icon={BsReceiptCutoff} label={"Commission"} />
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

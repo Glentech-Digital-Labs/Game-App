@@ -21,8 +21,8 @@ async function getTransactionData({
   const queryParams = {
     ["from"]: dates?.from,
     ["to"]: dates?.to,
-    transactionType: transactionType,
-    status: paymentStatus,
+    transactionType: transactionType || "ALL",
+    status: paymentStatus || "ALL",
     page: page,
     perPage: "4",
   }

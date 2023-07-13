@@ -47,7 +47,7 @@ function InPlayMatchCard({
               <span className="tw-text-12px tw-font-extrabold">
                 {backPrice}
               </span>
-              <span className="tw-text-12px tw-font-extrabold">{backSize}</span>
+              <span className="tw-text-10px tw-font-extrabold">{backSize}</span>
             </div>
           </button>
           <button
@@ -59,7 +59,7 @@ function InPlayMatchCard({
           >
             <div className="tw-flex tw-flex-col">
               <span className="tw-text-12px tw-font-extrabold">{layPrice}</span>
-              <span className="tw-text-12px tw-font-extrabold">{laySize}</span>
+              <span className="tw-text-10px tw-font-extrabold">{laySize}</span>
             </div>
           </button>
         </div>
