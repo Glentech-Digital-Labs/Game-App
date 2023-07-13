@@ -35,6 +35,7 @@ export {
   Transaction,
   Payment,
   Commission,
+  AccountStatement,
 } from "./bank"
 // export { BankDetails } from "./bank/BankDetails"
 // export { AmountWithdraw } from "./bank/AmountWithdraw"

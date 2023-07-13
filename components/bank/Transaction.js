@@ -6,6 +6,7 @@ import { Header } from "./Transactions.server"
 import { Input } from "@components/common/InputComponent"
 import Data from "utils/config"
 import SummeryComponent from "./Summery"
+import { InputComponent } from "./InputComponent"
 
 const BASE_URL = Data.BASE_URL
 const optionsTransactions = ["DEPOSIT", "WITHDRAWAL", "ALL"]
@@ -45,63 +46,12 @@ async function getTransactionData({
     .catch((error) => console.error(error))
 }
 
-function InputComponent({
-  dates,
-  setDates,
-  paymentStatus,
-  setPaymentStatus,
-  transactionType,
-  setTransactionType,
-}) {
-  return (
-    <>
-      <div className="tw-col-span-1 tw-grid tw-grid-rows-2 tw-min-w-full">
-        <Input
-          type={"date"}
-          label={"From"}
-          style={{ minWidth: "100%" }}
-          className={"tw-border-2  tw-border-gray-600 "}
-          value={dates.from}
-          field={"from"}
-          setValue={setDates}
-        />
-
-        <MultipleSelect
-          options={optionsTransactions}
-          label={"Transaction"}
-          selectedOptions={transactionType}
-          setSelectedOptions={setTransactionType}
-        />
-      </div>
-      <div className="tw-col-span-1 tw-grid tw-grid-rows-2 tw-min-w-full">
-        <Input
-          type={"date"}
-          label={"To"}
-          style={{ minWidth: "100%" }}
-          className={"tw-border-2  tw-border-gray-600 "}
-          value={dates.to}
-          field={"to"}
-          setValue={setDates}
-        />
-
-        <MultipleSelect
-          options={optionStatus}
-          label={"Status"}
-          selectedOptions={paymentStatus}
-          setSelectedOptions={setPaymentStatus}
-        />
-      </div>
-    </>
-  )
-}
-
-const today = new Date().toISOString().split("T")[0]
+const today = new Date()
+  .toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })
+  .split(",")[0]
 function Transaction({ children }) {
   const [isOpen, setIsOpen] = useState(true)
-  const [dates, setDates] = useState({
-    from: today,
-    to: today,
-  })
+
   const [transitionData, setTransactionData] = useState([])
   const [page, setPage] = useState(1)
 
@@ -128,6 +78,11 @@ function Transaction({ children }) {
     getData()
   }
 
+  const [dates, setDates] = useState({
+    from: today,
+    to: today,
+  })
+
   return (
     <>
       <div className="tw-bg-[#201F29] tw-font-normal tw-pt-4 tw-px-4">
@@ -142,11 +97,14 @@ function Transaction({ children }) {
           >
             <InputComponent
               dates={dates}
+              defaultValue={today}
               setDates={setDates}
               paymentStatus={paymentStatus}
               setPaymentStatus={setPaymentStatus}
               transactionType={transactionType}
               setTransactionType={setTransactionType}
+              optionsTransactions={optionsTransactions}
+              optionStatus={optionStatus}
             />
           </div>
           <YellowButton

@@ -19,7 +19,7 @@ const MultipleSelect = ({
             onChange={(e) => setSelectedOptions(e.target.value)}
           >
             <option value="">Select an option</option>
-            {options.map((option) => (
+            {options?.map((option) => (
               <option key={option} value={option}>
                 {option}
               </option>

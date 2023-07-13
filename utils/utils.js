@@ -139,16 +139,18 @@ function calculateProfitAndLiability(amount, betType, odds) {
 
 function formatDateTime(dateTime) {
   const options = {
+    timeZone: "Asia/Kolkata",
     day: "numeric",
     month: "long",
     year: "numeric",
     hour: "numeric",
     minute: "numeric",
     hour12: true,
+    timeZone: "Asia/Kolkata",
   }
 
   const formattedDateTime = new Date(dateTime)
-    .toLocaleString("en-US", options)
+    .toLocaleString("en-IN", options)
     .toUpperCase()
   return formattedDateTime
 }

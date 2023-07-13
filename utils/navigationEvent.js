@@ -19,7 +19,6 @@ export function NavigationEvents() {
     } else {
       setIsLoading(false)
     }
-    console.log(`loading`, isLoading)
   }, [pathname, searchParams, isLoading])
 
   return null

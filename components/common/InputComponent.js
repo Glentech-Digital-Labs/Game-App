@@ -11,6 +11,7 @@ function Input({
   style,
   field,
   parentStyle,
+  defaultValue,
 }) {
   function userChangeHandler(event) {
     if (field) {
@@ -36,6 +37,7 @@ function Input({
         className={`${className} tw-py-2 tw-mt-2 tw-w-[90%] tw-min-w-[90%]`}
         onChange={userChangeHandler}
         style={style}
+        defaultValue={defaultValue}
       />
     </div>
   )

@@ -9,8 +9,6 @@ import Url from "../utils/config"
 import { io } from "socket.io-client"
 import { PersistGate } from "redux-persist/integration/react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-// import {useNavigation} from "@utils/navigation"
-import useNavigationEvent from "@hooks/useNavigation"
 
 export function Providers({ children }) {
   useEffect(() => {
@@ -36,12 +34,6 @@ export function Providers({ children }) {
       socket.off("connect")
     }
   }, [store.dispatch])
-
-  const sendSomewhere = (url) => {
-    console.log(url) // Replace this with actual logic
-  }
-
-  useNavigationEvent(sendSomewhere)
 
   return (
     <Provider store={store}>

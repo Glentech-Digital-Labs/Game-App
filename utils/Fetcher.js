@@ -2,7 +2,17 @@ import Data from "./config"
 
 const BASE_URL = Data.BASE_URL
 
-async function FetchData(path, options) {
+async function FetchData(path, options, queryParams) {
+  let queryString = ""
+  if (queryParams) {
+    queryString = Object.keys(queryParams)
+      .map(
+        (key) =>
+          `${encodeURIComponent(key)}=${encodeURIComponent(queryParams[key])}`
+      )
+      .join("&")
+  }
+
   const modifiedOptions = {
     method: options?.method ? options.method : "GET",
     credentials: "include",
@@ -17,8 +27,9 @@ async function FetchData(path, options) {
         ? JSON.stringify(options?.body)
         : undefined,
   }
+  const requestUrl = `${BASE_URL}/${path}?${queryString}`
 
-  const res = await fetch(`${BASE_URL}/${path}`, { ...modifiedOptions })
+  const res = await fetch(requestUrl, { ...modifiedOptions })
 
   // if (res.status == 401) {
   //   return res

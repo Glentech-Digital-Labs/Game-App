@@ -573,7 +573,7 @@
 .container_thumb_container {
   position: relative;
   width: 100%;
-  height: 200px;
+  /* height: 300px; */
   background-color: black;
   display: flex;
   align-items: center;
@@ -583,28 +583,30 @@
 }
 
 .thumb-down {
-  width: 100px;
-  height: 100px;
-  background-image: url("/images/Thumb-down.png"); /* Replace with the path to your thumb down image */
-  background-size: cover;
-  animation: thumb-down-animation 2s infinite;
+  width: 100%;
+  height: 200px;
+  background-repeat: no-repeat;
+  aspect-ratio: 4/3;
+  background-image: url("/images/No_data.svg"); /* Replace with the path to your thumb down image */
+  background-size: contain;
+  animation: thumb-down-animation 3s infinite;
 }
 
 @keyframes thumb-down-animation {
   0% {
-    transform: translateY(0);
+    transform: translateX(-10%);
   }
   50% {
-    transform: translateY(10px) rotate(10deg);
+    transform: translateX(40%);
   }
   100% {
-    transform: translateY(0);
+    transform: translateX(-10%);
   }
 }
 
 .no-data {
   position: absolute;
-  bottom: 10px;
+  bottom: -20px;
   left: 0;
   right: 0;
   text-align: center;

@@ -35,7 +35,7 @@ function InPlayMatchCard({
         </div>
         <div className="tw-flex tw-justify-end ">
           <button
-            className=" tw-border-b-4 tw-border-[#5975B8]  tw-w-14  tw-h-10 tw-self-end tw-text-center betting-box tw-rounded-lg back-button"
+            className=" tw-border-b-4 tw-border-[#5975B8]  tw-w-14  tw-h-10 tw-self-end tw-text-center betting-box tw-rounded-lg back-button shimmer-element"
             style={{
               backgroundImage:
                 "linear-gradient(1deg, rgba(0, 74, 246, 0.15) 0%, rgba(128, 164, 248, 0.00) 100%), linear-gradient(141deg, #454441 0%, #1C1C1C 100%)",
@@ -44,7 +44,7 @@ function InPlayMatchCard({
             <span className="tw-text-12px tw-font-extrabold">{backPrice}</span>
           </button>
           <button
-            className="tw-border-b-4 tw-border-[#B87A85]  tw-w-14  tw-h-10 tw-self-end tw-ml-4 tw-text-center betting-box tw-rounded-lg"
+            className="tw-border-b-4 tw-border-[#B87A85]  tw-w-14  tw-h-10 tw-self-end tw-ml-4 tw-text-center betting-box tw-rounded-lg shimmer-element"
             style={{
               backgroundImage:
                 "linear-gradient(1deg, rgba(255, 173, 188, 0.15) 0%, rgba(255, 173, 188, 0.00) 100%), linear-gradient(141deg, #454441 0%, #1C1C1C 100%)",

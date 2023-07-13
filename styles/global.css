@@ -230,3 +230,36 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   backdrop-filter: blur(2.738041639328003px);
 }
 /* BOx of menu */
+
+/* Sheemer */
+.shimmer-element {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-element::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Sheemer */
