@@ -587,22 +587,23 @@
   height: 200px;
   background-repeat: no-repeat;
   aspect-ratio: 4/3;
-  background-image: url("/images/No_data.svg"); /* Replace with the path to your thumb down image */
+  background-image: url("/images/clean-bold.webp"); /* Replace with the path to your thumb down image */
   background-size: contain;
   animation: thumb-down-animation 3s infinite;
+  filter: invert(1);
 }
 
-@keyframes thumb-down-animation {
+/* @keyframes thumb-down-animation {
   0% {
-    transform: translateX(-10%);
+    transform: translateY(-10%);
   }
   50% {
     transform: translateX(40%);
   }
   100% {
-    transform: translateX(-10%);
+    transform: translateY(-10%);
   }
-}
+} */
 
 .no-data {
   position: absolute;
