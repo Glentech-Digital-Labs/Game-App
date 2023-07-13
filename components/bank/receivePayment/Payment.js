@@ -243,16 +243,16 @@ function Payment() {
     }
     if (response.success) {
       setMessage("successfully UPLOADED the record")
-      setIsLoading(false)
       tostToggle()
       setTimeout(() => {
         router.push("home/inplay")
       }, 2000)
+      setIsLoading(false)
     }
     if (!response.success) {
       setMessage("Error in  UPLOADED the record")
-      setIsLoading(false)
       tostToggle()
+      setIsLoading(false)
     }
   }
 

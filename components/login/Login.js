@@ -61,10 +61,10 @@ function Login() {
     }
     if (response.success) {
       let userData = response["data"]["user"]
-      setIsLoading(false)
       dispatch(resetError())
       dispatch(setUser({ ...userData }))
       router.replace("/home/inplay")
+      setIsLoading(false)
     }
   }
 

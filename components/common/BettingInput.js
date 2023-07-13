@@ -54,9 +54,11 @@ function AmountComponent({ setAmount }) {
 }
 
 const numberList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
-function NumberComponent({ setAmount }) {
+function NumberComponent({ setAmount, amount }) {
   function backHandler() {
-    setAmount((prev) => prev.slice(0, -1))
+    if (amount) {
+      setAmount((prev) => prev.toString().slice(0, -1))
+    }
   }
   function numberHandler(num) {
     const numString = num.toString()
@@ -141,7 +143,7 @@ function BackLayButtons({
           >
             <AiOutlinePlus />
           </div>
-          {amount.toFixed(2)}
+          {+amount.toFixed(2)}
           <div className="backLay_side_button " onClick={() => amountHandler()}>
             <AiOutlineMinus />
           </div>
@@ -227,8 +229,8 @@ function BettingInput({
     shortMarketSelection = selectionTitle
   }
   function calculateProfitLiability() {
-    let amountInNumber = parseInt(amount)
-    if (amountInNumber <= 0) {
+    let amountInNumber = parseInt(amount || 0)
+    if (amountInNumber < 0) {
       return
     }
     if (typeOfBet == "Back") {
@@ -292,8 +294,8 @@ function BettingInput({
             onClick={placeBetHandler}
           />
         </div>
-        <AmountComponent setAmount={setAmount} />
-        <NumberComponent setAmount={setAmount} />
+        <AmountComponent setAmount={setAmount} amount={amount} />
+        <NumberComponent setAmount={setAmount} amount={amount} />
       </div>
     </>
   )

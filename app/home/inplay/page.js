@@ -55,7 +55,6 @@ function HomePage() {
     const dataChange = { data }
     setMachPointsData(data)
     dispatch(receiveData(dataChange))
-    console.log("Jai shree ram")
     if (typeof callback === "function") {
       callback("Acknowledgment from client")
     }
@@ -98,13 +97,15 @@ function HomePage() {
             let selection = oddsData?.[match.id]?.["selections"][0]
             const backPrice =
               selection?.["backPrices"]?.[0]?.["price"] || match.backPrice
+            const backSize = selection?.["backPrices"]?.[0]?.["size"]
             const layPrice =
               selection?.["layPrices"]?.[0]?.["price"] || match.layPrice
+            const laySize = selection?.["layPrices"]?.[0]?.["size"]
 
             const url = `/place-bet/${newTitle}/${match.teamA}-${match.teamB}/${match.id}`
             return (
-              // <Link href={url} key={match.id} className="tw-relative">
-              <div key={match.id} onClick={() => router.push(url)}>
+              <Link href={url} key={match.id} className="tw-relative">
+                {/* <div key={match.id} onClick={() => router.push(url)}> */}
                 <InPlayMatchCard
                   title={match["competition.title"]}
                   time={formatDateTime(match.openDate)}
@@ -112,9 +113,11 @@ function HomePage() {
                   teamB={match.teamB}
                   backPrice={backPrice}
                   layPrice={layPrice}
+                  backSize={backSize}
+                  laySize={laySize}
                 />
-              </div>
-              // </Link>
+                {/* </div> */}
+              </Link>
             )
           })}
         </div>

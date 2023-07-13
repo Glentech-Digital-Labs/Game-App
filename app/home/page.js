@@ -85,7 +85,6 @@ function HomePage() {
                   </Link>
                 ) : (
                   <div className="tw-relative" key={match.id}>
-                    {/* <LockedCard></LockedCard> */}
                     <MatchCard
                       back={match.layPrice}
                       lay={match.backPrice}

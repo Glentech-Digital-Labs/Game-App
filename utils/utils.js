@@ -163,46 +163,6 @@ const bets = [
   // Add more bets if needed
 ]
 
-const calculateCashoutAmount = (bets, currentOdds) => {
-  let totalPotentialPayout = 0
-  let totalPotentialLiability = 0
-
-  // Calculate potential payouts and liabilities for each bet based on current odds
-  bets?.forEach((bet) => {
-    const potentialPayout = bet.amount * currentOdds[bet.type]
-    if (bet.type === "back") {
-      totalPotentialPayout += potentialPayout
-    } else if (bet.type === "lay") {
-      totalPotentialLiability += potentialPayout
-    }
-  })
-
-  // Calculate cashout amount based on current outcomes
-  const currentOutcomes = {
-    // Example outcomes, you should replace with actual outcomes
-    backWin: true,
-    layWin: false,
-  }
-
-  let cashoutAmount = 0
-
-  if (currentOutcomes.backWin) {
-    cashoutAmount = totalPotentialPayout
-  } else if (currentOutcomes.layWin) {
-    cashoutAmount = -totalPotentialLiability
-  }
-
-  return cashoutAmount
-}
-
-const currentOdds = {
-  back: 3.0,
-  lay: 2.0,
-  // Add more odds if needed
-}
-
-const cashoutAmount = calculateCashoutAmount(bets, currentOdds)
-
 function delete_cookie(name) {
   document.cookie = name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;"
 }
@@ -214,7 +174,6 @@ export {
   getBettingPrice,
   calculateProfitAndLiability,
   formatDateTime,
-  calculateCashoutAmount,
   delete_cookie,
 }
 

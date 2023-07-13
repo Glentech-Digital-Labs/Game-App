@@ -22,7 +22,7 @@ export const cashOutFunction = (currentOddsTable, allUserBets) => {
 export const createOddsTable = (selections) => {
   const currentOddsTable = {}
 
-  selections.forEach((selection) => {
+  selections?.forEach((selection) => {
     currentOddsTable[selection.sId] = {
       backPrices: selection.backPrices.map((b) => b.price),
       layPrices: selection.layPrices.map((b) => b.price),
