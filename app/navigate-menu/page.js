@@ -22,11 +22,26 @@ import {
   AiFillProfile,
   BiHelpCircle,
   BsReceiptCutoff,
+  AiFillBank,
 } from "/utils/Icons"
 
 import { useRouter } from "next/navigation"
-import { setSportId, resetSportsId } from "/redux/feature/sports/sportsSlice"
+import { setSportId } from "/redux/feature/sports/sportsSlice"
 import { useDispatch } from "react-redux"
+
+function NavigateCard({ Icon, label, navigateUrl }) {
+  const router = useRouter()
+  return (
+    <div className="box_card ">
+      <IconCards
+        Icon={Icon}
+        label={label}
+        className={"tw-t-2"}
+        onClick={() => router.push(`${navigateUrl}`)}
+      />
+    </div>
+  )
+}
 
 function NavigateMenu() {
   const router = useRouter()
@@ -43,38 +58,29 @@ function NavigateMenu() {
         Quicks Links
       </div>
       <div className="tw-grid tw-grid-cols-4 tw-gap-2 tw-text-[#7E7E92] tw-px-2">
-        <div className="box_card ">
-          <IconCards
-            Icon={BsFillPlayBtnFill}
-            label={"In Play"}
-            className={"tw-t-2"}
-            onClick={() => router.push("/home/inplay")}
-          />
-        </div>
-        <div className="box_card ">
-          <IconCards
-            Icon={AiFillGift}
-            label={"Referral "}
-            className={"tw-t-2"}
-            onClick={() => router.push("/Referral")}
-          />
-        </div>
-        <div className="box_card ">
-          <IconCards
-            Icon={AiFillHome}
-            label={"Home"}
-            className={"tw-t-2"}
-            onClick={() => router.push("/home")}
-          />
-        </div>
-        <div className="box_card ">
-          <IconCards
-            Icon={FaMoneyBillWaveAlt}
-            label={"Transaction"}
-            className={"tw-t-2 tw-text-white"}
-            onClick={() => router.push("/transactions")}
-          />
-        </div>
+        <NavigateCard
+          Icon={BsFillPlayBtnFill}
+          label={"In play"}
+          navigateUrl={`/home/inplay`}
+        />
+
+        <NavigateCard
+          Icon={AiFillGift}
+          label={"Referral "}
+          navigateUrl={`/Referral`}
+        />
+
+        <NavigateCard
+          Icon={AiFillBank}
+          label={"Statement"}
+          navigateUrl={`/statement`}
+        />
+
+        <NavigateCard
+          Icon={FaMoneyBillWaveAlt}
+          label={"Transaction"}
+          navigateUrl={`/transactions`}
+        />
       </div>
       <div className="tw-bg-[#252530] tw-flex tw-justify-center tw-my-4 tw-py-2 tw-border-1">
         Popular Sports
@@ -109,22 +115,26 @@ function NavigateMenu() {
         More From Us
       </div>
       <div className="tw-grid tw-grid-cols-4 tw-gap-2 tw-text-[#7E7E92] tw-px-2">
-        <div className="box_card ">
-          <IconCards
-            Icon={MdAccountBalance}
-            label={"Payment "}
-            onClick={() => router.push("/payment")}
-          />
-        </div>
-        <div className="box_card " onClick={() => router.push("/membership")}>
-          <IconCards Icon={BsFillPeopleFill} label={"Membership "} />
-        </div>
-        <div className="box_card " onClick={() => router.push("/profile")}>
-          <IconCards Icon={AiFillProfile} label={"Profile"} />
-        </div>
-        <div className="box_card " onClick={() => router.push("/commission")}>
-          <IconCards Icon={BsReceiptCutoff} label={"Commission"} />
-        </div>
+        <NavigateCard
+          Icon={MdAccountBalance}
+          label={"Payment"}
+          navigateUrl={`/payment`}
+        />
+        <NavigateCard
+          Icon={BsFillPeopleFill}
+          label={"Membership"}
+          navigateUrl={`/membership`}
+        />
+        <NavigateCard
+          Icon={AiFillProfile}
+          label={"Profile"}
+          navigateUrl={`/profile`}
+        />
+        <NavigateCard
+          Icon={BsReceiptCutoff}
+          label={"Commission"}
+          navigateUrl={`/commission`}
+        />
       </div>
     </>
   )

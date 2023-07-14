@@ -589,7 +589,8 @@
   aspect-ratio: 4/3;
   background-image: url("/images/clean-bold.webp"); /* Replace with the path to your thumb down image */
   background-size: contain;
-  animation: thumb-down-animation 3s infinite;
+  /* animation: thumb-down-animation 3s infinite; */
+  transform: translateX(100px);
   filter: invert(1);
 }
 

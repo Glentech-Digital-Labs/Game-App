@@ -1,7 +1,7 @@
 "use client"
 import { LockedCard, MatchCard, MatchCardLoading, Nodata } from "@components"
 import FetchData from "@utils/Fetcher"
-import React, { useEffect, useState } from "react"
+import React, { Suspense, useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import Link from "next/link"
 import { formatDateTime } from "@utils/utils"
@@ -64,37 +64,41 @@ function HomePage() {
                 <span>{singleSport?.competitionTitle}</span>
               </div>
 
-              {singleSport.events?.map((match) => {
-                let newTitle = !!match["competition.title"]
-                  ? match["competition.title"]
-                  : "Ram"
+              <Suspense fallback={"Bhai abhi busy hu load kar raha hu......"}>
+                {singleSport.events?.map((match) => {
+                  let newTitle = !!match["competition.title"]
+                    ? match["competition.title"]
+                    : "Ram"
 
-                return match["inPlay"] ? (
-                  <Link
-                    href={`/place-bet/${newTitle}/${match.teamA}-${match.teamB}/${match.id}`}
-                    key={match.id}
-                    prefetch={true}
-                  >
-                    <MatchCard
-                      back={match.layPrice}
-                      lay={match.backPrice}
-                      firstTeam={match.teamB}
-                      secondTeam={match.teamA}
-                      time={formatDateTime(match.openDate)}
-                    />
-                  </Link>
-                ) : (
-                  <div className="tw-relative" key={match.id}>
-                    <MatchCard
-                      back={match.layPrice}
-                      lay={match.backPrice}
-                      firstTeam={match.teamB}
-                      secondTeam={match.teamA}
-                      time={formatDateTime(match.openDate)}
-                    />
-                  </div>
-                )
-              })}
+                  return match["inPlay"] ? (
+                    <Link
+                      href={`/place-bet/${newTitle}/${match.teamA}-${match.teamB}/${match.id}`}
+                      key={match.id}
+                      prefetch={true}
+                    >
+                      <MatchCard
+                        back={match.layPrice}
+                        lay={match.backPrice}
+                        firstTeam={match.teamB}
+                        secondTeam={match.teamA}
+                        time={formatDateTime(match.openDate)}
+                        inPlay={true}
+                      />
+                    </Link>
+                  ) : (
+                    <div className="tw-relative" key={match.id}>
+                      <MatchCard
+                        back={match.layPrice}
+                        lay={match.backPrice}
+                        firstTeam={match.teamB}
+                        secondTeam={match.teamA}
+                        time={formatDateTime(match.openDate)}
+                        inPlay={false}
+                      />
+                    </div>
+                  )
+                })}
+              </Suspense>
             </div>
           ))}
         </div>

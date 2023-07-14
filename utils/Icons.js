@@ -17,6 +17,7 @@ export {
   AiFillTwitterCircle,
   AiFillPlusCircle,
   AiFillProfile,
+  AiFillBank,
 } from "react-icons/ai"
 export {
   MdEmail,

@@ -2,7 +2,7 @@
 import React, { useState } from "react"
 import "./index.css"
 import { Input } from "@components/common/InputComponent"
-import { YellowButton } from "@components/common"
+import { Nodata, YellowButton } from "@components/common"
 import SummeryComponent from "./Summery"
 import CommissionHeader from "./CommissionHeader"
 import Data from "utils/config"
@@ -76,6 +76,7 @@ function Commission() {
   const [commission, setCommission] = useState(5400)
   const [name, setName] = useState("Rohit")
   const [commissionTransactions, setCommissionTransactions] = useState([])
+  const [isDataFetched, setIsDataFetched] = useState(false)
   const [page, setPage] = useState(1)
 
   const toggleHeight = () => {
@@ -89,6 +90,7 @@ function Commission() {
       page,
     })
     setCommissionTransactions(dataItem)
+    setIsDataFetched(true)
   }
 
   return (
@@ -142,6 +144,7 @@ function Commission() {
         Hide
       </div>
 
+      {commissionTransactions.length == 0 && isDataFetched && <Nodata />}
       {commissionTransactions?.map((item, index) => {
         return (
           <CommissionCard

@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useRef, useState } from "react"
-import { MultipleSelect, YellowButton } from "@components/common"
+import { MultipleSelect, Nodata, YellowButton } from "@components/common"
 import { TransactionCard } from "./TransactionCard"
 import { Header } from "./Transactions.server"
 import { Input } from "@components/common/InputComponent"
@@ -51,16 +51,16 @@ const today = new Date()
   .split(",")[0]
 function Transaction({ children }) {
   const [isOpen, setIsOpen] = useState(true)
+  const [isDataFetched, setIsDataFetched] = useState(false)
 
   const [transitionData, setTransactionData] = useState([])
-  const [page, setPage] = useState(1)
 
   const toggleHeight = () => {
     setIsOpen(!isOpen)
   }
   const [transactionType, setTransactionType] = useState("")
   const [paymentStatus, setPaymentStatus] = useState("")
-  const ref = useRef(false)
+  const pageRef = useRef(1)
 
   async function getData() {
     const dataItem = await getTransactionData({
@@ -68,13 +68,13 @@ function Transaction({ children }) {
       dates,
       transactionType,
       paymentStatus,
-      page,
+      page: pageRef.current,
     })
     setTransactionData(dataItem)
-    console.log(dataItem)
+    setIsDataFetched(true)
   }
   function loadHandler() {
-    setPage((prevPage) => prevPage + 1)
+    pageRef.current = pageRef.current + 1
     getData()
   }
 
@@ -139,6 +139,9 @@ function Transaction({ children }) {
       >
         Hide
       </div>
+      {isDataFetched && transitionData?.length == 0 && (
+        <Nodata message={"No transactions Data"} />
+      )}
       {transitionData?.map((item, index) => (
         <TransactionCard
           amount={item.amount}
@@ -148,9 +151,10 @@ function Transaction({ children }) {
           status={item.status}
           type={item.type}
           closingBalance={item.closingBal}
+          key={index}
         />
       ))}
-      {transitionData.length >= 4 && (
+      {transitionData?.length >= 4 && (
         <button
           onClick={() => loadHandler()}
           className="tw-mx-auto tw-text-14px tw-bg-gray-500 tw-w-fit tw-h-fit tw-my-4  tw-rounded-xl tw-px-2 tw-py-2 tw-translate-x-[160%]  "

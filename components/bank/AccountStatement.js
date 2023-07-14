@@ -1,5 +1,5 @@
 "use client"
-import { MultipleSelect, YellowButton } from "@components/common"
+import { MultipleSelect, Nodata, YellowButton } from "@components/common"
 import { Input } from "@components/common/InputComponent"
 import React, { useState } from "react"
 import SummeryComponent from "./Summery"
@@ -74,10 +74,11 @@ function AccountStatement() {
     from: today,
     to: today,
   })
-  const [transactionType, setTransactionType] = useState("")
+  const [transactionType, setTransactionType] = useState("ALL")
   const [isOpen, setIsOpen] = useState(true)
   const [page, setPage] = useState(1)
   const [transactions, setTransactions] = useState([])
+  const [isDataFetched, setIsDataFetched] = useState(false)
 
   const toggleHeight = () => {
     setIsOpen(!isOpen)
@@ -97,8 +98,8 @@ function AccountStatement() {
       queryParams
     )
     if (response.success) {
-      console.log("Data agya", response.data)
       setTransactions(response.data.records)
+      setDates(true)
     }
   }
   function loadHandler() {
@@ -151,6 +152,9 @@ function AccountStatement() {
       >
         Hide
       </div>
+      {isDataFetched && transactions.length == 0 && (
+        <Nodata message={"No Account statement data"} />
+      )}
       {transactions?.map((item, index) => {
         if (item.type == "BET_PL") {
           return (
@@ -161,6 +165,7 @@ function AccountStatement() {
               sports={sports[item.sportId]}
               date={formatDateTime(item.updatedAt)}
               debit={item.pl}
+              key={index}
             />
           )
         }
@@ -175,6 +180,7 @@ function AccountStatement() {
               status={item.status}
               type={item.type}
               closingBalance={item.closingBal}
+              key={index}
             />
           )
         }
