@@ -29,7 +29,7 @@ function OpenBets({ betData }) {
         <div className="tw-col-span-1">Profit</div>
       </div>
       <div className="tw-overflow-y-auto tw-h-[85%] tw-px-4">
-        {betData?.length == 0 && <Nodata />}
+        {betData?.length == 0 && "NO Bets Available"}
         {betData?.map((betDetails) => {
           let className
           if (betDetails.betType == "LAY") {

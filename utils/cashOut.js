@@ -7,12 +7,14 @@ export const cashOutFunction = (currentOddsTable, allUserBets) => {
 
     if (betType === "LAY") {
       backAmount =
-        (odds * initialAmount) / currentOddsTable[selectionId].backPrices[index]
+        (odds * initialAmount) /
+        currentOddsTable[selectionId].backPrices?.[index]
 
       return initialAmount - backAmount
     } else {
       layAmount =
-        (odds * initialAmount) / currentOddsTable[selectionId].layPrices[index]
+        (odds * initialAmount) /
+        currentOddsTable[selectionId].layPrices?.[index]
 
       return layAmount - initialAmount
     }
@@ -21,13 +23,15 @@ export const cashOutFunction = (currentOddsTable, allUserBets) => {
 
 export const createOddsTable = (selections) => {
   const currentOddsTable = {}
-
-  selections?.forEach((selection) => {
-    currentOddsTable[selection.sId] = {
-      backPrices: selection.backPrices.map((b) => b.price),
-      layPrices: selection.layPrices.map((b) => b.price),
-    }
-  })
-
+  let backPrice = []
+  let layPrice = []
+  if (Array.isArray(selections)) {
+    selections?.forEach((selection) => {
+      currentOddsTable[selection.sId] = {
+        backPrices: selection.backPrices.map((b) => b.price || 1),
+        layPrices: selection.layPrices.map((b) => b.price || 1),
+      }
+    })
+  }
   return currentOddsTable
 }

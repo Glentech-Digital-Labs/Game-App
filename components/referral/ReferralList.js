@@ -1,3 +1,4 @@
+"use client"
 import Gift from "../../public/images/GIft-Box.png"
 import Blessing from "../../public/images/Ashirwad.png"
 import CoinOne from "../../public/images/Coin-Image-1.png"
@@ -11,8 +12,29 @@ import { BsFacebook, BsTelegram } from "/utils/Icons"
 import { AiFillTwitterCircle } from "/utils/Icons"
 import { IoLogoWhatsapp } from "/utils/Icons"
 import Image from "next/image"
+import FetchData from "@utils/Fetcher"
+import { useEffect, useState } from "react"
 
 function ReferredPeople() {
+  const [referredData, setReferredData] = useState([])
+  useEffect(() => {
+    async function getReferred(params) {
+      const response = await FetchData("user/referrals", {
+        next: { revalidate: 60 },
+      })
+      setReferredData(response.data)
+    }
+    getReferred()
+  }, [])
+
+  if (referredData.length == 0) {
+    return (
+      <div className="tw-flex tw-justify-center tw-items-center  ">
+        <div className=" tw-self-center tw-my-40">No Referred people</div>
+      </div>
+    )
+  }
+
   return (
     <>
       <div className="tw-grid tw-grid-cols-10 tw-bg-[#36364A] tw-h-14 tw-justify-items-center tw-items-center  tw-mb-4 tw-rounded-t-xl">
@@ -20,7 +42,18 @@ function ReferredPeople() {
         <div className="tw-col-span-3">Joining Date</div>
         <div className="tw-col-span-3">Earning</div>
       </div>
-      <div className="tw-bg-[#252530] ">
+      {referredData.map((user, index) => {
+        return (
+          <div className="tw-bg-[#252530] ">
+            <div className="tw-grid tw-grid-cols-10  tw-justify-items-center tw-items-center tw-mb-2 tw-h-8">
+              <div className="tw-col-span-4">{user.name}</div>
+              <div className="tw-col-span-3">23/4/2045</div>
+              <div className="tw-col-span-3">23/4/2045</div>
+            </div>
+          </div>
+        )
+      })}
+      {/* <div className="tw-bg-[#252530] ">
         <div className="tw-grid tw-grid-cols-10  tw-justify-items-center tw-items-center tw-mb-2 tw-h-8">
           <div className="tw-col-span-4">Gingal singh</div>
           <div className="tw-col-span-3">23/4/2045</div>
@@ -36,7 +69,7 @@ function ReferredPeople() {
           <div className="tw-col-span-3">23/4/2045</div>
           <div className="tw-col-span-3">23/4/2045</div>
         </div>
-      </div>
+      </div> */}
     </>
   )
 }

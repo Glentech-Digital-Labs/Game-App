@@ -4,7 +4,7 @@ import "./index.css"
 import { YellowButton } from "@components/common"
 import { useModal } from "@hooks"
 import { Modal } from "@components/modal/Modal"
-import { PriceImages, SocialMedia, ReferredPeople } from "./Referral.server"
+import { PriceImages, SocialMedia, ReferredPeople } from "./ReferralList"
 import { useSelector } from "react-redux"
 
 function ReferralComponent() {

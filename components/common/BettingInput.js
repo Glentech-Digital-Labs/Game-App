@@ -167,6 +167,7 @@ function BettingInput({
   setExpanded,
   setIsBetPlace,
   tostToggle,
+  grandParentExpand,
 }) {
   const [amount, setAmount] = useState(0)
   const numberAmount = parseInt(amount)
@@ -195,6 +196,7 @@ function BettingInput({
 
     if (response.status == 401) {
       dispatch(resetUser())
+      grandParentExpand(false)
       router.push("/login")
     }
 
@@ -214,6 +216,7 @@ function BettingInput({
       )
       setLoading(false)
       setExpanded(false)
+      grandParentExpand(false)
       tostToggle()
       setSelectedId(0)
     } else {

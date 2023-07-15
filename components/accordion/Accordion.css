@@ -9,7 +9,6 @@
 }
 
 .accordion-item-header {
-  /* background-color: #eb1616; */
   padding: 10px;
   cursor: pointer;
   transition: background-color 0.3s;

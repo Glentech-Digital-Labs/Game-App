@@ -53,7 +53,7 @@ function AccordionTopPart({
           const selections = oddsData["markets"][item]["selections"]
           let tables = createOddsTable(selections)
           let cashOutData = cashOutFunction(tables, allBets)
-          setCashOut(cashOutData)
+          setCashOut(cashOutData.toFixed(2))
         }
       })
     }
@@ -77,10 +77,12 @@ function AccordionTopPart({
       </div>
       <div className="tw-flex">
         {item.id == selectedId &&
-        !!teamBetId &&
+        // !!teamBetId && it was for selected item but no have to show for match odd
+        cashOut != parseFloat(0) &&
         showCashOut &&
         isItMatchOdds &&
-        expanded ? (
+        expanded &&
+        !!oddsData ? (
           <button
             className="tw-bg-[#03CD5D] tw-font-medium tw-text-12px tw-px-2 tw-py-1 tw-rounded-md tw-items-center tw-justify-center tw-flex tw-h-7 tw-w-fit tw-self-center tw-mr-2"
             onClick={toggle}
@@ -149,7 +151,7 @@ const AccordionItem = ({ item, index, data }) => {
   useEffect(() => {
     if (index == 0) {
       setExpanded(!expanded)
-      setSelectedId(0)
+      setSelectedId(item.id)
     }
   }, [])
 
@@ -167,8 +169,7 @@ const AccordionItem = ({ item, index, data }) => {
       }
     }
     getCashOutData()
-    return () => {}
-  }, [])
+  }, [isModalOpen])
 
   async function executeCashOut() {
     const response = await FetchData(
@@ -241,6 +242,7 @@ const AccordionItem = ({ item, index, data }) => {
                   checkoutAmount={checkoutAmount}
                   teamBetId={teamBetId}
                   setCurrentBackLayPrice={setCurrentBackLayPrice}
+                  grandParentExpand={setExpanded}
                 />
               )
             })}
