@@ -23,7 +23,7 @@ function Referral({ setValue, refererCodeValue }) {
   function inputHandler(e) {
     setValue((prev) => ({
       ...prev,
-      refererCode: e.target.value,
+      refererCode: e.target.value.toUpperCase(),
     }))
   }
   async function getReferredPersonName() {

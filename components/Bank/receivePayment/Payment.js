@@ -112,6 +112,7 @@ function BottomLayout({
   utrNumber,
   setSelectedImage,
   submitHandler,
+  className,
 }) {
   const [selectedId, setSelectedId] = useState(0)
   const router = useRouter()
@@ -132,7 +133,9 @@ function BottomLayout({
 
   return (
     <>
-      <div className="tw-flex tw-overflow-x-auto tw-my-4 remove-scroll-bar">
+      <div
+        className={`tw-flex tw-overflow-x-auto tw-my-4 remove-scroll-bar ${className}`}
+      >
         {array.map((item, index) => {
           let color
           if (item == selectedId) {
@@ -262,7 +265,7 @@ function Payment() {
         {message}
       </Toast>
       {isLoading && <Loader />}
-      <div className="tw-flex tw-bg-[#171717] tw-justify-center tw-my-4 ">
+      <div className="tw-flex tw-bg-[#171717] tw-justify-center tw-my-4  tw-mb-10">
         {paymentData?.map((item) => {
           return (
             <Image
