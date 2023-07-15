@@ -102,11 +102,12 @@ function Registration() {
         mode: "requestOtp",
       },
     })
+    console.log(`Response Data`, responseData)
 
-    if (!responseData.ok) {
-      setLoading(false)
-      throw new Error("Some error while fetching  the data")
-    }
+    // if (!responseData.ok) {
+    //   setLoading(false)
+    //   throw new Error("Some error while fetching  the data")
+    // }
 
     if (!responseData.success) {
       let data = {
