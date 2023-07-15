@@ -1,7 +1,7 @@
 "use client"
 import React, { Profiler, useEffect, useState } from "react"
 import "./index.css"
-import { YellowButton } from "@components/common"
+import { BottomMenu, YellowButton } from "@components/common"
 import { useModal } from "@hooks"
 import { Modal } from "@components/modal/Modal"
 import { PriceImages, SocialMedia, ReferredPeople } from "./ReferralList"
@@ -62,6 +62,7 @@ function ReferralComponent() {
           <SocialMedia />
         </div>
       </div>
+      <BottomMenu />
       <Modal isModalOpen={isModalOpen} toggle={toggle}>
         <ReferredPeople />
       </Modal>

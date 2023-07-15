@@ -23,7 +23,7 @@ function RegisterComponent() {
         label={"Registration"}
         className="tw-px-2 tw-mx-2 tw-self-center"
         style={{ height: "2rem" }}
-        onClick={() => router.push("/Registration")}
+        onClick={() => router.push("/registration")}
       />
     </div>
   )

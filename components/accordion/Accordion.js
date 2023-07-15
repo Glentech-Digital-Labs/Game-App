@@ -61,6 +61,24 @@ function AccordionTopPart({
 
   const isItMatchOdds = item.marketTitle == "Match Odds"
 
+  // console.log(
+  //   "item id",
+  //   item.id,
+  //   "selection id",
+  //   selectedId,
+  //   "cashOut",
+  //   cashOut,
+  //   parseFloat(0),
+  //   "show cashout",
+  //   showCashOut,
+  //   "is match odds",
+  //   isItMatchOdds,
+  //   "expands",
+  //   expanded,
+  //   "odds data",
+  //   !!oddsData
+  // )
+
   return (
     <div
       className={`tw-bg-[#36363D] tw-flex tw-justify-between tw-h-14 tw-mt-4 tw-px-4  `}
@@ -162,7 +180,7 @@ const AccordionItem = ({ item, index, data }) => {
       )
 
       if (!!response.ok) {
-        throw new Error("Error in fetching the cashout")
+        throw new Error("Error in fetching the cashOut")
       }
       if (response.success) {
         setCashOutModalData(response.data)
