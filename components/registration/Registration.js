@@ -103,7 +103,7 @@ function Registration() {
       },
     })
 
-    if (!response.ok) {
+    if (!responseData.ok) {
       setLoading(false)
       throw new Error("Some error while fetching  the data")
     }
