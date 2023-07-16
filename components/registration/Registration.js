@@ -226,7 +226,7 @@ function Registration() {
         label={"Login"}
         type="submit"
         disable={loading}
-        onClick={() => routeHandler()}
+        onClick={(event) => routeHandler(event)}
         className={"tw-w-[80%] tw-my-4 "}
         style={{ marginLeft: "2.4rem" }}
       />

@@ -31,7 +31,7 @@ function RegisterComponent() {
 async function getLoginData() {
   const response = await FetchData("punter/check/session")
   if (response.success) {
-    return response.message
+    return response
   }
   return response
 }
@@ -56,11 +56,11 @@ function HeaderProfile() {
   useEffect(() => {
     const interval = setInterval(async () => {
       const responseData = await getLoginData()
-      if (responseData.status == "401" || responseData.success == "false") {
+      if (responseData.success == "false") {
         dispatch(resetUser())
         delete_cookie("sessionId")
       }
-    }, 1000 * 60)
+    }, 1000 * 10)
     return () => {
       clearInterval(interval)
     }

@@ -18,7 +18,7 @@ function ReferralComponent() {
   }
 
   return (
-    <Profiler id="App">
+    <div id="App" className="tw-pb-8">
       <div className="tw-relative tw-min-w-full tw-h-[80vh] referral-main ">
         <PriceImages />
         <div className="tw-absolute  tw-mt-44 tw-flex tw-flex-col tw-justify-center tw-mx-4 ">
@@ -67,7 +67,7 @@ function ReferralComponent() {
       <Modal isModalOpen={isModalOpen} toggle={toggle}>
         <ReferredPeople />
       </Modal>
-    </Profiler>
+    </div>
   )
 }
 const Referral = protectRouteWithCookie(React.memo(ReferralComponent))
