@@ -18,6 +18,9 @@ import {
 } from "/utils/Icons"
 import FetchData from "@utils/Fetcher"
 import { useRouter } from "next/navigation"
+import { ToastContainer, toast } from "react-toastify"
+import { NOTIFICATION_SETTING } from "utils/constants"
+import protectRouteWithCookie from "@hooks/ProtectedRoute"
 
 async function getUserData() {
   const response = await FetchData("user/profile")
@@ -35,7 +38,7 @@ async function getUserData() {
 
 // UPdating ApI is still Left
 
-function ProfileEdit() {
+function Profile() {
   // const userData = use(dataFromPromise)
   const [userData, setUserData] = useState({})
   const router = useRouter()
@@ -63,63 +66,71 @@ function ProfileEdit() {
       },
     })
     if (response.success) {
-      console.log(`Updated request`)
+      toast.success("Updated successfully", {
+        ...NOTIFICATION_SETTING,
+      })
       router.push("/home")
     }
-
-    if (response.status == "401") {
+    if (!response.success) {
+      toast.warn(`${response.message}`, {
+        ...NOTIFICATION_SETTING,
+      })
       router.push("/login")
     }
   }
 
   return (
-    <div className="tw-flex tw-flex-col">
-      <div className="tw-w-36 tw-h-36 tw-rounded-full tw-mt-6 tw-relative tw-mx-auto">
-        <Image
-          src={Kohali}
-          fill={true}
-          className="tw-rounded-full "
-          alt="Image of Profile"
-        />
-      </div>
+    <>
+      <ToastContainer />
+      <div className="tw-flex tw-flex-col">
+        <div className="tw-w-36 tw-h-36 tw-rounded-full tw-mt-6 tw-relative tw-mx-auto">
+          <Image
+            src={Kohali}
+            fill={true}
+            className="tw-rounded-full "
+            alt="Image of Profile"
+          />
+        </div>
 
-      <div className=" tw-mx-3">
-        <ContentEditableInput
-          Icon={AiOutlineUser}
-          initialValue={userData?.userName}
-          label={"Username"}
-          type={"text"}
-          data={userData?.["userName"]}
-        />
-        <ContentEditableInput
-          Icon={AiOutlineUser}
-          initialValue={"userData.fullName"}
-          label={"First Name"}
-          type={"text"}
-          data={userData?.["fullName"]}
-        />
-        <ContentEditableInput
-          Icon={MdEmail}
-          initialValue={userData?.email}
-          label={"Email"}
-          type={"email"}
-          data={userData?.["email"]}
-        />
-        <ContentEditableInput
-          Icon={BsFillTelephoneFill}
-          initialValue={userData?.phoneNumber}
-          label={"Phone"}
-          type={"text"}
-          data={userData?.["phoneNumber"]}
+        <div className=" tw-mx-3">
+          <ContentEditableInput
+            Icon={AiOutlineUser}
+            initialValue={userData?.userName}
+            label={"Username"}
+            type={"text"}
+            data={userData?.["userName"]}
+          />
+          <ContentEditableInput
+            Icon={AiOutlineUser}
+            initialValue={"userData.fullName"}
+            label={"First Name"}
+            type={"text"}
+            data={userData?.["fullName"]}
+          />
+          <ContentEditableInput
+            Icon={MdEmail}
+            initialValue={userData?.email}
+            label={"Email"}
+            type={"email"}
+            data={userData?.["email"]}
+          />
+          <ContentEditableInput
+            Icon={BsFillTelephoneFill}
+            initialValue={userData?.phoneNumber}
+            label={"Phone"}
+            type={"text"}
+            data={userData?.["phoneNumber"]}
+          />
+        </div>
+        <YellowButton
+          label={"Update"}
+          className={"tw-mx-4"}
+          onClick={updateUser}
         />
       </div>
-      <YellowButton
-        label={"Update"}
-        className={"tw-mx-4"}
-        onClick={updateUser}
-      />
-    </div>
+    </>
   )
 }
 
+let ProfileEdit = protectRouteWithCookie(Profile)
 export { ProfileEdit }

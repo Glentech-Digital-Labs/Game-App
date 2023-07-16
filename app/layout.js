@@ -1,4 +1,4 @@
-import { Loader } from "@components"
+import { Loader, MobileView } from "@components"
 import { Providers } from "@redux/provider"
 import "@styles/global.css"
 import { NavigationEvents } from "@utils/navigationEvent"
@@ -28,14 +28,16 @@ export function reportWebVitals(metric) {
   metric
 }
 
-function RootLayout({ children, session }) {
+function RootLayout({ children }) {
   return (
     <html className={`${inter.variable} ${sfFont.variable}`} lang={"en"}>
       <body>
+        {/* <MobileView> */}
         <Providers>{children}</Providers>
         <Suspense fallback={"Loader...."}>
           <NavigationEvents />
         </Suspense>
+        {/* </MobileView> */}
       </body>
     </html>
   )

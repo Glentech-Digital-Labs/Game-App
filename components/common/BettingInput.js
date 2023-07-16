@@ -4,7 +4,6 @@ import {
   AmountCard,
   BlackButton,
   NumberCard,
-  Toast,
   YellowButton,
 } from "@components/common"
 
@@ -21,7 +20,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { useToast } from "@hooks"
 import { resetUser } from "@redux/feature/user/userSlice"
 import { useRouter } from "next/navigation"
-import { ToastContainer, toast } from "react-toastify"
 
 // Change of color on click is left has to do
 let array = [100, 200, 300, 400, 500, 600, 700]

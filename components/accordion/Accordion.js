@@ -21,6 +21,7 @@ import { delete_cookie } from "@utils/utils"
 import { resetUser } from "@redux/feature/user/userSlice"
 import { ToastContainer, toast } from "react-toastify"
 import { NOTIFICATION_SETTING } from "utils/constants"
+import protectRouteWithCookie from "@hooks/ProtectedRoute"
 
 function AccordionTopPart({
   expanded,
@@ -62,24 +63,6 @@ function AccordionTopPart({
   }, [oddsData, isNewBetPlaced])
 
   const isItMatchOdds = item.marketTitle == "Match Odds"
-
-  // console.log(
-  //   "item id",
-  //   item.id,
-  //   "selection id",
-  //   selectedId,
-  //   "cashOut",
-  //   cashOut,
-  //   parseFloat(0),
-  //   "show cashout",
-  //   showCashOut,
-  //   "is match odds",
-  //   isItMatchOdds,
-  //   "expands",
-  //   expanded,
-  //   "odds data",
-  //   !!oddsData
-  // )
 
   return (
     <div
@@ -199,14 +182,30 @@ const AccordionItem = ({ item, index, data }) => {
     if (!!response.ok) {
       throw new Error("Error in fetching the Execute")
     }
-    if (response.status == "401") {
-      delete_cookie("sessionId")
-      dispatch(resetUser())
-      router.push("/login")
+    if (!response.success) {
+      if (
+        response.message == "user un-authenticated, authentication required."
+      ) {
+        toast.warn("UN-authenticated", {
+          ...NOTIFICATION_SETTING,
+        })
+        delete_cookie("sessionId")
+        dispatch(resetUser())
+        router.push("/login")
+      } else {
+        toast.warn(`${response.message}`, {
+          ...NOTIFICATION_SETTING,
+        })
+      }
+      toggle()
     }
+
     if (response.success) {
       dispatch(setNewBet())
       setCashOutExecute(response.data)
+      toast.success("Executed cashout", {
+        ...NOTIFICATION_SETTING,
+      })
       toggle()
     }
   }
@@ -289,7 +288,7 @@ const AccordionItem = ({ item, index, data }) => {
 }
 
 // You can put this for server side render
-const Accordion = ({ data }) => {
+const AccordionMain = ({ data }) => {
   let matchOddsData = []
   let nonMatchOddsData = []
 
@@ -311,5 +310,6 @@ const Accordion = ({ data }) => {
     </div>
   )
 }
+let Accordion = protectRouteWithCookie(AccordionMain)
 
 export { Accordion }

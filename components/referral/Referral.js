@@ -6,6 +6,7 @@ import { useModal } from "@hooks"
 import { Modal } from "@components/modal/Modal"
 import { PriceImages, SocialMedia, ReferredPeople } from "./ReferralList"
 import { useSelector } from "react-redux"
+import protectRouteWithCookie from "@hooks/ProtectedRoute"
 
 function ReferralComponent() {
   const { isModalOpen, toggle } = useModal()
@@ -32,7 +33,7 @@ function ReferralComponent() {
           </p>
           <div className="tw-flex tw-border-2 tw-rounded-xl tw-border-gray-700 tw-justify-between tw-items-center">
             <div className="tw-border-r-2 tw-px-4">Referral Code</div>
-            <p className="tw-font-semibold tw-text-lg">{referralCode}</p>
+            <p className="tw-font-medium tw-text-14px">{referralCode}</p>
             <button
               className="tw-bg-white tw-text-black tw-p-2 tw-rounded-xl tw-mx-2 tw-my-2"
               onClick={() => {
@@ -44,7 +45,7 @@ function ReferralComponent() {
           </div>
           <div className="tw-flex tw-border-2 tw-rounded-xl tw-border-gray-700 tw-justify-between tw-items-center tw-my-4">
             <div className="tw-border-r-2 tw-px-4">Referral Link</div>
-            <p className="tw-font-semibold tw-text-lg">{`registration/${referralCode}`}</p>
+            <p className="tw-font-medium tw-text-14px">{`registration/${referralCode}`}</p>
             <button
               className="tw-bg-white tw-text-black tw-p-2 tw-rounded-xl tw-mx-2 tw-my-2"
               onClick={() => {
@@ -69,5 +70,5 @@ function ReferralComponent() {
     </Profiler>
   )
 }
-const Referral = React.memo(ReferralComponent)
+const Referral = protectRouteWithCookie(React.memo(ReferralComponent))
 export { Referral }

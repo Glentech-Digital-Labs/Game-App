@@ -4,7 +4,6 @@ import { calculateWinningOutcomesPAndL, getBettingPrice } from "@utils/utils"
 const { BettingInput, Loader, Shimmer, Toast } = require("@components/common")
 const { useState, useEffect } = require("react")
 const { useSelector } = require("react-redux")
-import { NOTIFICATION_SETTING } from "utils/constants"
 
 const AccordionChildItem = ({
   item,
