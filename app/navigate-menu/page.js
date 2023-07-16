@@ -63,23 +63,20 @@ function NavigateMenu() {
           label={"In play"}
           navigateUrl={`/home/inplay`}
         />
-
+        <NavigateCard
+          Icon={BsFillPeopleFill}
+          label={"Membership"}
+          navigateUrl={`/membership`}
+        />
+        <NavigateCard
+          Icon={AiFillProfile}
+          label={"Profile"}
+          navigateUrl={`/profile`}
+        />
         <NavigateCard
           Icon={AiFillGift}
           label={"Referral "}
           navigateUrl={`/Referral`}
-        />
-
-        <NavigateCard
-          Icon={AiFillBank}
-          label={"Statement"}
-          navigateUrl={`/statement`}
-        />
-
-        <NavigateCard
-          Icon={FaMoneyBillWaveAlt}
-          label={"Transaction"}
-          navigateUrl={`/transactions`}
         />
       </div>
       <div className="tw-bg-[#252530] tw-flex tw-justify-center tw-my-4 tw-py-2 tw-border-1">
@@ -112,7 +109,7 @@ function NavigateMenu() {
         </div>
       </div>
       <div className="tw-bg-[#252530] tw-flex tw-justify-center tw-my-4 tw-py-2 tw-border-1">
-        More From Us
+        Payment
       </div>
       <div className="tw-grid tw-grid-cols-4 tw-gap-2 tw-text-[#7E7E92] tw-px-2">
         <NavigateCard
@@ -120,15 +117,17 @@ function NavigateMenu() {
           label={"Payment"}
           navigateUrl={`/payment`}
         />
+
         <NavigateCard
-          Icon={BsFillPeopleFill}
-          label={"Membership"}
-          navigateUrl={`/membership`}
+          Icon={AiFillBank}
+          label={"Statement"}
+          navigateUrl={`/statement`}
         />
+
         <NavigateCard
-          Icon={AiFillProfile}
-          label={"Profile"}
-          navigateUrl={`/profile`}
+          Icon={FaMoneyBillWaveAlt}
+          label={"Transaction"}
+          navigateUrl={`/transactions`}
         />
         <NavigateCard
           Icon={BsReceiptCutoff}

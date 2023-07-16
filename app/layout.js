@@ -1,3 +1,4 @@
+import { Loader } from "@components"
 import { Providers } from "@redux/provider"
 import "@styles/global.css"
 import { NavigationEvents } from "@utils/navigationEvent"
@@ -32,7 +33,7 @@ function RootLayout({ children, session }) {
     <html className={`${inter.variable} ${sfFont.variable}`} lang={"en"}>
       <body>
         <Providers>{children}</Providers>
-        <Suspense fallback={"loading...."}>
+        <Suspense fallback={"Loader...."}>
           <NavigationEvents />
         </Suspense>
       </body>

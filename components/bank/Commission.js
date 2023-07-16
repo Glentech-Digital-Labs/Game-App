@@ -7,6 +7,8 @@ import SummeryComponent from "./Summery"
 import CommissionHeader from "./CommissionHeader"
 import Data from "utils/config"
 import { CommissionCard } from "./CommissionCard"
+import { toast } from "react-toastify"
+import { optionStatus, NOTIFICATION_SETTING } from "utils/constants"
 
 const BASE_URL = Data.BASE_URL
 function InputComponent({ dates, setDates }) {
@@ -61,7 +63,7 @@ async function getCommissionData({ url, dates, page }) {
   })
     .then((resp) => resp.json())
     .then((data) => {
-      return data.data.records
+      return data
     })
     .catch((error) => console.error(error))
 }
@@ -84,13 +86,21 @@ function Commission() {
   }
 
   async function getData() {
-    const dataItem = await getCommissionData({
+    setIsDataFetched(false)
+    const response = await getCommissionData({
       url: "accounts/bet-commissions",
       dates,
       page,
     })
-    setCommissionTransactions(dataItem)
-    setIsDataFetched(true)
+    if (response.success) {
+      setCommissionTransactions(response.data.records)
+      setIsDataFetched(true)
+    }
+    if (!response.success) {
+      toast.error(`${response.message}`, {
+        ...NOTIFICATION_SETTING,
+      })
+    }
   }
 
   return (
@@ -141,7 +151,7 @@ function Commission() {
         onClick={toggleHeight}
         className="tw-bg-[#201F29] tw-relative tw-mx-auto tw-w-20 tw-h-8  tw-px-4   tw-text-center  tw-rounded-lg"
       >
-        Hide
+        {isOpen ? "Hide" : "show"}
       </div>
 
       {commissionTransactions.length == 0 && isDataFetched && <Nodata />}

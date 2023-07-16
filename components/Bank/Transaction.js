@@ -7,6 +7,8 @@ import { Input } from "@components/common/InputComponent"
 import Data from "utils/config"
 import SummeryComponent from "./Summery"
 import { InputComponent } from "./InputComponent"
+import { ToastContainer, toast } from "react-toastify"
+import { NOTIFICATION_SETTING } from "utils/constants"
 
 const BASE_URL = Data.BASE_URL
 const optionsTransactions = ["DEPOSIT", "WITHDRAWAL", "ALL"]
@@ -41,14 +43,12 @@ async function getTransactionData({
   })
     .then((resp) => resp.json())
     .then((data) => {
-      return data.data.records
+      return data
     })
     .catch((error) => console.error(error))
 }
 
-const today = new Date()
-  .toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })
-  .split(",")[0]
+const today = new Date().toISOString().split("T")[0]
 function Transaction({ children }) {
   const [isOpen, setIsOpen] = useState(true)
   const [isDataFetched, setIsDataFetched] = useState(false)
@@ -63,15 +63,22 @@ function Transaction({ children }) {
   const pageRef = useRef(1)
 
   async function getData() {
-    const dataItem = await getTransactionData({
+    const response = await getTransactionData({
       url: "accounts/transactions",
       dates,
       transactionType,
       paymentStatus,
       page: pageRef.current,
     })
-    setTransactionData(dataItem)
-    setIsDataFetched(true)
+    if (response.success) {
+      setTransactionData(response.data.records)
+      setIsDataFetched(true)
+    }
+    if (!response.success) {
+      toast.error(`${response.message}`, {
+        ...NOTIFICATION_SETTING,
+      })
+    }
   }
   function loadHandler() {
     pageRef.current = pageRef.current + 1
@@ -85,6 +92,7 @@ function Transaction({ children }) {
 
   return (
     <>
+      <ToastContainer />
       <div className="tw-bg-[#201F29] tw-font-normal tw-pt-4 tw-px-4">
         <div
           className={` tw-py-2 tw-min-w-full container   ${

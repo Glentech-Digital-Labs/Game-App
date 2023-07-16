@@ -4,6 +4,7 @@ import { calculateWinningOutcomesPAndL, getBettingPrice } from "@utils/utils"
 const { BettingInput, Loader, Shimmer, Toast } = require("@components/common")
 const { useState, useEffect } = require("react")
 const { useSelector } = require("react-redux")
+import { NOTIFICATION_SETTING } from "utils/constants"
 
 const AccordionChildItem = ({
   item,
@@ -16,6 +17,7 @@ const AccordionChildItem = ({
   setCheckoutAmount,
   marketTitle,
   grandParentExpand,
+  betInformation,
 }) => {
   const oddsData = useSelector((state) => state.socket.events_selection.data)
   const [expanded, setExpanded] = useState(false)
@@ -65,9 +67,9 @@ const AccordionChildItem = ({
   return (
     <>
       {loading && <Loader />}
-      <Toast isToastOpen={isToastOpen} tostToggle={tostToggle}>
+      {/* <Toast isToastOpen={isToastOpen} tostToggle={tostToggle}>
         <span className="tw-h-6">Congratulation Bet is Placed</span>
-      </Toast>
+      </Toast> */}
       <div className="accordion-item ">
         <div className={`accordion-item-header ${expanded ? "expanded" : ""}`}>
           <div
@@ -131,6 +133,7 @@ const AccordionChildItem = ({
               setExpanded={setExpanded}
               tostToggle={tostToggle}
               grandParentExpand={grandParentExpand}
+              betInformation={betInformation}
             />
           </div>
         )}

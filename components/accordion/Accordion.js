@@ -19,6 +19,8 @@ import { setNewBet } from "@redux/feature/sports/sportsSlice"
 import { useRouter } from "next/navigation"
 import { delete_cookie } from "@utils/utils"
 import { resetUser } from "@redux/feature/user/userSlice"
+import { ToastContainer, toast } from "react-toastify"
+import { NOTIFICATION_SETTING } from "utils/constants"
 
 function AccordionTopPart({
   expanded,
@@ -209,8 +211,22 @@ const AccordionItem = ({ item, index, data }) => {
     }
   }
 
+  function betInformation(status, message) {
+    if (status == "success") {
+      toast.success("Congratulation Bet placed", {
+        ...NOTIFICATION_SETTING,
+      })
+    }
+    if (status == "error") {
+      toast.success(`${message}`, {
+        ...NOTIFICATION_SETTING,
+      })
+    }
+  }
+
   return (
     <>
+      <ToastContainer />
       <Modal
         isModalOpen={isModalOpen}
         toggle={toggle}
@@ -261,6 +277,7 @@ const AccordionItem = ({ item, index, data }) => {
                   teamBetId={teamBetId}
                   setCurrentBackLayPrice={setCurrentBackLayPrice}
                   grandParentExpand={setExpanded}
+                  betInformation={betInformation}
                 />
               )
             })}

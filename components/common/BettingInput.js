@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useToast } from "@hooks"
 import { resetUser } from "@redux/feature/user/userSlice"
 import { useRouter } from "next/navigation"
+import { ToastContainer, toast } from "react-toastify"
 
 // Change of color on click is left has to do
 let array = [100, 200, 300, 400, 500, 600, 700]
@@ -168,6 +169,7 @@ function BettingInput({
   setIsBetPlace,
   tostToggle,
   grandParentExpand,
+  betInformation,
 }) {
   const [amount, setAmount] = useState(0)
   const numberAmount = parseInt(amount)
@@ -219,7 +221,9 @@ function BettingInput({
       grandParentExpand(false)
       tostToggle()
       setSelectedId(0)
+      betInformation("success", "Congratulation Bet placed")
     } else {
+      betInformation("error", `${response.message}`)
       setLoading(false)
       setExpanded(false)
     }
@@ -255,6 +259,7 @@ function BettingInput({
 
   return (
     <>
+      {/* <ToastContainer /> */}
       <div className="tw-bg-[#2B2B31]   tw-pl-2 ">
         <div className="tw-flex tw-text-lg tw-h-8  tw-items-center tw-font-sf-font tw-text-12px tw-font-medium tw-justify-between tw-mb-3 ">
           <div className="tw-flex tw-items-center tw-mt-2">

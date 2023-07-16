@@ -9,20 +9,13 @@ import { ProfitLossCard } from "./ProfitLossCard"
 import { sports } from "utils/sportsData"
 import { formatDateTime } from "@utils/utils"
 import { CommissionCard } from "./CommissionCard"
+import { optionStatus, NOTIFICATION_SETTING } from "utils/constants"
+import { ToastContainer, toast } from "react-toastify"
 
-const today = new Date()
-  .toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })
-  .split(",")[0]
-const optionStatus = [
-  "DEPOSIT",
-  "WITHDRAWAL",
-  "JOINING_BONUS",
-  "DEPOSIT_BONUS",
-  "REFERRAL_COMMISSION",
-  "BET_COMMISSION",
-  "BET_PL",
-  "ALL",
-]
+// const today = new Date()
+//   .toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })
+//   .split(",")[0]
+const today = new Date().toISOString().split("T")[0]
 
 function InputComponent({
   dates,
@@ -99,16 +92,21 @@ function AccountStatement() {
     )
     if (response.success) {
       setTransactions(response.data.records)
-      setDates(true)
+      setIsDataFetched(true)
+    }
+    if (!response.success) {
+      toast.error(`${response.message}`, {
+        ...NOTIFICATION_SETTING,
+      })
     }
   }
   function loadHandler() {
     setPage((prevPage) => prevPage + 1)
     getAccountStatement()
   }
-
   return (
     <>
+      <ToastContainer />
       <div className="tw-bg-[#201F29] tw-font-normal tw-pt-4 tw-px-4">
         <div
           className={` tw-py-2 tw-min-w-full container   ${
@@ -150,13 +148,13 @@ function AccountStatement() {
         onClick={toggleHeight}
         className="tw-bg-[#201F29] tw-relative tw-mx-auto tw-w-20 tw-h-8  tw-px-4   tw-text-center  tw-rounded-lg"
       >
-        Hide
+        {isOpen ? "Hide" : "show"}
       </div>
       {isDataFetched && transactions.length == 0 && (
-        <Nodata message={"No Account statement data"} />
+        <Nodata message={"No account Data Available"} />
       )}
       {transactions?.map((item, index) => {
-        if (item.type == "BET_PL") {
+        if (!!optionStatus[index]["BET_PL"]) {
           return (
             <ProfitLossCard
               amount={item.amount}
@@ -170,7 +168,10 @@ function AccountStatement() {
           )
         }
 
-        if (item.type == "DEPOSIT" || item.type == "WITHDRAWAL") {
+        if (
+          !!optionStatus[index]["DEPOSIT"] ||
+          !!optionStatus[index]["WITHDRAWAL"]
+        ) {
           return (
             <TransactionCard
               amount={item.amount}
@@ -185,8 +186,8 @@ function AccountStatement() {
           )
         }
         if (
-          item.type == "BET_COMMISSION" ||
-          item.type == "REFERRAL_COMMISSION"
+          !!optionStatus[index]["REFERRAL_COMMISSION"] ||
+          !!optionStatus[index]["BET_COMMISSION"]
         ) {
           return (
             <CommissionCard
