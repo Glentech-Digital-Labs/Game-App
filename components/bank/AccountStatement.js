@@ -32,7 +32,7 @@ function InputComponent({
 }) {
   return (
     <>
-      <div className="tw-flex tw-gap-2 ">
+      <div className="tw-flex tw-min-w-full tw-gap-2 ">
         <Input
           type={"date"}
           label={"From"}

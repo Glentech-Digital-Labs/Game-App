@@ -35,9 +35,13 @@ async function FetchData(path, options, queryParams) {
   //   return res
   // }
 
+  // if (!res.ok) {
+  //   // throw new Error("Data Fetching me dikat hai ")
+  //   return res
+  // }
   if (!res.ok) {
     // throw new Error("Data Fetching me dikat hai ")
-    return res
+    return await res.json()
   }
   return res.json()
 }

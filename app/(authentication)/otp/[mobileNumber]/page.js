@@ -5,7 +5,9 @@ import React, { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { useDispatch, useSelector } from "react-redux"
 import FetchData from "@utils/Fetcher"
-import { resetUser } from "/redux/feature/user/userSlice"
+import { resetUser, setUser } from "redux/feature/user/userSlice"
+import { ToastContainer, toast } from "react-toastify"
+import { NOTIFICATION_SETTING } from "utils/constants"
 
 // Resend the Otp is still Left
 function Otp() {
@@ -35,8 +37,16 @@ function Otp() {
     })
 
     if (response.success) {
-      dispatch(resetUser())
+      dispatch(setUser({ ...userData, isOtpVerified: true, password: "" }))
+      toast.success("Congratulation OTP verified", {
+        ...NOTIFICATION_SETTING,
+      })
       router.replace("/home")
+    }
+    if (!response.success) {
+      toast.error("OTP is not correct", {
+        ...NOTIFICATION_SETTING,
+      })
     }
   }
 
@@ -55,6 +65,7 @@ function Otp() {
 
   return (
     <>
+      <ToastContainer />
       <div className="tw-flex tw-flex-col ">
         <p className="tw-text-xl tw-font-semibold tw-mt-6 tw-self-center">
           <span>{`OTP send to ${userData.phoneNumber}`}</span>

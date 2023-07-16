@@ -4,7 +4,6 @@ import {
   Loader,
   PasswordInput,
   TextInput,
-  Toast,
   YellowButton,
 } from "@components/common"
 import React, { useState } from "react"
@@ -14,6 +13,8 @@ import { setError, resetError } from "../../redux/feature/error/errorSlice"
 import { resetUser, setUser } from "../../redux/feature/user/userSlice"
 import { useToast } from "@hooks"
 import { useParams, useRouter } from "next/navigation"
+import { ToastContainer, toast } from "react-toastify"
+import { NOTIFICATION_SETTING } from "utils/constants"
 
 // When get Time try to implement  useMemo
 // I think this is very redundent I need to refactor this in the future
@@ -67,8 +68,6 @@ function Registration() {
   const [showPassword, setShowPassword] = useState(false)
   const [showConformPassword, setShowConformPassword] = useState(false)
   const [loading, setLoading] = useState(false)
-  const errorData = useSelector((state) => state.errorContext)
-  const { isToastOpen, tostToggle } = useToast()
   const [isChecked, setIsChecked] = useState(false)
   const router = useRouter()
   const dispatch = useDispatch()
@@ -91,6 +90,9 @@ function Registration() {
   const submitHandler = async (event) => {
     event.preventDefault()
     if (!isChecked) {
+      toast.info("Please check the checkbox", {
+        ...NOTIFICATION_SETTING,
+      })
       return
     }
     setLoading(true)
@@ -102,42 +104,43 @@ function Registration() {
         mode: "requestOtp",
       },
     })
-    console.log(`Response Data`, responseData)
-
-    // if (!responseData.ok) {
-    //   setLoading(false)
-    //   throw new Error("Some error while fetching  the data")
-    // }
 
     if (!responseData.success) {
       let data = {
         errorMessage: responseData.message,
         errorState: responseData.success,
       }
-
-      setLoading(false), dispatch(setError(data)), tostToggle()
+      toast.error(`${responseData.message}`, {
+        ...NOTIFICATION_SETTING,
+      })
+      setLoading(false), dispatch(setError(data))
     } else {
       setLoading(false)
-      dispatch(setUser({ ...registerUserData, password }))
+      dispatch(
+        setUser({
+          ...registerUserData,
+          password,
+          isOtpVerified: false,
+        })
+      )
       dispatch(resetError())
-      if (responseData.success) {
-        router.replace(`/otp/${registerUserData.phoneNumber}`)
-      }
+      toast.success(`${responseData.message}`, {
+        ...NOTIFICATION_SETTING,
+      })
+      router.replace(`/otp/${registerUserData.phoneNumber}`)
     }
 
     return responseData
   }
 
-  function routeHandler() {
+  function routeHandler(event) {
     event.preventDefault()
     router.push("/login")
   }
 
   return (
     <div className="tw-relative">
-      <Toast isToastOpen={isToastOpen} tostToggle={tostToggle}>
-        {errorData.errorMessage}
-      </Toast>
+      <ToastContainer />
       {loading && <Loader />}
       <form className=" tw-ml-[10%]" onSubmit={submitHandler}>
         <TextInput

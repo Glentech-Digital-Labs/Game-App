@@ -43,7 +43,8 @@ function HeaderProfile() {
   const dispatch = useDispatch()
   let ref = useRef(1)
   const amount =
-    parseFloat(userData?.depositBalance) + parseFloat(userData?.bonusBalance)
+    parseFloat(userData?.depositBalance) +
+    parseFloat(userData?.bonusBalance || 0)
   let isUserData = userData["userName"]?.length > 1
 
   useEffect(() => {

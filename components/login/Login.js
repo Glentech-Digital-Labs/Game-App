@@ -5,7 +5,6 @@ import {
   Loader,
   PasswordInput,
   TextInput,
-  Toast,
   YellowButton,
 } from "@components/common"
 import React, { useState } from "react"
@@ -19,6 +18,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { setError, resetError } from "../../redux/feature/error/errorSlice"
 import { setUser } from "@redux/feature/user/userSlice"
 import Link from "next/link"
+
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import { NOTIFICATION_SETTING } from "utils/constants"
 
 function Login() {
   const [email, setEmail] = useState("")
@@ -35,6 +38,9 @@ function Login() {
   async function submitHandler(event) {
     event.preventDefault()
     if (!isCheckedConsent) {
+      toast.info("Chal tick kar pahale", {
+        ...NOTIFICATION_SETTING,
+      })
       return ""
     }
     setIsLoading(true)
@@ -45,8 +51,12 @@ function Login() {
         email: email,
       },
     })
+
     if (!!response?.ok) {
       setIsLoading(false)
+      toast.warn("There is some serious error", {
+        ...NOTIFICATION_SETTING,
+      })
       throw new Error("Error in fetching Data")
     }
     if (!response.success) {
@@ -56,7 +66,9 @@ function Login() {
       }
       dispatch(setError(data))
       setIsLoading(false)
-
+      toast.warning(`${response.message}`, {
+        ...NOTIFICATION_SETTING,
+      })
       tostToggle()
     }
     if (response.success) {
@@ -64,15 +76,16 @@ function Login() {
       dispatch(resetError())
       dispatch(setUser({ ...userData }))
       router.replace("/home/inplay")
+      toast.success("Congratulation BIDU!", {
+        ...NOTIFICATION_SETTING,
+      })
       setIsLoading(false)
     }
   }
 
   return (
     <>
-      {isToastOpen && (
-        <Toast>{errorData.errorMessage || "Check the checkBox"}</Toast>
-      )}
+      <ToastContainer />
       {loading && <Loader />}
       <form className=" tw-ml-[10%]" onSubmit={submitHandler}>
         <TextInput
@@ -104,12 +117,10 @@ function Login() {
           </Link>
         </div>
         <div className="tw-flex tw-w-[90%] tw-mb-4  ">
-          {/* Checkbox is not working has to see ,getting the  */}
           <Checkbox
             setIsChecked={setIsCheckedConcent}
             isChecked={isCheckedConsent}
           />
-          {/* <Checkbox /> */}
           <p className="tw-font-thin tw-ml-4">
             We Promote and encourage safe and responsible gambling.Please
             conform that you are above the age of 18
