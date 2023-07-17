@@ -5,7 +5,7 @@ import { YellowButton } from "./YellowButton"
 function CashOutModal({ cashOutModalData, toggle, onClick }) {
   return (
     <>
-      <div className="tw-flex tw-bg-[#36364A] tw-items-center tw-gap-2 tw-min-w-full tw-rounded-t-lg tw-px-2 tw-h-14">
+      <div className="tw-flex tw-bg-[#36364A] tw-items-center tw-gap-2 tw-min-w-full tw-rounded-t-lg tw-px-2 tw-h-20">
         Cash Out
       </div>
       <div className="tw-mx-3 tw-my-4">
