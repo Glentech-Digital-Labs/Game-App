@@ -1,4 +1,4 @@
-import { Loader, MobileView } from "@components"
+import { Loader } from "@components"
 import { Providers } from "@redux/provider"
 import "@styles/global.css"
 import { NavigationEvents } from "@utils/navigationEvent"
