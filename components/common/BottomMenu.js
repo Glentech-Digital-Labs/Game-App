@@ -72,7 +72,7 @@ function BottomMenu() {
   return (
     <>
       {isLoading && <Loader />}
-      <div className=" tw-flex tw-h-20  tw-justify-around tw-fixed tw-min-w-full  tw-bottom-0 tw-z-10  tw-text-gray-300 bottom_layout">
+      <div className=" tw-flex tw-h-20  tw-justify-around tw-fixed tw-w-full  tw-bottom-0 tw-z-10  tw-text-gray-300 bottom_layout">
         <div
           className="tw-flex tw-flex-col tw-justify-center"
           onClick={() => router.push("/home")}

@@ -7,20 +7,15 @@ import React, { Suspense } from "react"
 
 import {
   GiBasketballBall,
-  GrTransaction,
   IoMdFootball,
   BsFillPlayBtnFill,
   AiFillGift,
-  AiFillStar,
-  FaHeadset,
   BiTennisBall,
   BiCricketBall,
-  AiFillHome,
   FaMoneyBillWaveAlt,
   MdAccountBalance,
   BsFillPeopleFill,
   AiFillProfile,
-  BiHelpCircle,
   BsReceiptCutoff,
   AiFillBank,
 } from "/utils/Icons"
@@ -57,7 +52,7 @@ function NavigateMenu() {
       <div className="tw-bg-[#252530] tw-flex tw-justify-center tw-my-4 tw-py-2 tw-border-1">
         Quicks Links
       </div>
-      <div className="tw-grid tw-grid-cols-4 tw-gap-2 tw-text-[#7E7E92] tw-px-2">
+      <div className="tw-grid tw-grid-cols-4 tw-gap-2 tw-text-[#7E7E92] tw-px-2 tw-cursor-pointer">
         <NavigateCard
           Icon={BsFillPlayBtnFill}
           label={"In play"}
@@ -82,7 +77,7 @@ function NavigateMenu() {
       <div className="tw-bg-[#252530] tw-flex tw-justify-center tw-my-4 tw-py-2 tw-border-1">
         Popular Sports
       </div>
-      <div className="tw-grid tw-grid-cols-4 tw-gap-2 tw-text-[#7E7E92] tw-px-2">
+      <div className="tw-grid tw-grid-cols-4 tw-gap-2 tw-text-[#7E7E92] tw-px-2 tw-cursor-pointer">
         <div className="box_card ">
           <IconCards
             Icon={BiCricketBall}
@@ -111,7 +106,7 @@ function NavigateMenu() {
       <div className="tw-bg-[#252530] tw-flex tw-justify-center tw-my-4 tw-py-2 tw-border-1">
         Payment
       </div>
-      <div className="tw-grid tw-grid-cols-4 tw-gap-2 tw-text-[#7E7E92] tw-px-2">
+      <div className="tw-grid tw-grid-cols-4 tw-gap-2 tw-text-[#7E7E92] tw-px-2 tw-cursor-pointer">
         <NavigateCard
           Icon={MdAccountBalance}
           label={"Payment"}

@@ -12,9 +12,6 @@ import { CommissionCard } from "./CommissionCard"
 import { optionStatus, NOTIFICATION_SETTING } from "utils/constants"
 import { ToastContainer, toast } from "react-toastify"
 
-// const today = new Date()
-//   .toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })
-//   .split(",")[0]
 const today = new Date().toISOString().split("T")[0]
 
 function InputComponent({
@@ -25,14 +22,12 @@ function InputComponent({
 }) {
   return (
     <>
-      <div className="tw-flex tw-min-w-full tw-gap-2 ">
+      <div className="tw-grid tw-grid-cols-2 tw-min-w-full tw-gap-2">
         <Input
           type={"date"}
           label={"From"}
           style={{ minWidth: "100%" }}
-          className={
-            "tw-border-2  tw-border-gray-600 tw-flex-grow tw-min-w-full"
-          }
+          className={"tw-border-2  tw-border-gray-600 tw-col-span-1"}
           value={dates.from}
           field={"from"}
           setValue={setDates}
@@ -42,15 +37,13 @@ function InputComponent({
           type={"date"}
           label={"To"}
           style={{ minWidth: "100%" }}
-          className={
-            "tw-border-2  tw-border-gray-600 tw-flex-grow tw-min-w-full"
-          }
+          className={"tw-border-2  tw-border-gray-600 tw-col-span-1"}
           value={dates.to}
           field={"to"}
           setValue={setDates}
         />
       </div>
-      <div className=" tw-w-[90%]">
+      <div className=" tw-w-full">
         <MultipleSelect
           options={optionStatus}
           label={"Transaction"}
@@ -196,6 +189,7 @@ function AccountStatement() {
               amount={item.amount}
               match={item["event"]["title"]}
               series={item["competition"]["title"]}
+              key={index}
             />
           )
         }

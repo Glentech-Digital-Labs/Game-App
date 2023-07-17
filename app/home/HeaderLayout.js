@@ -27,6 +27,13 @@ function HeaderLayout() {
       getData()
     }
   }, [])
+  let newList = []
+  sportsCategories.forEach((sport, item) => {
+    if (sport.sportsId == 4) {
+      sportsCategories.unshift(sport)
+      newList = [...new Set(sportsCategories)]
+    }
+  })
 
   return (
     <>
@@ -44,7 +51,7 @@ function HeaderLayout() {
         className="tw-flex tw-w-full tw-my-2 tw-overflow-x-auto tw-min-w-full all_sports_icon "
         style={{ maxWidth: "100vw" }}
       >
-        {sportsCategories.map((sports) => {
+        {newList?.map((sports) => {
           return (
             <Rounded
               key={sports.sportsId}
