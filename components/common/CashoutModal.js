@@ -5,10 +5,10 @@ import { YellowButton } from "./YellowButton"
 function CashOutModal({ cashOutModalData, toggle, onClick }) {
   return (
     <>
-      <div className="tw-flex tw-bg-[#36364A] tw-items-center tw-gap-2 tw-min-w-full tw-rounded-t-lg tw-px-2 tw-h-20">
+      <div className="tw-flex tw-bg-[#36364A] tw-items-center tw-gap-2 tw-min-w-full tw-rounded-t-lg tw-px-2 tw-h-14">
         Cash Out
       </div>
-      <div className="tw-mx-3 tw-my-4">
+      <div className="tw-mx-3 tw-my-4 tw-h-60">
         <div className="tw-flex tw-justify-between">
           <h2>Liability</h2>
           <h2>&#8377; {cashOutModalData.cashOutAmount?.toFixed(2)}</h2>

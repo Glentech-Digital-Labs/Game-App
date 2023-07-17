@@ -229,8 +229,8 @@ const AccordionItem = ({ item, index, data }) => {
       <Modal
         isModalOpen={isModalOpen}
         toggle={toggle}
-        className={"tw-h-[30%] tw-ml-[-2] "}
-        style={{ height: "38%" }}
+        className={" tw-ml-[-2] "}
+        style={{ height: "45%" }}
       >
         <CashOutModal
           cashOutModalData={cashOutModalData}

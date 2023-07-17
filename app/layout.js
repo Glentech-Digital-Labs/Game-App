@@ -32,12 +32,12 @@ function RootLayout({ children }) {
   return (
     <html className={`${inter.variable} ${sfFont.variable}`} lang={"en"}>
       <body>
-        {/* <MobileView> */}
-        <Providers>{children}</Providers>
-        <Suspense fallback={"Loader...."}>
-          <NavigationEvents />
-        </Suspense>
-        {/* </MobileView> */}
+        <div className="container_main">
+          <Providers>{children}</Providers>
+          <Suspense fallback={"Loader...."}>
+            <NavigationEvents />
+          </Suspense>
+        </div>
       </body>
     </html>
   )
