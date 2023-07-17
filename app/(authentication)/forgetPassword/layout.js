@@ -1,7 +1,7 @@
 import Image from "next/image"
 
 import Logo from "/public/images/Sportradar-log.svg"
-import { BottomMenu } from "@components"
+import { BackButton, BottomMenu } from "@components"
 
 const metadata = {
   title: "OTP ",
@@ -11,7 +11,8 @@ const metadata = {
 function RootLayout({ children }) {
   return (
     <section>
-      <div className="header tw-flex">
+      <div className="header tw-flex tw-items-center">
+        <BackButton />
         <Image
           src={Logo}
           width={100}

@@ -8,7 +8,7 @@ export const NOTIFICATION_SETTING = {
   pauseOnHover: true,
   draggable: true,
   progress: undefined,
-  theme: "light",
+  theme: "dark",
 }
 export const optionStatus = [
   {

@@ -4,6 +4,8 @@ import { Input } from "@components/common/InputComponent"
 import FetchData from "@utils/Fetcher"
 import { useRouter, useParams } from "next/navigation"
 import React, { useState, useEffect } from "react"
+import { ToastContainer, toast } from "react-toastify"
+import { NOTIFICATION_SETTING } from "utils/constants"
 
 function ResetPassword() {
   const [newPassword, setNewPassword] = useState("")
@@ -34,51 +36,63 @@ function ResetPassword() {
         newPassword: newPassword,
       },
     })
+
     if (response.success || response.status == "401") {
+      toast.success("Congratulation", {
+        ...NOTIFICATION_SETTING,
+        gi,
+      })
       router.push("/login")
     }
+    console.log(`Response`, response.success)
     if (!response.success) {
-      throw new Error("Error in FetchData Data")
+      toast.error(`${response.message},{
+        ...NOTIFICATION_SETTING
+      }`)
     }
+    // throw new Error("Error in FetchData Data")
   }
 
   return (
-    <div className="tw-flex tw-flex-col tw-justify-between tw-items-center">
-      <Input
-        label={"code"}
-        value={code}
-        className={"tw-w-4/5"}
-        setValue={setCode}
-        type={"text"}
-        parentStyle={{ width: "80%" }}
-      />
+    <>
+      <ToastContainer />
+      <div className="tw-flex tw-flex-col tw-justify-between tw-items-center">
+        <Input
+          label={"code"}
+          value={code}
+          className={"tw-w-4/5"}
+          setValue={setCode}
+          type={"text"}
+          parentStyle={{ width: "90%" }}
+        />
 
-      <PasswordInput
-        label={"new Password"}
-        type={"password"}
-        parentStyle={{ minWidth: "80%" }}
-        setUserPassword={setNewPassword}
-        value={newPassword}
-        setShowPassword={setShowNewPassword}
-        showPassword={showNewPassword}
-        inputStyle={{ borderColor: isPasswordMatch ? "" : "red" }}
-      />
-      <PasswordInput
-        label={"Conform Password"}
-        type={"password"}
-        parentStyle={{ minWidth: "80%" }}
-        setUserPassword={setConformPassword}
-        value={conformPassword}
-        setShowPassword={setShowConformPassword}
-        showPassword={showConformPassword}
-        inputStyle={{ borderColor: isPasswordMatch ? "" : "red" }}
-      />
-      <YellowButton
-        label={"submit"}
-        className={"tw-w-2/5 tw-mt-4"}
-        onClick={passwordUpdateHandler}
-      />
-    </div>
+        <PasswordInput
+          label={"new Password"}
+          type={"password"}
+          parentStyle={{ minWidth: "90%" }}
+          setUserPassword={setNewPassword}
+          value={newPassword}
+          setShowPassword={setShowNewPassword}
+          showPassword={showNewPassword}
+          inputStyle={{ borderColor: isPasswordMatch ? "" : "red" }}
+        />
+        <PasswordInput
+          label={"Conform Password"}
+          type={"password"}
+          parentStyle={{ minWidth: "90%" }}
+          setUserPassword={setConformPassword}
+          value={conformPassword}
+          setShowPassword={setShowConformPassword}
+          showPassword={showConformPassword}
+          inputStyle={{ borderColor: isPasswordMatch ? "" : "red" }}
+        />
+        <YellowButton
+          label={"submit"}
+          className={"tw-w-2/5 tw-mt-4"}
+          onClick={passwordUpdateHandler}
+        />
+      </div>
+    </>
   )
 }
 

@@ -4,6 +4,7 @@ import { Input } from "@components/common/InputComponent"
 import FetchData from "@utils/Fetcher"
 import { useRouter } from "next/navigation"
 import React, { useState } from "react"
+import { ToastContainer, toast } from "react-toastify"
 import Data from "utils/config"
 
 const validator = "^([a-zA-Z0-9_-.]+)@([a-zA-Z0-9_-.]+).([a-zA-Z]{2,5})$"
@@ -37,13 +38,21 @@ function ForgetPassword() {
   const [email, setEmail] = useState("")
 
   async function onSubmit() {
-    // if (email.match(validator)) {
-    //   return ""
-    // }
-    const response = await getForgetPasswordMail({
-      url: "punter/forgot-password/init",
-      email,
-    })
+    // const response = await getForgetPasswordMail({
+    //   url: "punter/forgot-password/init",
+    //   email,
+    // })
+    const response = await toast.promise(
+      getForgetPasswordMail({
+        url: "punter/forgot-password/init",
+        email,
+      }),
+      {
+        pending: "Promise is pending",
+        success: "Promise resolved 👌",
+        error: "Promise rejected 🤯",
+      }
+    )
     if (response.success) {
       router.push("passwordReset/1")
     } else {
@@ -52,24 +61,27 @@ function ForgetPassword() {
   }
 
   return (
-    <div className="tw-flex tw-flex-col tw-justify-center tw-items-center">
-      <Input
-        type={"email"}
-        label={"Email"}
-        setValue={setEmail}
-        value={email}
-        className={"tw-w-full"}
-        style={{ minWidth: "100%" }}
-        parentStyle={{ minWidth: "80%" }}
-        placeholder={"Please enter Your Email"}
-        pattern={validator}
-      />
-      <YellowButton
-        label={"Submit"}
-        onClick={onSubmit}
-        className={"tw-w-[50%]"}
-      />
-    </div>
+    <>
+      <ToastContainer />
+      <div className="tw-flex tw-flex-col tw-justify-center tw-items-center">
+        <Input
+          type={"email"}
+          label={"Email"}
+          setValue={setEmail}
+          value={email}
+          className={"tw-w-full"}
+          style={{ minWidth: "100%" }}
+          parentStyle={{ minWidth: "80%" }}
+          placeholder={"Please enter Your Email"}
+          pattern={validator}
+        />
+        <YellowButton
+          label={"Submit"}
+          onClick={onSubmit}
+          className={"tw-w-[50%]"}
+        />
+      </div>
+    </>
   )
 }
 

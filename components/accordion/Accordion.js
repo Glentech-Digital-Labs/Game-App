@@ -288,28 +288,23 @@ const AccordionItem = ({ item, index, data }) => {
 }
 
 // You can put this for server side render
-const AccordionMain = ({ data }) => {
-  let matchOddsData = []
-  let nonMatchOddsData = []
+const Accordion = protectRouteWithCookie(({ data }) => {
+  const sortedData = [...data].sort((a, b) =>
+    a.marketTitle === "Match Odds" ? -1 : 1
+  )
 
-  data.map((item, index) => {
-    if (item.marketTitle == "Match Odds") {
-      matchOddsData.push(item)
-    } else {
-      nonMatchOddsData.push(item)
-    }
-  })
-  let modifiedData = [...matchOddsData, ...nonMatchOddsData]
   return (
     <div className="accordion " style={{ paddingBottom: "6rem" }}>
-      {modifiedData.map((item, index) => {
-        return (
-          <AccordionItem key={item.id} item={item} index={index} data={data} />
-        )
-      })}
+      {sortedData.map((item, index) => (
+        <AccordionItem
+          key={item.id}
+          item={item}
+          index={index}
+          data={sortedData}
+        />
+      ))}
     </div>
   )
-}
-let Accordion = protectRouteWithCookie(AccordionMain)
+})
 
 export { Accordion }
