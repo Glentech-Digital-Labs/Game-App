@@ -30,7 +30,7 @@ function Loader() {
         style={{ width: 150, height: 150 }}
         className="loader-gif"
       />
-      <span className="tw-absolute tw-top-[58%] tw-left-[32%] tw-translate-x-1/2 tw-translate-y-1/2 tw-text-lg tw-font-semibold">
+      <span className="tw-absolute tw-top-[58%] tw-left-[32%] tw-translate-x-1/2 tw-translate-y-1/2 tw-text-lg tw-font-semibold tw-z-50">
         Loading...
       </span>
     </>

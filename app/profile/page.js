@@ -1,10 +1,11 @@
-import { ProfileEdit } from "@components"
+import { ErrorComponent, ProfileEdit } from "@components"
 import React from "react"
 
 function Profile() {
   return (
     <>
-      <ProfileEdit />
+      {/* <ProfileEdit /> */}
+      <ErrorComponent />
     </>
   )
 }

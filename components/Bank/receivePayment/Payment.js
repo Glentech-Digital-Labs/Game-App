@@ -11,7 +11,8 @@ import "./index.css"
 import { useToast } from "@hooks"
 import { useRouter } from "next/navigation"
 import protectRouteWithCookie from "@hooks/ProtectedRoute"
-
+import { ToastContainer, toast } from "react-toastify"
+import { NOTIFICATION_SETTING } from "utils/constants"
 function AccountInformation({ selectedDate }) {
   const [copiedValue, setCopiedValue] = useState("")
   async function copyToClipBoard(text) {
@@ -197,7 +198,7 @@ function BottomLayout({
   )
 }
 
-function PaymentFun() {
+function UnprotectedPaymentFun() {
   const [paymentData, setPaymentData] = useState([])
 
   const [typeOfAccount, setTypeOfAccount] = useState("BANK_DETAILS")
@@ -252,19 +253,23 @@ function PaymentFun() {
         router.push("home/inplay")
       }, 2000)
       setIsLoading(false)
+      toast.success("successfully UPLOADED", {
+        ...NOTIFICATION_SETTING,
+      })
     }
     if (!response.success) {
       setMessage("Error in  UPLOADED the record")
       tostToggle()
       setIsLoading(false)
+      toast.error(`${response.message}`, {
+        ...NOTIFICATION_SETTING,
+      })
     }
   }
 
   return (
     <>
-      <Toast isToastOpen={isToastOpen} tostToggle={tostToggle}>
-        {message}
-      </Toast>
+      <ToastContainer />
       {isLoading && <Loader />}
       <div className="tw-flex tw-bg-[#171717] tw-justify-center tw-my-4  tw-mb-10">
         {paymentData?.map((item) => {
@@ -300,6 +305,7 @@ function PaymentFun() {
     </>
   )
 }
-let Payment = protectRouteWithCookie(PaymentFun)
+function dummy() {}
+var Payment = protectRouteWithCookie(UnprotectedPaymentFun)
 
 export { Payment }

@@ -19,12 +19,20 @@ const MultipleSelect = ({
           >
             <option value="">Select an option</option>
             {options?.map((option) => {
-              let entries = Object.entries(option)[0]
-              return (
-                <option key={entries[0]} value={entries[0]}>
-                  {entries[1]}
-                </option>
-              )
+              if (typeof option === "object") {
+                let entries = Object.entries(option)[0]
+                return (
+                  <option key={entries[0]} value={entries[0]}>
+                    {entries[1]}
+                  </option>
+                )
+              } else {
+                return (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                )
+              }
             })}
           </select>
         </div>

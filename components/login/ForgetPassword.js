@@ -1,11 +1,12 @@
 "use client"
-import { YellowButton } from "@components/common"
+import { Loader, YellowButton } from "@components/common"
 import { Input } from "@components/common/InputComponent"
 import FetchData from "@utils/Fetcher"
 import { useRouter } from "next/navigation"
 import React, { useState } from "react"
 import { ToastContainer, toast } from "react-toastify"
 import Data from "utils/config"
+import { NOTIFICATION_SETTING } from "utils/constants"
 
 const validator = "^([a-zA-Z0-9_-.]+)@([a-zA-Z0-9_-.]+).([a-zA-Z]{2,5})$"
 
@@ -36,33 +37,32 @@ const BASE_URL = Data.BASE_URL
 function ForgetPassword() {
   const router = useRouter()
   const [email, setEmail] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
   async function onSubmit() {
-    // const response = await getForgetPasswordMail({
-    //   url: "punter/forgot-password/init",
-    //   email,
-    // })
-    const response = await toast.promise(
-      getForgetPasswordMail({
-        url: "punter/forgot-password/init",
-        email,
-      }),
-      {
-        pending: "Promise is pending",
-        success: "Promise resolved 👌",
-        error: "Promise rejected 🤯",
-      }
-    )
+    setIsLoading(true)
+    const response = await getForgetPasswordMail({
+      url: "punter/forgot-password/init",
+      email,
+    })
     if (response.success) {
+      toast.success(`Email send to ${email}`, {
+        ...NOTIFICATION_SETTING,
+      })
       router.push("passwordReset/1")
+      setIsLoading(false)
     } else {
-      console.log("there is error")
+      toast.error(`${response.message}`, {
+        ...NOTIFICATION_SETTING,
+      })
+      setIsLoading(false)
     }
   }
 
   return (
     <>
       <ToastContainer />
+      {isLoading && <Loader />}
       <div className="tw-flex tw-flex-col tw-justify-center tw-items-center">
         <Input
           type={"email"}

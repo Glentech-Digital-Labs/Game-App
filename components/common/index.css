@@ -616,7 +616,7 @@
 
 .error-gif {
   height: 100%;
-  background-image: url("/images/public/images/sports_loader.gif");
+  background-image: url("/images/output-onlinegiftools.gif");
   background-size: contain;
   display: block;
   background-repeat: no-repeat;
@@ -627,6 +627,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 100;
 }
 
 /* Thumb container */

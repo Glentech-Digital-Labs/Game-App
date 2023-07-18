@@ -161,8 +161,9 @@ function Commission() {
             user={item["referent"]?.["userName"]}
             time={item["createdAt"]}
             amount={item.amount}
-            match={item["event"]["title"]}
-            series={item["competition"]["title"]}
+            match={item["event"]?.["title"]}
+            series={item["competition"]?.["title"]}
+            key={index}
           />
         )
       })}

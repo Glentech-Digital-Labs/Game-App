@@ -70,5 +70,5 @@ function ReferralComponent() {
     </div>
   )
 }
-const Referral = protectRouteWithCookie(React.memo(ReferralComponent))
+const Referral = protectRouteWithCookie(ReferralComponent)
 export { Referral }

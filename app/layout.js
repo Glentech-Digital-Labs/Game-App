@@ -34,7 +34,7 @@ function RootLayout({ children }) {
       <body>
         <div className="container_main">
           <Providers>{children}</Providers>
-          <Suspense fallback={"Loader...."}>
+          <Suspense fallback={<Loader />}>
             <NavigationEvents />
           </Suspense>
         </div>
