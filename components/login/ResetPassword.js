@@ -7,6 +7,28 @@ import React, { useState, useEffect } from "react"
 import { ToastContainer, toast } from "react-toastify"
 import { NOTIFICATION_SETTING } from "utils/constants"
 
+async function passwordUpdateHandler({ code, newPassword, router }) {
+  const response = await FetchData("punter/forgot-password/execute-reset", {
+    method: "POST",
+    body: {
+      code: code,
+      newPassword: newPassword,
+    },
+  })
+
+  if (response.success || response.status == "401") {
+    toast.success("Congratulation", {
+      ...NOTIFICATION_SETTING,
+    })
+    router.push("/login")
+  }
+  if (!response.success) {
+    toast.error(`${response.message},{
+        ...NOTIFICATION_SETTING
+      }`)
+  }
+}
+
 function ResetPassword() {
   const [newPassword, setNewPassword] = useState("")
   const [showNewPassword, setShowNewPassword] = useState(false)
@@ -17,7 +39,6 @@ function ResetPassword() {
   const params = useParams()
   const { id } = params
   const [code, setCode] = useState(id)
-
   const router = useRouter()
   useEffect(() => {
     if (conformPassword !== newPassword) {
@@ -27,31 +48,6 @@ function ResetPassword() {
       setIsPasswordmatch(true)
     }
   }, [conformPassword, newPassword])
-
-  async function passwordUpdateHandler() {
-    const response = await FetchData("punter/forgot-password/execute-reset", {
-      method: "POST",
-      body: {
-        code: code,
-        newPassword: newPassword,
-      },
-    })
-
-    if (response.success || response.status == "401") {
-      toast.success("Congratulation", {
-        ...NOTIFICATION_SETTING,
-        gi,
-      })
-      router.push("/login")
-    }
-    console.log(`Response`, response.success)
-    if (!response.success) {
-      toast.error(`${response.message},{
-        ...NOTIFICATION_SETTING
-      }`)
-    }
-    // throw new Error("Error in FetchData Data")
-  }
 
   return (
     <>
@@ -89,7 +85,7 @@ function ResetPassword() {
         <YellowButton
           label={"submit"}
           className={"tw-w-2/5 tw-mt-4"}
-          onClick={passwordUpdateHandler}
+          onClick={() => passwordUpdateHandler({ code, newPassword, router })}
         />
       </div>
     </>

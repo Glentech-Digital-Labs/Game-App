@@ -33,10 +33,11 @@ async function getLoginData() {
   if (response.success) {
     return response
   }
+  // true bakloli is going on here
   return response
 }
 
-function HeaderProfile() {
+function headerTop() {
   const router = useRouter()
   const userData = useSelector((state) => state.userContext)
   const [isLoggedIn, setIsLoading] = useState(false)
@@ -48,24 +49,31 @@ function HeaderProfile() {
   let isUserData = userData["userName"]?.length > 1
 
   useEffect(() => {
-    async function getData() {
-      setIsLoading(isUserData)
-    }
-    getData()
+    setIsLoading(isUserData)
   }, [isUserData])
   useEffect(() => {
     const interval = setInterval(async () => {
       const responseData = await getLoginData()
-      if (responseData.success == "false") {
+      if (!responseData.success) {
         dispatch(resetUser())
         delete_cookie("sessionId")
+        setIsLoading(isUserData)
       }
     }, 1000 * 10)
     return () => {
       clearInterval(interval)
     }
   }, [])
+  return {
+    router,
+    userData,
+    isLoggedIn,
+    amount,
+  }
+}
 
+function HeaderProfile() {
+  const { amount, isLoggedIn, router, userData } = headerTop()
   return (
     <div className="tw-flex  tw-justify-between tw-w-screen">
       {isLoggedIn ? (

@@ -5,6 +5,7 @@ import { BiWallet } from "/utils/Icons"
 import { TransactionCard } from "./TransactionCard"
 import { BlackButton, YellowButton } from "@components/common"
 import { Input } from "@components/common/InputComponent"
+import protectRouteWithCookie from "@hooks/ProtectedRoute"
 
 function Header({ currencySymbol }) {
   return (
@@ -52,7 +53,7 @@ function Header({ currencySymbol }) {
   )
 }
 
-function AmountWithdraw() {
+function Amount() {
   const currencySymbol = CurrencyData["USD"]["symbol"]
   return (
     <>
@@ -108,5 +109,6 @@ function AmountWithdraw() {
     </>
   )
 }
+let AmountWithdraw = protectRouteWithCookie(Amount)
 
 export { AmountWithdraw }

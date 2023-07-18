@@ -9,6 +9,7 @@ import SummeryComponent from "./Summery"
 import { InputComponent } from "./InputComponent"
 import { ToastContainer, toast } from "react-toastify"
 import { NOTIFICATION_SETTING } from "utils/constants"
+import protectRouteWithCookie from "@hooks/ProtectedRoute"
 
 const BASE_URL = Data.BASE_URL
 const optionsTransactions = ["DEPOSIT", "WITHDRAWAL", "ALL"]
@@ -49,7 +50,7 @@ async function getTransactionData({
 }
 
 const today = new Date().toISOString().split("T")[0]
-function Transaction({ children }) {
+function TransactionAmount({ children }) {
   const [isOpen, setIsOpen] = useState(true)
   const [isDataFetched, setIsDataFetched] = useState(false)
 
@@ -173,5 +174,5 @@ function Transaction({ children }) {
     </>
   )
 }
-
+let Transaction = protectRouteWithCookie(TransactionAmount)
 export { Transaction }

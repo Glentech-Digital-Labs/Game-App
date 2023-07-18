@@ -1,6 +1,4 @@
-"use client"
 import { AmountWithdraw } from "@components"
-import protectRouteWithCookie from "@hooks/ProtectedRoute"
 import React from "react"
 
 function WithDraw() {
@@ -11,4 +9,4 @@ function WithDraw() {
   )
 }
 
-export default protectRouteWithCookie(WithDraw)
+export default WithDraw

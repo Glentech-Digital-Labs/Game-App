@@ -10,6 +10,7 @@ import { MdOutlineContentCopy } from "/utils/Icons"
 import "./index.css"
 import { useToast } from "@hooks"
 import { useRouter } from "next/navigation"
+import protectRouteWithCookie from "@hooks/ProtectedRoute"
 
 function AccountInformation({ selectedDate }) {
   const [copiedValue, setCopiedValue] = useState("")
@@ -196,7 +197,7 @@ function BottomLayout({
   )
 }
 
-function Payment() {
+function PaymentFun() {
   const [paymentData, setPaymentData] = useState([])
 
   const [typeOfAccount, setTypeOfAccount] = useState("BANK_DETAILS")
@@ -299,5 +300,6 @@ function Payment() {
     </>
   )
 }
+let Payment = protectRouteWithCookie(PaymentFun)
 
 export { Payment }

@@ -1,9 +1,34 @@
 "use client"
-import { PasswordInput, YellowButton } from "@components/common"
+import { Loader, PasswordInput, YellowButton } from "@components/common"
 import { Input } from "@components/common/InputComponent"
 import FetchData from "@utils/Fetcher"
 import { useRouter } from "next/navigation"
 import React, { useEffect, useState } from "react"
+
+async function passwordUpdateHandler({
+  oldPassword,
+  newPassword,
+  router,
+  setLoading,
+}) {
+  setLoading(true)
+  const response = await FetchData("user/password/update", {
+    method: "POST",
+    body: {
+      oldPassword,
+      newPassword,
+      reLogin: false,
+    },
+  })
+  if (response.success || response.status == "401") {
+    router.push("/login")
+    setLoading(false)
+  }
+  if (!response.success) {
+    setLoading(false)
+    throw new Error("Error in FetchData Data")
+  }
+}
 
 function UpdatePassword() {
   const [oldPassword, setOldPassword] = useState("")
@@ -13,10 +38,10 @@ function UpdatePassword() {
   const [conformPassword, setConformPassword] = useState("")
   const [showConformPassword, setShowConformPassword] = useState(false)
   const [isPasswordMatch, setIsPasswordmatch] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   const router = useRouter()
 
-  let borderColor
   useEffect(() => {
     if (conformPassword !== newPassword) {
       setIsPasswordmatch(false)
@@ -26,61 +51,54 @@ function UpdatePassword() {
     }
   }, [conformPassword, newPassword])
 
-  async function passwordUpdateHandler(params) {
-    const response = await FetchData("user/password/update", {
-      method: "POST",
-      body: {
-        oldPassword,
-        newPassword,
-        reLogin: false,
-      },
-    })
-    if (response.success || response.status == "401") {
-      router.push("/login")
-    }
-    if (!response.success) {
-      throw new Error("Error in FetchData Data")
-    }
-  }
-
   return (
-    <div className="tw-flex tw-flex-col tw-items-center">
-      <PasswordInput
-        label={"old Password"}
-        type={"password"}
-        parentStyle={{ minWidth: "80%" }}
-        setUserPassword={setOldPassword}
-        value={oldPassword}
-        setShowPassword={setShowOldPassword}
-        showPassword={showOldPassword}
-      />
-      <PasswordInput
-        label={"new Password"}
-        type={"password"}
-        parentStyle={{ minWidth: "80%" }}
-        setUserPassword={setNewPassword}
-        value={newPassword}
-        setShowPassword={setShowNewPassword}
-        showPassword={showNewPassword}
-        inputStyle={{ borderColor: isPasswordMatch ? "" : "red" }}
-      />
-      <PasswordInput
-        label={"Conform Password"}
-        type={"password"}
-        parentStyle={{ minWidth: "80%" }}
-        setUserPassword={setConformPassword}
-        value={conformPassword}
-        setShowPassword={setShowConformPassword}
-        showPassword={showConformPassword}
-        inputStyle={{ borderColor: isPasswordMatch ? "" : "red" }}
-      />
+    <>
+      {loading && <Loader />}
+      <div className="tw-flex tw-flex-col tw-items-center">
+        <PasswordInput
+          label={"old Password"}
+          type={"password"}
+          parentStyle={{ minWidth: "80%" }}
+          setUserPassword={setOldPassword}
+          value={oldPassword}
+          setShowPassword={setShowOldPassword}
+          showPassword={showOldPassword}
+        />
+        <PasswordInput
+          label={"new Password"}
+          type={"password"}
+          parentStyle={{ minWidth: "80%" }}
+          setUserPassword={setNewPassword}
+          value={newPassword}
+          setShowPassword={setShowNewPassword}
+          showPassword={showNewPassword}
+          inputStyle={{ borderColor: isPasswordMatch ? "" : "red" }}
+        />
+        <PasswordInput
+          label={"Conform Password"}
+          type={"password"}
+          parentStyle={{ minWidth: "80%" }}
+          setUserPassword={setConformPassword}
+          value={conformPassword}
+          setShowPassword={setShowConformPassword}
+          showPassword={showConformPassword}
+          inputStyle={{ borderColor: isPasswordMatch ? "" : "red" }}
+        />
 
-      <YellowButton
-        label={"UpdatePassword"}
-        className={"tw-w-2/5 tw-self-center"}
-        onClick={passwordUpdateHandler}
-      />
-    </div>
+        <YellowButton
+          label={"UpdatePassword"}
+          className={"tw-w-2/5 tw-self-center"}
+          onClick={() =>
+            passwordUpdateHandler({
+              oldPassword,
+              newPassword,
+              router,
+              setLoading,
+            })
+          }
+        />
+      </div>
+    </>
   )
 }
 

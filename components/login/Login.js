@@ -38,7 +38,7 @@ function Login() {
   async function submitHandler(event) {
     event.preventDefault()
     if (!isCheckedConsent) {
-      toast.info("Chal tick kar pahale", {
+      toast.info("Please check the checkbox", {
         ...NOTIFICATION_SETTING,
       })
       return ""
@@ -52,13 +52,6 @@ function Login() {
       },
     })
 
-    if (!!response?.ok) {
-      setIsLoading(false)
-      toast.warn("There is some serious error", {
-        ...NOTIFICATION_SETTING,
-      })
-      throw new Error("Error in fetching Data")
-    }
     if (!response.success) {
       let data = {
         errorMessage: response.message,
@@ -76,7 +69,7 @@ function Login() {
       dispatch(resetError())
       dispatch(setUser({ ...userData }))
       router.replace("/home/inplay")
-      toast.success("Congratulation BIDU!", {
+      toast.success("Welcome Back!", {
         ...NOTIFICATION_SETTING,
       })
       setIsLoading(false)

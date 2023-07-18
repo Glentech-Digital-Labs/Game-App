@@ -11,6 +11,7 @@ import { formatDateTime } from "@utils/utils"
 import { CommissionCard } from "./CommissionCard"
 import { optionStatus, NOTIFICATION_SETTING } from "utils/constants"
 import { ToastContainer, toast } from "react-toastify"
+import protectRouteWithCookie from "@hooks/ProtectedRoute"
 
 const today = new Date().toISOString().split("T")[0]
 
@@ -55,7 +56,7 @@ function InputComponent({
   )
 }
 
-function AccountStatement() {
+function Account() {
   const [dates, setDates] = useState({
     from: today,
     to: today,
@@ -206,5 +207,7 @@ function AccountStatement() {
     </>
   )
 }
+
+let AccountStatement = protectRouteWithCookie(Account)
 
 export { AccountStatement }
